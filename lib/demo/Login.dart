@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 import '../main.dart';
 //这是登录页面
 
-class FormDemo extends StatelessWidget {
+class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 1,
-        title:Text('FormDemo'),
-      ),
       body: Theme(
         data:Theme.of(context).copyWith(     //覆盖主题
           primaryColor:Colors.black
@@ -67,8 +63,6 @@ class _RegisterFormState extends State<RegisterForm> {
             },
             validator: validateUsername,  //验证表单数据
             autovalidate: autovalidate,  //自定义的自动验证
-            //先让autovalidate默认为false,按下按钮后，再变成true
-            //即按下按钮前不会自动验证
           ),
           TextFormField(
             obscureText: true,
@@ -94,8 +88,6 @@ class _RegisterFormState extends State<RegisterForm> {
               onPressed: (){
                 if (registerFormKey.currentState.validate()) {
                   registerFormKey.currentState.save();                
-                  debugPrint('username:$username');
-                  debugPrint('password:$password');
                   Scaffold.of(context).showSnackBar( //找到最近的scaffold并执行
                     SnackBar(           //在底部弹出提示栏
                       content: Text(
@@ -113,7 +105,6 @@ class _RegisterFormState extends State<RegisterForm> {
                       builder:(BuildContext context)=>GeneralFramework()
                     )
                   );
-
                 } else {
                   setState(() {
                     autovalidate = true;
