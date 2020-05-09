@@ -14,11 +14,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.white,
         highlightColor: Color.fromRGBO(255, 255, 255, 0.5),
         splashColor: Colors.white70          //设置点击按钮时的水波纹效果
       ),
-      home: Login(),
+      home: GeneralFramework(),
     );
   }
 }
@@ -58,5 +58,3 @@ class _GeneralFrameworkState extends State<GeneralFramework>{
     );
   }
 }
-
-
