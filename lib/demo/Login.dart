@@ -66,7 +66,6 @@ class _RegisterFormState extends State<RegisterForm> {
               username=value;
             },
             validator: validateUsername,  //验证表单数据
-            //autovalidate: true,       // 自动验证
             autovalidate: autovalidate,  //自定义的自动验证
             //先让autovalidate默认为false,按下按钮后，再变成true
             //即按下按钮前不会自动验证
