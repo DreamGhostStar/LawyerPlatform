@@ -23,7 +23,6 @@ class _CasesState extends State<Cases>{
             children: <Widget>[
               SizedBox(height: 20,),            
               TextField(
-                obscureText: true,
                 decoration: InputDecoration(
                   icon: Icon(Icons.search),
                   hintText: '输入关键词，搜索案件',
@@ -52,7 +51,7 @@ class _CasesState extends State<Cases>{
                   }
                 ).toList(),
               ),
-              Divider(),
+              Divider(height: 6,color: Colors.black,),
             ],
           ),
         ),
