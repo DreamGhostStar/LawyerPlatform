@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../model/CaseList.dart';
 //这是案件页面
 
 class Cases extends StatefulWidget{
@@ -7,7 +8,12 @@ class Cases extends StatefulWidget{
 }
 
 class _CasesState extends State<Cases>{
-  List<String> _label = ['全部','在办','归档','结案'];
+  List<String> _label = ['全部','在办','归档'];
+  //获取案件列表要用的参数
+  bool isall;
+  String caseStatus;
+  
+
   String _choice = '全部';
   @override
   Widget build(BuildContext context){
@@ -19,7 +25,6 @@ class _CasesState extends State<Cases>{
         child: Container(
           padding: EdgeInsets.all(16),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               SizedBox(height: 20,),            
               TextField(
@@ -46,6 +51,15 @@ class _CasesState extends State<Cases>{
                         setState(() {
                           _choice=tag;
                         });
+                        if (_choice=='全部') {
+                          isall = true;
+                        } else if(_choice=='在办'){
+                          isall = false;
+                          caseStatus = 'in_office';
+                        } else{
+                          isall = false;
+                          caseStatus = 'end_office';
+                        }
                       },
                     );
                   }
