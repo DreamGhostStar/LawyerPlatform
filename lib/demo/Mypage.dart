@@ -9,8 +9,23 @@ class Mypage extends StatefulWidget{
 class _MypageState extends State<Mypage>{
   @override
   Widget build(BuildContext context){
-    return Scaffold(
-      body: Text('Mypage'),
+    return Scaffold( 
+      body: Theme(
+        data: Theme.of(context).copyWith(
+          primaryColor:Colors.blue,
+        ),  
+        child: Container(
+          margin: EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Card(
+                
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
