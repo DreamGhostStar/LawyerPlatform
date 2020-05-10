@@ -7,55 +7,56 @@ class Cases extends StatefulWidget{
 }
 
 class _CasesState extends State<Cases>{
+  List<String> _label = ['全部','在办','归档','结案'];
+  String _choice = '全部';
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      // appBar: AppBar(
-      //   iconTheme: IconThemeData(
-      //     color:Colors.black
-      //   ),
-      //   actions: <Widget>[
-      //     Icon(Icons.search),
-      //   ],
-      //   leading: Builder(
-      //     builder: (BuildContext context) {
-      //       return IconButton(
-      //         icon: const Icon(Icons.note_add),
-      //         onPressed: () {},
-      //         tooltip: '新建案件',
-      //       );
-      //     },
-      //   ),
-      // ),
-      body: Container(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            SizedBox(height: 20,),
-            Row(
-              children: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.note_add),
-                  onPressed: () {},
-                  tooltip: '新建案件',
+      body:Theme(
+        data: Theme.of(context).copyWith(
+          primaryColor:Colors.grey,
+        ), 
+        child: Container(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(height: 20,),            
+              TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  icon: Icon(Icons.search),
+                  hintText: '输入关键词，搜索案件',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
                 ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-
-              children: <Widget>[
-                ChoiceChip(
-                  label: Text('全部'),
-                  selected:true,
-                )
-              ],
-            ),
-            Divider(),
-          ],
+              ),
+              SizedBox(height: 10,),
+              Wrap(
+                spacing: 30,
+                children: _label.map(
+                  (tag){
+                    return ChoiceChip(
+                      labelStyle: TextStyle(color:Colors.black),
+                      selectedColor: Colors.orange[200],
+                      // shape: ,
+                      label: Text(tag),
+                      selected: _choice==tag,
+                      onSelected: (value){
+                        setState(() {
+                          _choice=tag;
+                        });
+                      },
+                    );
+                  }
+                ).toList(),
+              ),
+              Divider(),
+            ],
+          ),
         ),
-      )
+      ), 
     );
   }
 }
