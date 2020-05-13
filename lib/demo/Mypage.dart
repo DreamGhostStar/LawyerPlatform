@@ -17,10 +17,10 @@ class _MypageState extends State<Mypage>{
         child: Container(
           margin: EdgeInsets.all(20),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Card(
-                
+                child: Image.network('https://junshi-pic.china.com/handcovercj/202005/04/1588542681_82612900.jpg'),
               ),
             ],
           ),
