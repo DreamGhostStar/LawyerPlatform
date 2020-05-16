@@ -19,9 +19,12 @@ class _MypageState extends State<Mypage>{
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Card(
-                child: Image.network('https://junshi-pic.china.com/handcovercj/202005/04/1588542681_82612900.jpg'),
-              ),
+              Padding(          //个人名片两边加边距
+                padding: EdgeInsets.fromLTRB(7, 4, 7, 4),
+                child:  Card(
+                  child: Image.network('https://junshi-pic.china.com/handcovercj/202005/04/1588542681_82612900.jpg'),
+                ),              
+              ),             
             ],
           ),
         ),
