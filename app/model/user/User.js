@@ -33,23 +33,23 @@ module.exports = app => {
       type: STRING(32),
       allowNull: true,
     },
-    name: {
+    name: { // 真实姓名
       type: STRING(32),
       allowNull: true,
     },
-    lawyer_number: {
+    lawyer_number: { // 律师号
       type: STRING(32),
       allowNull: true,
     },
-    avatar: {
+    avatar: { // 头像
+      type: STRING(128),
+      allowNull: true,
+    },
+    driver_scan_image: { // 驾驶证扫描件
       type: STRING(32),
       allowNull: true,
     },
-    driver_scan_image: {
-      type: STRING(32),
-      allowNull: true,
-    },
-    lawyer_office_id: {
+    lawyer_office_id: { // 所属律师事务所ID
       type: INTEGER,
       allowNull: true,
     },

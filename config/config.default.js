@@ -16,11 +16,26 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1589345138749_9496';
 
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = [ 'jwtErr' ];
+
+  config.jwtErr = {
+    ignore(ctx) {
+      const url = ctx.request.url;
+      if (url === '/') {
+        return true;
+      }
+      const reg = /^\/api(\/login|\/public\/verificationCode)/;
+
+      return reg.test(url);
+    },
+    secret: '123456', // 自定义 token 的加密条件字符串
+  };
 
   config.jwt = {
     secret: '123456', // 自定义 token 的加密条件字符串
   };
+
+  // 安全设置，当post请求为/api开头的话，就运行请求，否则就必须经过csrf验证
   config.security = {
     csrf: {
       enable: true,
@@ -29,6 +44,15 @@ module.exports = appInfo => {
     domainWhiteList: [
       '*',
     ], // 允许访问接口的白名单
+  };
+
+  // 是否允许外网访问
+  config.cluster = {
+    listen: {
+      path: '',
+      port: 7003,
+      hostname: '0.0.0.0',
+    },
   };
 
   config.redis = { // 单个redis
@@ -48,6 +72,7 @@ module.exports = appInfo => {
     renew: true,
   };
 
+  // 跨域设置
   config.cors = {
     origin: '*',
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',

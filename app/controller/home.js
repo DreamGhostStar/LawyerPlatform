@@ -20,6 +20,13 @@ class HomeController extends Controller {
     });
     ctx.body = res;
   }
+
+  // 获取图片验证码
+  async getImageVeriyCode() {
+    const { ctx, service } = this;
+    const res = await service.common.generateImageVerifyCode();
+    ctx.body = res;
+  }
 }
 
 module.exports = HomeController;
