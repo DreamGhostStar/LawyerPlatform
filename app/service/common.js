@@ -34,7 +34,37 @@ class CommonService extends Service {
     return token;
   }
 
-  // 设置jwt的时候将对应的userID储存到redis中
+  /**
+   * @description 验证redis白名单中是否有该userID
+   * @param {Number} userID 用户ID
+   * @return {Boolean} 是否拥有该userID
+   * @memberof CommonService
+   */
+  async verifyJWtWhite(userID) {
+    const { service } = this;
+    const jwtWhiteList = await service.cache.get('jwtWhiteList');
+    let result = false;
+    if (!jwtWhiteList || jwtWhiteList.length === 0) {
+      return result;
+    }
+    for (let index = 0; index < jwtWhiteList.length; index++) {
+      const jwtWhiteData = jwtWhiteList[index];
+      if (jwtWhiteData.userID === userID) {
+        result = true;
+        break;
+      }
+    }
+    console.log(jwtWhiteList);
+
+    return result;
+  }
+
+  /**
+   * TODO: 该方法有问题
+   * @description 设置jwt的时候将对应的userID储存到redis中
+   * @param {Number} userID 用户ID
+   * @memberof CommonService
+   */
   async updateJWTWhiteList(userID) {
     const { service } = this;
     const whiteList = await service.cache.get('jwtWhiteList');

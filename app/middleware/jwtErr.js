@@ -6,7 +6,26 @@ module.exports = options => {
     if (token) {
       try {
         // 解码token
-        ctx.app.jwt.verify(token, options.secret);
+        const decode = ctx.app.jwt.verify(token, options.secret);
+        if (!decode.userID) {
+          ctx.body = {
+            code: -1,
+            data: '',
+            message: 'token错误',
+          };
+          return;
+        }
+
+        const result = await ctx.service.common.verifyJWtWhite(decode.userID);
+        if (!result) {
+          ctx.body = {
+            code: -1,
+            data: '',
+            message: 'token失效',
+          };
+          return;
+        }
+
         await next();
       } catch (error) {
         ctx.status = 401;
