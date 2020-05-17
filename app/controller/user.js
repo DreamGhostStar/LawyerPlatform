@@ -25,6 +25,13 @@ class UserController extends Controller {
     ctx.body = res;
   }
 
+  // 退出登录
+  async exit() {
+    const { ctx, service } = this;
+    const res = await service.user.exit();
+    ctx.body = res;
+  }
+
   // 获取用户信息
   async getUserInfo() {
     const { ctx, service } = this;

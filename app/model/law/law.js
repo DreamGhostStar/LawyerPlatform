@@ -8,6 +8,10 @@ module.exports = app => {
       primaryKey: true,
       autoIncrement: true,
     },
+    number: {
+      type: STRING(128),
+      allowNull: false,
+    },
     name: {
       type: STRING(32),
       allowNull: false,

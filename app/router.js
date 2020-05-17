@@ -9,8 +9,6 @@ module.exports = app => {
   const imageVerifyCode = middleware.imageVerifyCode(); // 验证图片验证码正确性的中间件
   const noteVerifyCode = middleware.noteVerifyCode(); // 验证短信验证码正确性的中间件
 
-  router.get('/', controller.home.index);
-
   // 登录相关
   router.post('/api/login/password', imageVerifyCode, verifyPhoneNumber, controller.user.loginInPassword);
   router.post('/api/login/note', noteVerifyCode, verifyPhoneNumber, verifyPhoneNumber, controller.user.loginInNote);
@@ -18,6 +16,10 @@ module.exports = app => {
   // 用户相关
   router.get('/api/user/getInfo', controller.user.getUserInfo);
   router.post('/api/user/alterPassword', controller.user.modifyPassword);
+  router.post('/api/user/exit', controller.user.exit);
+
+  // 金额相关
+  router.get('/api/user/salaryList', controller.salary.salaryList);
 
   // 验证码相关
   router.get('/api/public/verificationCode/image', controller.home.getImageVeriyCode);
