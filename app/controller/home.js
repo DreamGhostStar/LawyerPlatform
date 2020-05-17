@@ -24,7 +24,14 @@ class HomeController extends Controller {
   // 获取图片验证码
   async getImageVeriyCode() {
     const { ctx, service } = this;
-    const res = await service.common.generateImageVerifyCode();
+    const res = await service.verifyCode.generateImage();
+    ctx.body = res;
+  }
+
+  // 获取短信验证码
+  async getNoteVerifyCode() {
+    const { ctx, service } = this;
+    const res = await service.verifyCode.sendNote(ctx.request.body.phoneNumber);
     ctx.body = res;
   }
 }

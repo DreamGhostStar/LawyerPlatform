@@ -14,6 +14,15 @@ class UserController extends Controller {
   async getUserInfo() {
     const { ctx, service } = this;
     const jwtData = await service.common.getJWtData();
+
+    if (!jwtData) {
+      ctx.body = {
+        code: -1,
+        data: '',
+        message: 'token错误',
+      };
+    }
+
     const res = await service.user.getUserInfo(jwtData.userID);
     ctx.body = res;
   }
