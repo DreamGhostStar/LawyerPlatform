@@ -10,10 +10,16 @@ module.exports = app => {
   const noteVerifyCode = middleware.noteVerifyCode(); // 验证短信验证码正确性的中间件
 
   router.get('/', controller.home.index);
+
+  // 登录相关
   router.post('/api/login/password', imageVerifyCode, verifyPhoneNumber, controller.user.loginInPassword);
   router.post('/api/login/note', noteVerifyCode, verifyPhoneNumber, verifyPhoneNumber, controller.user.loginInNote);
-  router.get('/api/user/getInfo', controller.user.getUserInfo);
 
+  // 用户相关
+  router.get('/api/user/getInfo', controller.user.getUserInfo);
+  router.post('/api/user/alterPassword', controller.user.modifyPassword);
+
+  // 验证码相关
   router.get('/api/public/verificationCode/image', controller.home.getImageVeriyCode);
   router.post('/api/public/verificationCode/note', verifyPhoneNumber, controller.home.getNoteVerifyCode);
 };

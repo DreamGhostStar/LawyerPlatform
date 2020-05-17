@@ -18,6 +18,13 @@ class UserController extends Controller {
     ctx.body = res;
   }
 
+  // 修改密码接口
+  async modifyPassword() {
+    const { ctx, service } = this;
+    const res = await service.user.modifyPassword(ctx.request.body.new_password);
+    ctx.body = res;
+  }
+
   // 获取用户信息
   async getUserInfo() {
     const { ctx, service } = this;

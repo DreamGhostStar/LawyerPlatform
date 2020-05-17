@@ -22,12 +22,7 @@ module.exports = () => {
       return;
     }
 
-    const userData = await ctx.model.User.User.findOne({
-      where: {
-        phone_number: phoneNumber,
-      },
-      attributes: [ 'id', 'phone_number', 'password' ],
-    });
+    const userData = await ctx.service.user.getUserDataByPhone(phoneNumber);
 
     if (!userData) { // 如果数据库中仍然没有该数据，则该手机号不存在
       ctx.body = {
@@ -37,8 +32,6 @@ module.exports = () => {
       };
       return;
     }
-
-    await ctx.service.cache.set('user', userData, 60 * 60);
     await next();
   };
 };
