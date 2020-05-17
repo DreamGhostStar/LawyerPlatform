@@ -2,22 +2,42 @@
 
 const Service = require('egg').Service;
 
-class UserService extends Service {
-  async index(query) {
-    const res = await this.judgePhoneNumberExist(query.phoneNumber, query.password);
-    return res;
+class LoginService extends Service {
+  // 手机号和短信登录
+  async inNote(phoneNumber, verify_code) {
+    const { ctx, service } = this;
+    const verifyCode = ctx.session.noteVerifyCode;
+
+    if (phoneNumber === verifyCode.phoneNumber && verify_code === verifyCode.verifyCode) {
+      const userData = await service.user.getUserDataByPhone(phoneNumber);
+
+      // 生成 token 的方式
+      const token = await service.common.getToken({
+        userID: userData.id,
+      }, {
+        expiresIn: 60 * 60 * 24, // 时间以秒为基准，过期时间为1天
+      });
+
+      return {
+        code: 0,
+        data: token,
+        message: '登录成功',
+      };
+    }
+    return {
+      code: -1,
+      data: '',
+      messgae: '验证码错误',
+    };
   }
 
-  // 验证账号和密码是否正确
-  async judgePhoneNumberExist(phoneNumber, password) {
-    const { ctx, app } = this;
-    const result = await ctx.model.User.User.findOne({
-      where: {
-        phone_number: phoneNumber,
-      },
-    });
+  // 手机号和密码登录
+  async inPassword(query) {
+    const { service } = this;
+    const { phoneNumber, password } = query.phoneNumber;
+    const userData = await service.user.getUserDataByPhone(phoneNumber);
 
-    if (result.password !== password) {
+    if (userData.password !== password) {
       return {
         code: 401,
         data: '',
@@ -26,9 +46,9 @@ class UserService extends Service {
     }
 
     // 生成 token 的方式
-    const token = app.jwt.sign({
-      userID: result.id,
-    }, app.config.jwt.secret, {
+    const token = await service.common.getToken({
+      userID: userData.id,
+    }, {
       expiresIn: 60 * 60 * 24, // 时间以秒为基准，过期时间为1天
     });
 
@@ -40,4 +60,4 @@ class UserService extends Service {
   }
 }
 
-module.exports = UserService;
+module.exports = LoginService;

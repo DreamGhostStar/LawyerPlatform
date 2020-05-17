@@ -4,9 +4,17 @@ const Controller = require('egg').Controller;
 
 class UserController extends Controller {
   // 手机号和密码登录接口
-  async loginInpassword() {
+  async loginInPassword() {
     const { ctx, service } = this;
-    const res = await service.login.index(ctx.request.body);
+    const res = await service.login.inPassword(ctx.request.body);
+    ctx.body = res;
+  }
+
+  // 手机号和短信登录接口
+  async loginInNote() {
+    const { ctx, service } = this;
+    const query = ctx.request.body;
+    const res = await service.login.inNote(query.phoneNumber, query.verification_code);
     ctx.body = res;
   }
 

@@ -21,6 +21,14 @@ class CommonService extends Service {
     }
     return noteVerifyCode;
   }
+
+  // 获取jwt的token
+  async getToken(storeData, options) {
+    const { app } = this;
+    const token = app.jwt.sign(storeData, app.config.jwt.secret, options);
+
+    return token;
+  }
 }
 
 module.exports = CommonService;

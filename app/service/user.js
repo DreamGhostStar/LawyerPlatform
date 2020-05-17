@@ -3,6 +3,27 @@
 const Service = require('egg').Service;
 
 class UserService extends Service {
+  // 通过手机号获取用户基本信息
+  async getUserDataByPhone(phoneNumber) {
+    const { ctx } = this;
+    let userData = await ctx.service.cache.get('user'); // 调用缓存
+
+    if (!userData || userData.phone_number !== phoneNumber) { // 如果缓存中国没有用户数据或用户数据中的phone_number不一致，则重新调用数据库获取数据
+      userData = await ctx.model.User.User.findOne({
+        where: {
+          phone_number: phoneNumber,
+        },
+        attributes: [ 'id', 'phone_number', 'password' ],
+      });
+    }
+    if (userData) { // 如果该用户存在，将其调入缓存
+      await this.ctx.service.cache.set('user', userData, 60 * 60);
+    }
+
+    return userData;
+  }
+
+  // 获取用户详细信息
   async getUserInfo(userID) {
     const { ctx } = this;
     const userInfo = await ctx.model.User.User.findAll({

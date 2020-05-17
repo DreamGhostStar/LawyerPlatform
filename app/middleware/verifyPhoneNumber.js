@@ -26,9 +26,10 @@ module.exports = () => {
       where: {
         phone_number: phoneNumber,
       },
+      attributes: [ 'id', 'phone_number', 'password' ],
     });
 
-    if (!userData) {
+    if (!userData) { // 如果数据库中仍然没有该数据，则该手机号不存在
       ctx.body = {
         code: -1,
         data: '',
@@ -36,6 +37,8 @@ module.exports = () => {
       };
       return;
     }
+
+    await ctx.service.cache.set('user', userData, 60 * 60);
     await next();
   };
 };

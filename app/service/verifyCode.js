@@ -39,7 +39,6 @@ class VerifyCodeService extends Service {
 
   // 发送短信验证码
   // TODO: 在应用上线后将下面注释掉的部分给删去
-  // eslint-disable-next-line no-unused-vars
   async sendNote(phoneNumber) {
     const { service, ctx } = this;
     const noteVerifyCode = await service.common.createNoteVerifyCode(); // 短信随机验证码
@@ -53,7 +52,11 @@ class VerifyCodeService extends Service {
     // if (result.code === 0) {
     ctx.session.maxAge = 1000 * 60 * 5; // 5分钟
     ctx.session.renew = false; // 设置在连续访问的时候不刷新剩余时间
-    ctx.session.noteVerifyCode = noteVerifyCode;
+    const obj = {
+      verifyCode: noteVerifyCode,
+      phoneNumber,
+    };
+    ctx.session.noteVerifyCode = obj;
     return {
       code: 0,
       data: '',

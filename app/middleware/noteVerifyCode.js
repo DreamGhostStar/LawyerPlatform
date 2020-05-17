@@ -22,15 +22,6 @@ module.exports = () => {
       };
       return;
     }
-
-    if (verifyCode !== sessionVerifyCode) {
-      ctx.body = {
-        code: -1,
-        data: '',
-        message: '验证码错误',
-      };
-      return;
-    }
     await next();
   };
 };
