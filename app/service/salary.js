@@ -11,6 +11,29 @@ class SalaryService extends Service {
   async getSalaryList() {
     const { service, ctx } = this;
     const jwtData = await service.jwt.getJWtData();
+    let isAll = ctx.request.query.isAll;
+    if (typeof isAll === 'string') {
+      if (isAll === 'false') {
+        isAll = false;
+      }
+    }
+    const year = parseInt(ctx.request.query.year);
+
+    if (typeof isAll === 'undefined') { // 如果未传isAll参数，则请求参数错误
+      return {
+        code: -1,
+        data: '',
+        message: '请求参数错误',
+      };
+    }
+
+    if (!isAll && typeof year === 'undefined') {
+      return {
+        code: -1,
+        data: '',
+        message: '缺少year参数',
+      };
+    }
     let salaryList = [];
 
     const typeContrast = { // 用户类型字典
@@ -32,13 +55,25 @@ class SalaryService extends Service {
     });
 
     userHostList.laws.forEach(law => {
-      salaryList.push({
-        case_id: law.id,
-        identity: typeContrast[law.user_salary.user_type],
-        generalSalary: law.money,
-        salary: law.user_salary.value,
-        ratio: law.user_salary.scale,
-      });
+      if (isAll) {
+        salaryList.push({
+          case_id: law.id,
+          identity: typeContrast[law.user_salary.user_type],
+          generalSalary: law.money,
+          salary: law.user_salary.value,
+          ratio: law.user_salary.scale,
+        });
+      } else {
+        if (year === law.user_salary.year) {
+          salaryList.push({
+            case_id: law.id,
+            identity: typeContrast[law.user_salary.user_type],
+            generalSalary: law.money,
+            salary: law.user_salary.value,
+            ratio: law.user_salary.scale,
+          });
+        }
+      }
     });
 
     salaryList = await this.sortSalaryList(salaryList);
