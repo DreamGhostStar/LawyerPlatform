@@ -28,7 +28,7 @@ class UserController extends Controller {
   // 退出登录
   async exit() {
     const { ctx, service } = this;
-    const res = await service.user.exit();
+    const res = await service.login.exit();
     ctx.body = res;
   }
 

@@ -58,6 +58,40 @@ class LoginService extends Service {
       message: '登录成功',
     };
   }
+
+  /**
+   * @description 退出登录
+   * @return {object} 是否成功
+   * @memberof LoginService
+   */
+  async exit() {
+    const { service } = this;
+    const jwtData = await service.jwt.getJWtData();
+    const jwtWhiteList = await service.cache.get('jwtWhiteList');
+
+    if (jwtWhiteList.length === 0 || !jwtWhiteList) {
+      return {
+        code: -1,
+        data: '',
+        message: 'token已失效，需重新获取',
+      };
+    }
+
+    const newWhiteList = [];
+    for (let index = 0; index < jwtWhiteList.length; index++) {
+      const jwtWhiteData = jwtWhiteList[index];
+      if (jwtWhiteData.userID !== jwtData.userID) { // 如果是当前用户，则不加
+        newWhiteList.push(jwtWhiteData);
+      }
+    }
+
+    await service.cache.set('jwtWhiteList', newWhiteList);
+    return {
+      code: 0,
+      data: '',
+      message: '退出成功',
+    };
+  }
 }
 
 module.exports = LoginService;

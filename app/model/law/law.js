@@ -81,7 +81,14 @@ module.exports = app => {
     freezeTableName: true, // 使用自定义表名
   });
 
-  Law.associate = function() {};
+  Law.associate = function() {
+    // 多对多，案件通过协办人表连接用户
+    app.model.Law.Law.belongsToMany(app.model.User.User, {
+      through: app.model.Law.LawAssistant,
+      foreignKey: 'law_id',
+      otherKey: 'assist_id',
+    });
+  };
 
   return Law;
 };

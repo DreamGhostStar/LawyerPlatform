@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = app => {
-  const { INTEGER, DECIMAL, BOOLEAN } = app.Sequelize;
+  const { INTEGER, DECIMAL, BOOLEAN, STRING } = app.Sequelize;
 
   const UserSalary = app.model.define('user_salary', {
     id: {
@@ -17,6 +17,10 @@ module.exports = app => {
       type: INTEGER,
       allowNull: false,
     },
+    user_type: { // 该条金额属于主办还是协办
+      type: STRING(32),
+      allowNull: false,
+    },
     year: {
       type: INTEGER,
       allowNull: false,
@@ -27,6 +31,10 @@ module.exports = app => {
     },
     is_pay: {
       type: BOOLEAN,
+      allowNull: false,
+    },
+    scale: {
+      type: DECIMAL(3, 2),
       allowNull: false,
     },
   }, {
