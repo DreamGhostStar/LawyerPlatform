@@ -16,6 +16,10 @@ module.exports = app => {
       type: INTEGER,
       allowNull: false,
     },
+    decoration: {
+      type: STRING(32),
+      allowNull: true,
+    },
   }, {
     timestamps: false, // 去除createAt updateAt
     freezeTableName: true, // 使用自定义表名

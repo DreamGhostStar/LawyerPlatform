@@ -51,13 +51,40 @@ class UserService extends Service {
 
     const jwtData = await service.jwt.getJWtData();
 
-    const userInfo = await ctx.model.User.User.findByPk(jwtData.userID);
-    userInfo.update({ password });
-    return {
-      code: 0,
-      data: '',
-      message: '密码修改成功',
-    };
+    let transaction;
+    try {
+      transaction = await ctx.model.transaction();
+      const userInfo = await ctx.model.User.User.findByPk(jwtData.userID); // 查找指定的user数据
+
+      if (userInfo.password === password) {
+        return {
+          code: -1,
+          data: '',
+          message: '新密码不能与旧密码一致',
+        };
+      }
+
+      await userInfo.update({ password }, {
+        transaction,
+      });
+      const result = await ctx.model.User.UserUpdateTime.create({
+        update_time: new Date().getTime().toString(),
+        user_id: userInfo.id,
+        decoration: '修改密码',
+      }, {
+        transaction,
+      });
+
+      await transaction.commit();
+      return result;
+    } catch (error) {
+      await transaction.rollback();
+      return {
+        code: -1,
+        data: '',
+        message: error.message,
+      };
+    }
   }
 
   /**
