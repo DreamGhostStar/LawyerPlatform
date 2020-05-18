@@ -35,7 +35,7 @@ class UserController extends Controller {
   // 获取用户信息
   async getUserInfo() {
     const { ctx, service } = this;
-    const jwtData = await service.common.getJWtData();
+    const jwtData = await service.jwt.getJWtData();
 
     if (!jwtData) {
       ctx.body = {

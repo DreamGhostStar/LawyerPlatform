@@ -49,7 +49,7 @@ class UserService extends Service {
       };
     }
 
-    const jwtData = await service.common.getJWtData();
+    const jwtData = await service.jwt.getJWtData();
 
     const userInfo = await ctx.model.User.User.findByPk(jwtData.userID);
     userInfo.update({ password });
@@ -109,7 +109,7 @@ class UserService extends Service {
    */
   async exit() {
     const { service } = this;
-    const jwtData = await service.common.getJWtData();
+    const jwtData = await service.jwt.getJWtData();
     const jwtWhiteList = await service.cache.get('jwtWhiteList');
 
     if (jwtWhiteList.length === 0 || !jwtWhiteList) {

@@ -16,7 +16,7 @@ module.exports = options => {
           return;
         }
 
-        const result = await ctx.service.common.verifyJWtWhite(decode.userID);
+        const result = await ctx.service.jwt.verifyJWtWhite(decode.userID);
         if (!result) {
           ctx.body = {
             code: -1,

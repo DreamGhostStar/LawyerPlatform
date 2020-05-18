@@ -12,7 +12,7 @@ class LoginService extends Service {
       const userData = await service.user.getUserDataByPhone(phoneNumber);
 
       // 生成 token 的方式
-      const token = await service.common.getToken({
+      const token = await service.jwt.getToken({
         userID: userData.id,
       }, {
         expiresIn: 60 * 60 * 24, // 时间以秒为基准，过期时间为1天
@@ -46,7 +46,7 @@ class LoginService extends Service {
     }
 
     // 生成 token 的方式
-    const token = await service.common.getToken({
+    const token = await service.jwt.getToken({
       userID: userData.id,
     }, {
       expiresIn: 60 * 60 * 24, // 时间以秒为基准，过期时间为1天

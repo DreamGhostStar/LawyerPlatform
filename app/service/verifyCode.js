@@ -41,7 +41,7 @@ class VerifyCodeService extends Service {
   // TODO: 在应用上线后将下面注释掉的部分给删去
   async sendNote(phoneNumber) {
     const { service, ctx } = this;
-    const noteVerifyCode = await service.common.createNoteVerifyCode(); // 短信随机验证码
+    const noteVerifyCode = await service.util.createNoteVerifyCode(); // 短信随机验证码
     // const apikey = '8827fe520def731402e28ae100abb679';
     // const mobile = phoneNumber; // 修改为您要发送的手机号码，多个号码用逗号隔开
     // const text = `【贵州君上杰律师事务所】您的验证码是${noteVerifyCode}，请尽快验证`; // 修改为您要发送的短信内容

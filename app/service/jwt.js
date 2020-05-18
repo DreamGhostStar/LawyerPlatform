@@ -2,11 +2,11 @@
 
 const Service = require('egg').Service;
 
-class CommonService extends Service {
+class JwtService extends Service {
   /**
    * @description 获取jwt中传递的数据
    * @return {Object} jwt中传递的数据
-   * @memberof CommonService
+   * @memberof JwtService
    */
   async getJWtData() {
     const { ctx, app } = this;
@@ -18,24 +18,11 @@ class CommonService extends Service {
   }
 
   /**
-   * @description 生成6位随机数字组成的短信验证码
-   * @return {String} 6位随机数字的字符串
-   * @memberof CommonService
-   */
-  async createNoteVerifyCode() {
-    let noteVerifyCode = '';
-    for (let index = 0; index < 6; index++) {
-      noteVerifyCode += Math.floor(Math.random() * 10).toString();
-    }
-    return noteVerifyCode;
-  }
-
-  /**
    * @description 获取jwt生成的token
    * @param {Object} storeData 将要在token中存储的数据
    * @param {Object} options 额外设置
    * @return {String} token字符串
-   * @memberof CommonService
+   * @memberof JwtService
    */
   async getToken(storeData, options) {
     const { app } = this;
@@ -52,7 +39,7 @@ class CommonService extends Service {
    * @description 验证redis白名单中是否有该userID
    * @param {Number} userID 用户ID
    * @return {Boolean} 是否拥有该userID
-   * @memberof CommonService
+   * @memberof JwtService
    */
   async verifyJWtWhite(userID) {
     const { service } = this;
@@ -68,7 +55,6 @@ class CommonService extends Service {
         break;
       }
     }
-    console.log(jwtWhiteList);
 
     return result;
   }
@@ -76,7 +62,7 @@ class CommonService extends Service {
   /**
    * @description 设置jwt的时候将对应的userID储存到redis中
    * @param {Number} userID 用户ID
-   * @memberof CommonService
+   * @memberof JwtService
    */
   async updateJWTWhiteList(userID) {
     const { service } = this;
@@ -118,4 +104,4 @@ class CommonService extends Service {
   }
 }
 
-module.exports = CommonService;
+module.exports = JwtService;
