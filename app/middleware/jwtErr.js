@@ -2,6 +2,14 @@
 
 module.exports = options => {
   return async function jwtErr(ctx, next) {
+    if (!ctx.request.header.authorization) {
+      ctx.body = {
+        code: -1,
+        data: '',
+        message: 'jwt验证失败',
+      };
+      return;
+    }
     const token = ctx.request.header.authorization.replace('Bearer ', '');
     if (token) {
       try {

@@ -38,14 +38,16 @@ class UserController extends Controller {
     const jwtData = await service.jwt.getJWtData();
 
     if (!jwtData) {
-      ctx.body = {
-        code: -1,
-        data: '',
-        message: 'token错误',
-      };
+      ctx.body = ctx.retrunInfo(-1, '', 'token错误');
     }
 
     const res = await service.user.getUserInfo(jwtData.userID);
+    ctx.body = res;
+  }
+
+  async modifyAvatar() {
+    const { ctx, service } = this;
+    const res = await service.reserveUrl.modifyAvatarUrl();
     ctx.body = res;
   }
 }

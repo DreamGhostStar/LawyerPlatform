@@ -16,6 +16,7 @@ module.exports = app => {
   // 用户相关
   router.get('/api/user/getInfo', controller.user.getUserInfo);
   router.post('/api/user/alterPassword', controller.user.modifyPassword);
+  router.post('/api/user/reserveAvatarUrl', controller.user.modifyAvatar);
   router.post('/api/user/exit', controller.user.exit);
 
   // 金额相关
@@ -24,4 +25,8 @@ module.exports = app => {
   // 验证码相关
   router.get('/api/public/verificationCode/image', controller.home.getImageVeriyCode);
   router.post('/api/public/verificationCode/note', verifyPhoneNumber, controller.home.getNoteVerifyCode);
+
+  // 文件相关
+  router.post('/api/public/upload', controller.home.uploadFiles);
+  router.post('/api/case/reserveFileUrl', controller.home.reserveFileUrl);
 };

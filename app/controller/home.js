@@ -16,6 +16,28 @@ class HomeController extends Controller {
     const res = await service.verifyCode.sendNote(ctx.request.body.phoneNumber);
     ctx.body = res;
   }
+
+  // 前端上传文件接口（返回链接）
+  async uploadFiles() {
+    const { ctx, service } = this;
+    const uploadResult = await service.uploadFile.uploadFiles();
+    ctx.body = uploadResult;
+  }
+
+  // 保存word文件url
+  async reserveFileUrl() {
+    const { ctx, service } = this;
+    const query = ctx.request.body;
+    const uploadResult = await service.reserveUrl.judgeAgencyOrReport(query);
+    ctx.body = uploadResult;
+  }
+
+  // 前端上传图片接口
+  async uploadImage() {
+    const { ctx, service } = this;
+    const res = await service.uploadFile.uploadFiles();
+    ctx.body = res;
+  }
 }
 
 module.exports = HomeController;

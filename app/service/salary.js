@@ -20,19 +20,11 @@ class SalaryService extends Service {
     const year = parseInt(ctx.request.query.year);
 
     if (typeof isAll === 'undefined') { // 如果未传isAll参数，则请求参数错误
-      return {
-        code: -1,
-        data: '',
-        message: '请求参数错误',
-      };
+      return ctx.retrunInfo(-1, '', '请求参数错误');
     }
 
     if (!isAll && typeof year === 'undefined') {
-      return {
-        code: -1,
-        data: '',
-        message: '缺少year参数',
-      };
+      return ctx.retrunInfo(-1, '', '缺少year参数');
     }
     let salaryList = [];
 
@@ -78,7 +70,7 @@ class SalaryService extends Service {
 
     salaryList = await this.sortSalaryList(salaryList);
 
-    return salaryList;
+    return ctx.retrunInfo(0, salaryList, '');
   }
 
   /**

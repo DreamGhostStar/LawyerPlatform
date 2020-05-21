@@ -18,31 +18,19 @@ class LoginService extends Service {
         expiresIn: 60 * 60 * 24, // 时间以秒为基准，过期时间为1天
       });
 
-      return {
-        code: 0,
-        data: token,
-        message: '登录成功',
-      };
+      return ctx.retrunInfo(0, token, '登录成功');
     }
-    return {
-      code: -1,
-      data: '',
-      messgae: '验证码错误',
-    };
+    return ctx.retrunInfo(-1, '', '验证码错误');
   }
 
   // 手机号和密码登录
   async inPassword(query) {
-    const { service } = this;
+    const { ctx, service } = this;
     const { phoneNumber, password } = query.phoneNumber;
     const userData = await service.user.getUserDataByPhone(phoneNumber);
 
     if (userData.password !== password) {
-      return {
-        code: 401,
-        data: '',
-        message: '用户名或密码错误',
-      };
+      return ctx.retrunInfo(401, '', '用户名或密码错误');
     }
 
     // 生成 token 的方式
@@ -52,11 +40,7 @@ class LoginService extends Service {
       expiresIn: 60 * 60 * 24, // 时间以秒为基准，过期时间为1天
     });
 
-    return {
-      code: 0,
-      data: token,
-      message: '登录成功',
-    };
+    return ctx.retrunInfo(0, token, '登录成功');
   }
 
   /**
@@ -65,16 +49,12 @@ class LoginService extends Service {
    * @memberof LoginService
    */
   async exit() {
-    const { service } = this;
+    const { ctx, service } = this;
     const jwtData = await service.jwt.getJWtData();
     const jwtWhiteList = await service.cache.get('jwtWhiteList');
 
     if (jwtWhiteList.length === 0 || !jwtWhiteList) {
-      return {
-        code: -1,
-        data: '',
-        message: 'token已失效，需重新获取',
-      };
+      return ctx.retrunInfo(-1, '', 'token已失效，需重新获取');
     }
 
     const newWhiteList = [];
@@ -86,11 +66,7 @@ class LoginService extends Service {
     }
 
     await service.cache.set('jwtWhiteList', newWhiteList);
-    return {
-      code: 0,
-      data: '',
-      message: '退出成功',
-    };
+    return ctx.retrunInfo(0, '', '退出成功');
   }
 }
 

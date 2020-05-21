@@ -55,6 +55,10 @@ module.exports = appInfo => {
     },
   };
 
+  config.multipart = {
+    fileExtensions: [ '.docx', '.txt' ], // 增加对 apk 扩展名的文件支持
+  };
+
   config.redis = { // 单个redis
     client: {
       port: 6379,

@@ -14,11 +14,13 @@ class UserService extends Service {
     let userData = {};
     let userDataList = await ctx.service.cache.get('user'); // 调用缓存
 
-    if (!userDataList) { // 如果缓存中国没有用户数据或用户数据中的phone_number不一致，则重新调用数据库获取数据
+    if (!userDataList) { // 如果缓存中没有用户数据或用户数据中的phone_number不一致，则重新调用数据库获取数据
       userDataList = await ctx.model.User.User.findAll({
         attributes: [ 'id', 'phone_number', 'password' ],
       });
     }
+
+    // FIXME: 好像有点问题，应该是在获取用户表的数据后就直接存入缓存。如果这样写，在有缓存的情况下仍然会重新存入缓存
     if (userDataList) { // 如果该用户存在，将其调入缓存
       await this.ctx.service.cache.set('user', userDataList, 60 * 60);
     }
@@ -42,11 +44,7 @@ class UserService extends Service {
   async modifyPassword(password) {
     const { service, ctx } = this;
     if (!password) {
-      return {
-        code: -1,
-        data: '',
-        message: '新密码不能为空',
-      };
+      return ctx.retrunInfo(-1, '', '新密码不能为空');
     }
 
     const jwtData = await service.jwt.getJWtData();
@@ -57,11 +55,7 @@ class UserService extends Service {
       const userInfo = await ctx.model.User.User.findByPk(jwtData.userID); // 查找指定的user数据
 
       if (userInfo.password === password) {
-        return {
-          code: -1,
-          data: '',
-          message: '新密码不能与旧密码一致',
-        };
+        return ctx.retrunInfo(-1, '', '新密码不能与旧密码一致');
       }
 
       await userInfo.update({ password }, {
@@ -76,18 +70,10 @@ class UserService extends Service {
       });
 
       await transaction.commit();
-      return {
-        code: 0,
-        data: '',
-        message: '修改密码成功',
-      };
+      return ctx.retrunInfo(0, '', '修改密码成功');
     } catch (error) {
       await transaction.rollback();
-      return {
-        code: -1,
-        data: '',
-        message: error.message,
-      };
+      return ctx.retrunInfo(-1, '', error.message);
     }
   }
 
@@ -126,11 +112,7 @@ class UserService extends Service {
       driver_scan_Image: userInfo.driver_scan_image, // 驾驶证扫描件
     };
 
-    return {
-      code: 0,
-      data: resUserInfo,
-      message: '',
-    };
+    return ctx.retrunInfo(0, resUserInfo, '');
   }
 }
 

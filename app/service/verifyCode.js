@@ -17,18 +17,10 @@ class VerifyCodeService extends Service {
       background: '#f00',
     });
 
-    let res = {
-      code: 0,
-      data: captcha.data,
-      message: '请求成功',
-    };
+    let res = ctx.retrunInfo(0, captcha.data, '请求成功');
 
     if (!captcha.data) {
-      res = {
-        code: 403,
-        data: '',
-        message: '请求验证图片错误',
-      };
+      res = ctx.retrunInfo(403, '', '请求验证图片错误');
     }
 
     ctx.session.maxAge = 1000 * 60 * 5; // 5分钟
@@ -57,11 +49,7 @@ class VerifyCodeService extends Service {
       phoneNumber,
     };
     ctx.session.noteVerifyCode = obj;
-    return {
-      code: 0,
-      data: '',
-      message: '发送成功',
-    };
+    return ctx.retrunInfo(0, '', '发送成功');
     // }
     // return {
     //   code: result.code,

@@ -88,6 +88,9 @@ module.exports = app => {
       foreignKey: 'law_id',
       otherKey: 'assist_id',
     });
+
+    // 一对一，案件有一个代理词
+    app.model.Law.Law.belongsTo(app.model.Law.AgencyWord, { foreignKey: 'agency_word_id' });
   };
 
   return Law;
