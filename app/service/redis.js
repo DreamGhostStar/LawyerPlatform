@@ -49,6 +49,32 @@ class RedisService extends Service {
     const userListInRedis = await service.user.getUsersInDataBase();
     await service.cache.set('user', userListInRedis);
   }
+
+  /**
+   * @description 从缓存中获取用户数据
+   * @return {Array} 缓存中的用户数据
+   * @memberof RedisService
+   */
+  async getLogsInRedis() {
+    const { service } = this;
+    let logListInRedis = await service.cache.get('logs'); // 调用缓存
+    if (!logListInRedis) {
+      logListInRedis = await service.log.getLogsInDataBase();
+      await service.cache.set('logs', logListInRedis);
+    }
+
+    return logListInRedis;
+  }
+
+  /**
+   * @description 进行与修改用户相关操作的话，需要更新缓存
+   * @memberof RedisService
+   */
+  async updateLogsInRedis() {
+    const { service } = this;
+    const logListInRedis = await service.log.getLogsInDataBase();
+    await service.cache.set('user', logListInRedis);
+  }
 }
 
 module.exports = RedisService;

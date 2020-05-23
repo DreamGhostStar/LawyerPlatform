@@ -24,6 +24,9 @@ class LawService extends Service {
         {
           model: ctx.model.Law.LawStatus,
         },
+        {
+          model: ctx.model.Law.LawAudit,
+        },
       ],
     });
 
@@ -75,13 +78,9 @@ class LawService extends Service {
   async getLawList() {
     const { ctx, service } = this;
     const query = ctx.query;
-    let isAll = query.isAll;
+    const isAll = await service.util.transfromStringToBool(query.isAll);
     const status = query.status;
     const lawRedisList = await service.redis.getLawsInRedis();
-
-    if (isAll === 'false') {
-      isAll = false;
-    }
 
     if (isAll) {
       return ctx.retrunInfo(0, lawRedisList, '');
@@ -106,6 +105,37 @@ class LawService extends Service {
       }
     });
     return ctx.retrunInfo(0, lawList, '');
+  }
+
+  /** FIXME: 接口文档有问题
+   * @description 修改案件信息
+   * @return {object} 返回信息
+   * @memberof LawService
+   */
+  async alterLaw() {
+    const { ctx } = this;
+    const query = ctx.request.body;
+    const { id, accuser, defendant, trial_level, classifcation, details, agency_view, host, guest, scale } = query;
+
+    if (typeof id !== 'number') {
+      return ctx.retrunInfo(-1, '', 'id请求类型错误');
+    }
+    let transaction;
+
+    try {
+      transaction = await ctx.model.transaction();
+      const law = await ctx.model.User.User.findByPk(id); // 查找指定的user数据
+      await law.update({
+        accuser,
+        defendant,
+        base_info: details,
+      }, {
+        transaction,
+      });
+      await transaction.commit();
+    } catch (error) {
+      await transaction.rollback();
+    }
   }
 }
 

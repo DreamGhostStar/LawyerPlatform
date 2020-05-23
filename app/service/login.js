@@ -45,7 +45,7 @@ class LoginService extends Service {
 
   /**
    * @description 退出登录
-   * @return {object} 是否成功
+   * @return {object} 返回信息
    * @memberof LoginService
    */
   async exit() {

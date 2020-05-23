@@ -16,6 +16,13 @@ class LawController extends Controller {
     const res = await service.law.getLawList();
     ctx.body = res;
   }
+
+  // 修改案件
+  async alterLaw() {
+    const { ctx, service } = this;
+    const res = await service.law.alterLaw();
+    ctx.body = res;
+  }
 }
 
 module.exports = LawController;

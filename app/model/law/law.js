@@ -100,6 +100,9 @@ module.exports = app => {
 
     // 一对一，案件有一个案件状态
     app.model.Law.Law.belongsTo(app.model.Law.LawStatus, { foreignKey: 'status_id' });
+
+    // 一对一，案件有一个案件状态
+    app.model.Law.Law.belongsTo(app.model.Law.LawAudit, { foreignKey: 'trial_level_id' });
   };
 
   return Law;

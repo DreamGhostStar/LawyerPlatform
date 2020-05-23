@@ -34,4 +34,9 @@ module.exports = app => {
 
   // 案件相关
   router.get('/api/case/getList', controller.law.getLawList);
+  router.post('/api/case/alter', lawIdVerify, controller.law.alterLaw);
+
+  // 日志相关
+  router.post('/api/log/new', controller.log.create);
+  router.get('/api/log/getList', controller.log.getLogsList);
 };
