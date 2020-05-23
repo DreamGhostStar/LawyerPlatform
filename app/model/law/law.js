@@ -94,6 +94,12 @@ module.exports = app => {
 
     // 一对一，案件有一个结案文书
     app.model.Law.Law.belongsTo(app.model.Law.FinalReport, { foreignKey: 'final_report_id' });
+
+    // 一对一，案件有一个案件类型
+    app.model.Law.Law.belongsTo(app.model.Law.LawType, { foreignKey: 'type_id' });
+
+    // 一对一，案件有一个案件状态
+    app.model.Law.Law.belongsTo(app.model.Law.LawStatus, { foreignKey: 'status_id' });
   };
 
   return Law;

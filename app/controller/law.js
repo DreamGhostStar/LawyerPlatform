@@ -3,9 +3,17 @@
 const Controller = require('egg').Controller;
 
 class LawController extends Controller {
+  // 下载文件
   async downloadWordUrl() {
     const { ctx, service } = this;
     const res = await service.uploadFile.downloadFile();
+    ctx.body = res;
+  }
+
+  // 获取案件列表信息
+  async getLawList() {
+    const { ctx, service } = this;
+    const res = await service.law.getLawList();
     ctx.body = res;
   }
 }

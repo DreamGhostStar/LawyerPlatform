@@ -8,7 +8,7 @@ module.exports = app => {
   const verifyPhoneNumber = middleware.verifyPhoneNumber(); // 验证手机号的中间件
   const imageVerifyCode = middleware.imageVerifyCode(); // 验证图片验证码正确性的中间件
   const noteVerifyCode = middleware.noteVerifyCode(); // 验证短信验证码正确性的中间件
-  const lawIdVerify = middleware.lawIdVerify(); // 验证短信验证码正确性的中间件
+  const lawIdVerify = middleware.lawIdVerify(); // 验证案件ID是否传输正确的中间件
 
   // 登录相关
   router.post('/api/login/password', imageVerifyCode, verifyPhoneNumber, controller.user.loginInPassword);
@@ -29,6 +29,9 @@ module.exports = app => {
 
   // 文件相关
   router.post('/api/public/upload', controller.home.uploadFiles);
-  router.post('/api/case/reserveFileUrl', controller.home.reserveFileUrl);
+  router.post('/api/case/reserveFileUrl', lawIdVerify, controller.home.reserveFileUrl);
   router.get('/api/public/download', lawIdVerify, controller.law.downloadWordUrl);
+
+  // 案件相关
+  router.get('/api/case/getList', controller.law.getLawList);
 };

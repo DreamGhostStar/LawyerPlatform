@@ -4,6 +4,27 @@ const Service = require('egg').Service;
 
 class UserService extends Service {
   /**
+   * @description 获取数据库中所有用户的信息
+   * @return {Array} 数据库中用户的信息
+   * @memberof LawService
+   */
+  async getUsersInDataBase() {
+    const { ctx } = this;
+    const userListInDataBase = await ctx.model.User.User.findAll({
+      include: [
+        {
+          model: ctx.model.User.Jurisdiction,
+        },
+        {
+          model: ctx.model.User.LawyerOffice,
+        },
+      ],
+    });
+
+    return userListInDataBase;
+  }
+
+  /**
    * @description 通过手机号获取用户基本信息
    * @param {string} phoneNumber 电话号码
    * @return {object} 是否成功，成功则返回用户基本信息
@@ -59,6 +80,7 @@ class UserService extends Service {
       });
 
       await transaction.commit();
+      await service.redis.updateUserInRedis(); // 在修改密码之后必须更新缓存
       return ctx.retrunInfo(0, '', '修改密码成功');
     } catch (error) {
       await transaction.rollback();
@@ -91,7 +113,7 @@ class UserService extends Service {
       age: userInfo.age,
       phoneNumber: userInfo.phone_number,
       lawyer_number: userInfo.lawyer_number, // 律师证号
-      lawyer_office_address: userInfo.lawyer_office.lawyer_office_address, // // 律师所地址
+      lawyer_office_address: userInfo.lawyer_office.lawyer_office_address, // 律师所地址
       lawyer_office_name: userInfo.lawyer_office.lawyer_office_name,
       driver_scan_Image: userInfo.driver_scan_image, // 驾驶证扫描件
     };
