@@ -60,6 +60,7 @@ class JwtService extends Service {
   }
 
   /**
+   * FIXME:好像有点问题
    * @description 设置jwt的时候将对应的userID储存到redis中
    * @param {Number} userID 用户ID
    * @memberof JwtService

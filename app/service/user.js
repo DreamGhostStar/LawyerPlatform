@@ -18,12 +18,13 @@ class UserService extends Service {
       userDataList = await ctx.model.User.User.findAll({
         attributes: [ 'id', 'phone_number', 'password' ],
       });
+      await this.ctx.service.cache.set('user', userDataList);
     }
 
     // FIXME: 好像有点问题，应该是在获取用户表的数据后就直接存入缓存。如果这样写，在有缓存的情况下仍然会重新存入缓存
-    if (userDataList) { // 如果该用户存在，将其调入缓存
-      await this.ctx.service.cache.set('user', userDataList, 60 * 60);
-    }
+    // if (userDataList) { // 如果该用户存在，将其调入缓存
+    //   await this.ctx.service.cache.set('user', userDataList, 60 * 60);
+    // }
 
     for (let index = 0; index < userDataList.length; index++) {
       if (userDataList[index].phone_number === phoneNumber) {

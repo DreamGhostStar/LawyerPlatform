@@ -10,12 +10,12 @@ class LawService extends Service {
    * @memberof LawService
    */
   async judgeAgencyOrReport(query) {
-    const { ctx } = this;
+    const { ctx, service } = this;
     if (!query.law_id) {
       return ctx.retrunInfo(-1, '', '请求参数错误');
     }
 
-    const law = await ctx.model.Law.Law.findByPk(query.law_id);
+    const law = await service.law.getLawByID(query.law_id);
     if (!law) {
       return ctx.retrunInfo(-1, '', '该案件不存在');
     }
@@ -47,7 +47,7 @@ class LawService extends Service {
    * @memberof LawService
    */
   async addWordUrl(law_id, url, table, field) {
-    const { ctx } = this;
+    const { ctx, service } = this;
     let transaction;
     try {
       transaction = await ctx.model.transaction();
@@ -76,6 +76,7 @@ class LawService extends Service {
       }
 
       await transaction.commit();
+      await service.law.updateLawsInRedis();
       return ctx.retrunInfo(0, '', '保存成功');
     } catch (error) {
       await transaction.rollback();
@@ -93,7 +94,7 @@ class LawService extends Service {
    * @memberof LawService
    */
   async reserveContent(law_id, content, table, field) {
-    const { ctx } = this;
+    const { ctx, service } = this;
     let transaction;
     try {
       transaction = await ctx.model.transaction();
@@ -123,6 +124,7 @@ class LawService extends Service {
       }
 
       await transaction.commit();
+      await service.law.updateLawsInRedis();
       return ctx.retrunInfo(0, '', '保存成功');
     } catch (error) {
       await transaction.rollback();
@@ -148,6 +150,7 @@ class LawService extends Service {
       user.update({
         avatar,
       });
+      await service.law.updateLawsInRedis();
       return ctx.retrunInfo(0, '', '修改成功');
     } catch (error) {
       return ctx.retrunInfo(-1, '', error.message);

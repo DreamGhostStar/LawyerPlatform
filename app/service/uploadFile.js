@@ -21,6 +21,12 @@ const config = new qiniu.conf.Config();
 config.zone = qiniu.zone.Zone_z0;
 
 class UploadFileService extends Service {
+
+  /**
+   * @description 上传文件（图片）到七牛云
+   * @return {object} 返回信息
+   * @memberof UploadFileService
+   */
   async uploadFiles() {
     const { ctx } = this;
     const stream = await ctx.getFileStream();
@@ -60,6 +66,14 @@ class UploadFileService extends Service {
       await sendToWormhole(stream); // 如果出现错误，关闭管道
       return ctx.retrunInfo(-1, '', err.message);
     }
+  }
+
+  async downloadFile() {
+    const { ctx, service } = this;
+    const query = ctx.query;
+    const arr = [ null, 'agency_word', 'final_report' ];
+    const law = await service.law.getWordUrl(parseInt(query.law_id), arr[query.type]);
+    return ctx.retrunInfo(0, law, '');
   }
 }
 
