@@ -76,7 +76,7 @@ class LawService extends Service {
       }
 
       await transaction.commit();
-      await service.law.updateLawsInRedis();
+      await service.redis.updateLawsInRedis();
       return ctx.retrunInfo(0, '', '保存成功');
     } catch (error) {
       await transaction.rollback();
@@ -124,7 +124,7 @@ class LawService extends Service {
       }
 
       await transaction.commit();
-      await service.law.updateLawsInRedis();
+      await service.redis.updateLawsInRedis();
       return ctx.retrunInfo(0, '', '保存成功');
     } catch (error) {
       await transaction.rollback();
@@ -150,7 +150,7 @@ class LawService extends Service {
       user.update({
         avatar,
       });
-      await service.law.updateLawsInRedis();
+      await service.redis.updateLawsInRedis();
       return ctx.retrunInfo(0, '', '修改成功');
     } catch (error) {
       return ctx.retrunInfo(-1, '', error.message);

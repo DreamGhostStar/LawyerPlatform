@@ -15,11 +15,6 @@ class UtilService extends Service {
     }
     return noteVerifyCode;
   }
-
-  async updateRedis() {
-    const { ctx } = this;
-    
-  }
 }
 
 module.exports = UtilService;

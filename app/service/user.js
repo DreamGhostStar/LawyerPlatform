@@ -10,25 +10,13 @@ class UserService extends Service {
    * @memberof UserService
    */
   async getUserDataByPhone(phoneNumber) {
-    const { ctx } = this;
-    let userData = {};
-    let userDataList = await ctx.service.cache.get('user'); // 调用缓存
+    const { service } = this;
+    let userData;
+    const userListInRedis = await service.redis.getUserInRedis();
 
-    if (!userDataList) { // 如果缓存中没有用户数据或用户数据中的phone_number不一致，则重新调用数据库获取数据
-      userDataList = await ctx.model.User.User.findAll({
-        attributes: [ 'id', 'phone_number', 'password' ],
-      });
-      await this.ctx.service.cache.set('user', userDataList);
-    }
-
-    // FIXME: 好像有点问题，应该是在获取用户表的数据后就直接存入缓存。如果这样写，在有缓存的情况下仍然会重新存入缓存
-    // if (userDataList) { // 如果该用户存在，将其调入缓存
-    //   await this.ctx.service.cache.set('user', userDataList, 60 * 60);
-    // }
-
-    for (let index = 0; index < userDataList.length; index++) {
-      if (userDataList[index].phone_number === phoneNumber) {
-        userData = userDataList[index];
+    for (let index = 0; index < userListInRedis.length; index++) {
+      if (userListInRedis[index].phone_number === phoneNumber) {
+        userData = userListInRedis[index];
         break;
       }
     }
@@ -85,19 +73,14 @@ class UserService extends Service {
    * @memberof UserService
    */
   async getUserInfo(userID) {
-    const { ctx } = this;
-    const userInfo = await ctx.model.User.User.findOne({
-      include: [
-        {
-          model: ctx.model.User.Jurisdiction,
-        },
-        {
-          model: ctx.model.User.LawyerOffice,
-        },
-      ],
-      where: {
-        id: userID,
-      },
+    const { ctx, service } = this;
+    let userInfo;
+    const userListInRedis = await service.redis.getUserInRedis();
+    userListInRedis.forEach(user => {
+      if (user.id === userID) {
+        userInfo = user;
+        return;
+      }
     });
 
     const resUserInfo = {

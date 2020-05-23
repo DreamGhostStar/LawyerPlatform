@@ -35,25 +35,6 @@ class LawService extends Service {
     return lawData;
   }
 
-  /**
-   * @description 在数据改变之后，更新redis中laws的数据
-   * @memberof LawService
-   */
-  async updateLawsInRedis() {
-    const { ctx } = this;
-    const lawListInRedis = await ctx.model.Law.Law.findAll({
-      include: [
-        {
-          model: ctx.model.Law.AgencyWord,
-        },
-        {
-          model: ctx.model.Law.FinalReport,
-        },
-      ],
-    });
-    await this.ctx.service.cache.set('laws', lawListInRedis);
-  }
-
 
   /**
    * @description 通过案件ID和类型获取对应word文档的URL

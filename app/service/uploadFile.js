@@ -68,6 +68,11 @@ class UploadFileService extends Service {
     }
   }
 
+  /**
+   * @description 下载文件（从数据库中获取相关的URL）
+   * @return {object} 返回信息
+   * @memberof UploadFileService
+   */
   async downloadFile() {
     const { ctx, service } = this;
     const query = ctx.query;
