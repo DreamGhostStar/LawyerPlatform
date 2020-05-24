@@ -29,9 +29,17 @@ class ScheduleService extends Service {
    * @memberof ScheduleService
    */
   async getSchedulesInDataBase() {
-    const { ctx } = this;
+    const { ctx, service } = this;
+    const scheduleBlackList = await service.cache.get('scheduleBlackList') || [];
     const scheduleListInDataBase = await ctx.model.Schedule.Schedule.findAll();
-    return scheduleListInDataBase;
+    const res = [];
+
+    scheduleListInDataBase.forEach(schedule => {
+      if (scheduleBlackList.indexOf(schedule.id) === -1) {
+        res.push(schedule);
+      }
+    });
+    return res;
   }
 
   /**

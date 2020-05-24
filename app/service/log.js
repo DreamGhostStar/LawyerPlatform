@@ -55,7 +55,7 @@ class LogService extends Service {
    * @memberof LogService
    */
   async getLogsInDataBase() {
-    const { ctx } = this;
+    const { ctx, service } = this;
     const logListInDataBase = await ctx.model.Log.Log.findAll({
       include: [
         {
@@ -63,8 +63,15 @@ class LogService extends Service {
         },
       ],
     });
+    const res = [];
+    const logBlackList = await service.cache.get('logBlackList') || [];
+    logListInDataBase.forEach(log => {
+      if (logBlackList.indexOf(log.id) === -1) {
+        res.push(log);
+      }
+    });
 
-    return logListInDataBase;
+    return res;
   }
 
   /**
@@ -80,23 +87,20 @@ class LogService extends Service {
     const year = await service.util.transfromStringToNumber(query.year);
     const month = await service.util.transfromStringToNumber(query.month);
     const date = await service.util.transfromStringToNumber(query.date);
-    const logBlackList = await service.cache.get('logBlackList') || [];
 
     logsInRedis.forEach(log => {
-      if (logBlackList.indexOf(log.id) === -1) {
-        if (log.year === year &&
-            log.month === month &&
-            log.date === date) {
-          const temp = {
-            log_id: log.id,
-            title: log.title,
-            content: log.content,
-            create_time: log.create_time,
-            is_alter: log.is_alter,
-            select_time: log.select_time,
-          };
-          res.push(temp);
-        }
+      if (log.year === year &&
+        log.month === month &&
+        log.date === date) {
+        const temp = {
+          log_id: log.id,
+          title: log.title,
+          content: log.content,
+          create_time: log.create_time,
+          is_alter: log.is_alter,
+          select_time: log.select_time,
+        };
+        res.push(temp);
       }
     });
     return ctx.retrunInfo(0, res, '');
@@ -181,6 +185,11 @@ class LogService extends Service {
     return res;
   }
 
+  /**
+   * @description 获取案件日志
+   * @return {object} 返回信息
+   * @memberof LogService
+   */
   async getLogsByLawID() {
     const { ctx, service } = this;
     const lawID = parseInt(ctx.query.id);
