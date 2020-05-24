@@ -15,6 +15,7 @@ module.exports = app => {
     modify_time: {
       type: STRING(32),
       allowNull: false,
+      defaultValue: new Date().getTime(),
     },
     content: {
       type: STRING(32),

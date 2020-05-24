@@ -9,11 +9,14 @@ class UtilService extends Service {
    * @memberof UtilService
    */
   async createNoteVerifyCode() {
+    // TODO: 项目正式运行的时候将此注释取消
+    // eslint-disable-next-line no-unused-vars
     let noteVerifyCode = '';
     for (let index = 0; index < 6; index++) {
       noteVerifyCode += Math.floor(Math.random() * 10).toString();
     }
-    return noteVerifyCode;
+    // return noteVerifyCode;
+    return '123456';
   }
 
   /**

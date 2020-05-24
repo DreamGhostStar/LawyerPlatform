@@ -9,6 +9,7 @@ module.exports = app => {
   const imageVerifyCode = middleware.imageVerifyCode(); // 验证图片验证码正确性的中间件
   const noteVerifyCode = middleware.noteVerifyCode(); // 验证短信验证码正确性的中间件
   const lawIdVerify = middleware.lawIdVerify(); // 验证案件ID是否传输正确的中间件
+  const logIdVerify = middleware.logIdVerify(); // 验证日志ID是否传输正确的中间件
 
   // 登录相关
   router.post('/api/login/password', imageVerifyCode, verifyPhoneNumber, controller.user.loginInPassword);
@@ -39,4 +40,6 @@ module.exports = app => {
   // 日志相关
   router.post('/api/log/new', controller.log.create);
   router.get('/api/log/getList', controller.log.getLogsList);
+  router.post('/api/user/log/modify', logIdVerify, controller.log.modify);
+  router.post('/api/log/delete', logIdVerify, controller.log.delete);
 };

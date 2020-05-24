@@ -75,6 +75,36 @@ class RedisService extends Service {
     const logListInRedis = await service.log.getLogsInDataBase();
     await service.cache.set('user', logListInRedis);
   }
+
+
+  /**
+   * @description 在redis中存储log删除黑名单
+   * @param {number} logID 日志ID
+   * @memberof RedisService
+   */
+  async reserveLogBlackListInRedis(logID) {
+    console.log(logID);
+    const { ctx, service } = this;
+    const logBlackList = await service.cache.get('logBlackList') || [];
+    const isExist = logBlackList.indexOf() > -1;
+    if (isExist) {
+      return ctx.retrunInfo(-1, '', '已经删除了该日志，不可重复删除');
+    }
+
+    logBlackList.push(logID);
+
+    const compare = function(x, y) { // 比较函数
+      if (x < y) {
+        return -1;
+      } else if (x > y) {
+        return 1;
+      }
+      return 0;
+    };
+    logBlackList.sort(compare);
+    await service.cache.set('logBlackList', logBlackList);
+    return ctx.retrunInfo(0, '', '删除成功');
+  }
 }
 
 module.exports = RedisService;

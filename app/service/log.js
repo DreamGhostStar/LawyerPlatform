@@ -88,6 +88,83 @@ class LogService extends Service {
     });
     return ctx.retrunInfo(0, res, '');
   }
+
+  /**
+   * @description 修改日志信息
+   * @return {object} 返回信息
+   * @memberof LogService
+   */
+  async modifyLogInfo() {
+    const { ctx } = this;
+    const query = ctx.request.body;
+    const { log_id, select_time, modify_content, title } = query;
+    let transaction;
+
+    try {
+      transaction = await ctx.model.transaction();
+      const log = await ctx.model.Log.Log.findByPk(log_id); // 查找指定的user数据
+      await log.update({
+        select_time,
+        title,
+        content: modify_content,
+      }, {
+        transaction,
+      });
+
+      await ctx.model.Log.LogAlterTime.create({
+        title,
+        content: modify_content,
+        select_time,
+        log_id,
+      }, {
+        transaction,
+      });
+      await transaction.commit();
+      return ctx.retrunInfo(0, '', '修改成功');
+    } catch (error) {
+      await transaction.rollback();
+      return ctx.retrunInfo(-1, '', error.message);
+    }
+  }
+
+  /**
+   * @description 通过日志ID获取日志内容
+   * @param {number} ID 日志ID
+   * @return {object} 日志内容
+   * @memberof LogService
+   */
+  async getLogByID(ID) {
+    const { service } = this;
+    const logBlackListInRedis = await service.cache.get('logBlackList') || [];
+    const isExist = logBlackListInRedis.indexOf(ID) === -1;
+
+    if (!isExist) {
+      return null;
+    }
+    const logListInRedis = await service.redis.getLogsInRedis();
+    let res = {};
+    logListInRedis.forEach(log => {
+      if (log.id === ID) {
+        res = log;
+        return;
+      }
+    });
+
+    return res;
+  }
+
+  /**
+   * @description 软删除日志，在redis中存放日志黑名单
+   * @return {object} 返回信息
+   * @memberof LogService
+   */
+  async deleteLog() {
+    const { ctx, service } = this;
+    const query = ctx.request.body;
+    const logID = query.log_id;
+    const res = await service.redis.reserveLogBlackListInRedis(logID);
+    return res;
+  }
 }
 
 module.exports = LogService;
