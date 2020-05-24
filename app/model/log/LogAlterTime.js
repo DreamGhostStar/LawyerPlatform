@@ -19,12 +19,11 @@ module.exports = app => {
     },
     content: {
       type: STRING(32),
-      allowNull: false,
+      allowNull: true,
     },
     select_time: {
       type: STRING(32),
-      allowNull: false,
-      defaultValue: new Date().getTime(),
+      allowNull: true,
     },
     log_id: {
       type: INTEGER,

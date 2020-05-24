@@ -43,6 +43,7 @@ module.exports = app => {
   router.get('/api/log/getList', controller.log.getLogsList);
   router.post('/api/user/log/modify', logIdVerify, controller.log.modify);
   router.post('/api/log/delete', logIdVerify, controller.log.delete);
+  router.get('/api/log/caselog', controller.log.getLogsByLawID);
 
   // 日程相关
   router.post('/api/schedule/new', controller.schedule.create);

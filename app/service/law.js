@@ -36,13 +36,6 @@ class LawService extends Service {
     return lawListInDataBase;
   }
 
-  async getLawAssistantsInDataBase() {
-    const { ctx } = this;
-    const lawAssistantList = await ctx.model.Law.LawAssistant.findAll();
-
-    return lawAssistantList;
-  }
-
   /**
    * @description 通过案件ID来获取指定信息
    * @param {number} id 案件ID
@@ -251,6 +244,15 @@ class LawService extends Service {
         transaction,
       });
 
+      const logResult = await service.log.create('案件信息被修改', null, null, false, id, transaction);
+      if (logResult.code !== 0) {
+        throw new Error(logResult.message);
+      }
+
+      // 更新缓存中的案件、日志、用户数据
+      await service.redis.updateLawsInRedis();
+      await service.redis.updateLogsInRedis();
+      await service.redis.updateUserInRedis();
       await transaction.commit();
       return ctx.retrunInfo(0, '', '修改成功');
     } catch (error) {

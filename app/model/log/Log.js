@@ -14,7 +14,7 @@ module.exports = app => {
     },
     content: {
       type: TEXT,
-      allowNull: false,
+      allowNull: true,
     },
     lawyer_id: { // 所属案件ID
       type: INTEGER,

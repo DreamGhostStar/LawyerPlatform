@@ -24,18 +24,6 @@ class RedisService extends Service {
     return lawListInRedis;
   }
 
-  async getLawAssistantsInRedis() {
-    const { service } = this;
-
-    let lawAssistantListInRedis = await service.cache.get('lawAssistants');
-    if (!lawAssistantListInRedis) {
-      lawAssistantListInRedis = await service.law.getLawAssistantsInDataBase();
-      await service.cache.set('lawAssistants', lawAssistantListInRedis);
-    }
-
-    return lawAssistantListInRedis;
-  }
-
   /**
    * @description 从缓存中获取用户数据
    * @return {Array} 缓存中的用户数据

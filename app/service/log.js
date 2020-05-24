@@ -44,7 +44,6 @@ class LogService extends Service {
         is_alter,
         create_time: nowDate.getTime(),
       });
-      await service.redis.updateLogsInRedis();
       return ctx.retrunInfo(0, '', '新建日志成功');
     } catch (error) {
       return ctx.retrunInfo(-1, '', error.message);
@@ -180,6 +179,27 @@ class LogService extends Service {
     const res = await service.redis.reserveLogBlackListInRedis(logID);
     await service.redis.updateLogsInRedis();
     return res;
+  }
+
+  async getLogsByLawID() {
+    const { ctx, service } = this;
+    const lawID = parseInt(ctx.query.id);
+    const logListInRedis = await service.redis.getLogsInRedis();
+    const res = [];
+    logListInRedis.forEach(log => {
+      if (log.lawyer_id === lawID) {
+        const temp = {
+          log_id: log.id,
+          title: log.title,
+          content: log.content,
+          create_time: log.create_time,
+          select_time: log.select_time,
+        };
+        res.push(temp);
+      }
+    });
+
+    return ctx.retrunInfo(0, res, '');
   }
 }
 

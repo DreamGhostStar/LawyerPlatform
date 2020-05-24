@@ -30,6 +30,13 @@ class LogController extends Controller {
     const res = await service.log.deleteLog();
     ctx.body = res;
   }
+
+  // 获取案件日志
+  async getLogsByLawID() {
+    const { ctx, service } = this;
+    const res = await service.log.getLogsByLawID();
+    ctx.body = res;
+  }
 }
 
 module.exports = LogController;
