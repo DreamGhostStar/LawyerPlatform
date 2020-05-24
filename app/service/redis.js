@@ -73,9 +73,8 @@ class RedisService extends Service {
   async updateLogsInRedis() {
     const { service } = this;
     const logListInRedis = await service.log.getLogsInDataBase();
-    await service.cache.set('user', logListInRedis);
+    await service.cache.set('logs', logListInRedis);
   }
-
 
   /**
    * @description 在redis中存储log删除黑名单
@@ -83,7 +82,6 @@ class RedisService extends Service {
    * @memberof RedisService
    */
   async reserveLogBlackListInRedis(logID) {
-    console.log(logID);
     const { ctx, service } = this;
     const logBlackList = await service.cache.get('logBlackList') || [];
     const isExist = logBlackList.indexOf() > -1;
@@ -103,6 +101,60 @@ class RedisService extends Service {
     };
     logBlackList.sort(compare);
     await service.cache.set('logBlackList', logBlackList);
+    return ctx.retrunInfo(0, '', '删除成功');
+  }
+
+  /**
+   * @description 从缓存中获取用户数据
+   * @return {Array} 缓存中的用户数据
+   * @memberof RedisService
+   */
+  async getSchedulesInRedis() {
+    const { service } = this;
+    let scheduleListInRedis = await service.cache.get('schedules'); // 调用缓存
+    if (!scheduleListInRedis) {
+      scheduleListInRedis = await service.schedule.getSchedulesInDataBase();
+      await service.cache.set('schedules', scheduleListInRedis);
+    }
+
+    return scheduleListInRedis;
+  }
+
+  /**
+   * @description 进行与修改用户相关操作的话，需要更新缓存
+   * @memberof RedisService
+   */
+  async updateSchedulesInRedis() {
+    const { service } = this;
+    const scheduleListInRedis = await service.schedule.getSchedulesInDataBase();
+    await service.cache.set('schedules', scheduleListInRedis);
+  }
+
+  /**
+   * @description 在redis中存储日程删除黑名单
+   * @param {number} scheduleID 日程ID
+   * @memberof RedisService
+   */
+  async reserveScheduleBlackListInRedis(scheduleID) {
+    const { ctx, service } = this;
+    const scheduleBlackList = await service.cache.get('scheduleBlackList') || [];
+    const isExist = scheduleBlackList.indexOf() > -1;
+    if (isExist) {
+      return ctx.retrunInfo(-1, '', '已经删除了该日程，不可重复删除');
+    }
+
+    scheduleBlackList.push(scheduleID);
+
+    const compare = function(x, y) { // 比较函数
+      if (x < y) {
+        return -1;
+      } else if (x > y) {
+        return 1;
+      }
+      return 0;
+    };
+    scheduleBlackList.sort(compare);
+    await service.cache.set('scheduleBlackList', scheduleBlackList);
     return ctx.retrunInfo(0, '', '删除成功');
   }
 }

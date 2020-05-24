@@ -27,6 +27,7 @@ class LogService extends Service {
         date: nowDate.getDate(),
         log_type_id: 1,
         is_alter,
+        create_time: nowDate.getTime(),
       });
       return ctx.retrunInfo(0, '', '新建日志成功');
     } catch (error) {
@@ -142,7 +143,7 @@ class LogService extends Service {
       return null;
     }
     const logListInRedis = await service.redis.getLogsInRedis();
-    let res = {};
+    let res;
     logListInRedis.forEach(log => {
       if (log.id === ID) {
         res = log;

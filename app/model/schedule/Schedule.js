@@ -1,0 +1,47 @@
+'use strict';
+
+module.exports = app => {
+  const { INTEGER, STRING } = app.Sequelize;
+  const Schedule = app.model.define('schedule', {
+    id: {
+      type: INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    user_id: {
+      type: INTEGER,
+      allowNull: false,
+    },
+    title: {
+      type: STRING(32),
+      allowNull: false,
+    },
+    content: {
+      type: STRING(32),
+      allowNull: true,
+    },
+    warn_time: {
+      type: STRING(32),
+      allowNull: true,
+    },
+    create_time: {
+      type: STRING(32),
+      allowNull: false,
+    },
+    update_time: {
+      type: STRING(32),
+      allowNull: false,
+      defaultValue: new Date().getTime(),
+    },
+  }, {
+    timestamps: false, // 去除createAt updateAt
+    freezeTableName: true, // 使用自定义表名
+  });
+
+  Schedule.associate = function() {
+    // 一对多，一个日志有多条修改记录
+    app.model.Schedule.Schedule.hasMany(app.model.Schedule.ScheduleAlterTime, { foreignKey: 'schedule_id' });
+  };
+
+  return Schedule;
+};

@@ -10,6 +10,7 @@ module.exports = app => {
   const noteVerifyCode = middleware.noteVerifyCode(); // 验证短信验证码正确性的中间件
   const lawIdVerify = middleware.lawIdVerify(); // 验证案件ID是否传输正确的中间件
   const logIdVerify = middleware.logIdVerify(); // 验证日志ID是否传输正确的中间件
+  const scheduleIdVerify = middleware.scheduleIdVerify(); // 验证日志ID是否传输正确的中间件
 
   // 登录相关
   router.post('/api/login/password', imageVerifyCode, verifyPhoneNumber, controller.user.loginInPassword);
@@ -42,4 +43,10 @@ module.exports = app => {
   router.get('/api/log/getList', controller.log.getLogsList);
   router.post('/api/user/log/modify', logIdVerify, controller.log.modify);
   router.post('/api/log/delete', logIdVerify, controller.log.delete);
+
+  // 日程相关
+  router.post('/api/schedule/new', controller.schedule.create);
+  router.get('/api/schedule/getList', controller.schedule.getScheduleList);
+  router.post('/api/schedule/modify', scheduleIdVerify, controller.schedule.modify);
+  router.post('/api/schedule/delete', scheduleIdVerify, controller.schedule.delete);
 };

@@ -23,7 +23,6 @@ module.exports = app => {
     create_time: {
       type: STRING(32),
       allowNull: false,
-      defaultValue: new Date().getTime(),
     },
     update_time: {
       type: STRING(32),
@@ -33,7 +32,6 @@ module.exports = app => {
     select_time: {
       type: STRING(32),
       allowNull: false,
-      defaultValue: new Date().getTime(),
     },
     remove_id: { // 日志删除ID
       type: INTEGER,
@@ -72,7 +70,7 @@ module.exports = app => {
     // 一对多，一个日志有多条修改记录
     app.model.Log.Log.hasMany(app.model.Log.LogAlterTime, { foreignKey: 'log_id' });
 
-    // 一对一，案件有一个代理词
+    // 一对一，一个日志只有一个日志类型
     app.model.Log.Log.belongsTo(app.model.Log.LogType, { foreignKey: 'log_type_id' });
   };
 
