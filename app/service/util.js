@@ -43,6 +43,10 @@ class UtilService extends Service {
   async transfromStringToNumber(data) {
     return parseInt(data);
   }
+
+  async numbersCloseEnoughToEqual(n1, n2) {
+    return Math.abs(n1 - n2) < Number.EPSILON;
+  }
 }
 
 module.exports = UtilService;

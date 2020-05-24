@@ -31,10 +31,6 @@ module.exports = app => {
     },
     select_time: {
       type: STRING(32),
-      allowNull: false,
-    },
-    remove_id: { // 日志删除ID
-      type: INTEGER,
       allowNull: true,
     },
     create_user_id: { // 创建者的userID
@@ -53,10 +49,6 @@ module.exports = app => {
       type: INTEGER,
       allowNull: false,
     },
-    log_type_id: { // 日志类型ID
-      type: INTEGER,
-      allowNull: false,
-    },
     is_alter: { // 是否可以被修改
       type: BOOLEAN,
       allowNull: false,
@@ -69,9 +61,6 @@ module.exports = app => {
   Log.associate = function() {
     // 一对多，一个日志有多条修改记录
     app.model.Log.Log.hasMany(app.model.Log.LogAlterTime, { foreignKey: 'log_id' });
-
-    // 一对一，一个日志只有一个日志类型
-    app.model.Log.Log.belongsTo(app.model.Log.LogType, { foreignKey: 'log_type_id' });
   };
 
   return Log;

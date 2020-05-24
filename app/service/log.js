@@ -4,17 +4,33 @@ const Service = require('egg').Service;
 
 class LogService extends Service {
   /**
-   * @description 新建日志
+   * @description 新增普通日志
    * @return {object} 返回信息
    * @memberof LogService
    */
-  async create() {
-    const { ctx, service } = this;
+  async generate() {
+    const { ctx } = this;
     const query = ctx.request.body;
+    const { title, content, select_time, lawyer_id } = query;
+    const res = await this.create(title, content, select_time, false, lawyer_id);
+    return res;
+  }
+
+  /**
+   * @description 新建日志的具体操作
+   * @param {string} title 日志标题
+   * @param {string} content 日志内容
+   * @param {string} select_time 日志选择时间
+   * @param {boolean} is_alter 日志是否允许删除
+   * @param {number} lawyer_id 日志所属哪个案件ID
+   * @return {object} 返回信息
+   * @memberof LogService
+   */
+  async create(title, content, select_time, is_alter, lawyer_id) {
+    const { ctx, service } = this;
     const jwtData = await service.jwt.getJWtData();
     const userID = jwtData.userID;
     try {
-      const { title, content, select_time, is_alter, lawyer_id } = query;
       const nowDate = new Date();
       await ctx.model.Log.Log.create({
         title,
@@ -25,10 +41,10 @@ class LogService extends Service {
         year: nowDate.getFullYear(),
         month: nowDate.getMonth() + 1,
         date: nowDate.getDate(),
-        log_type_id: 1,
         is_alter,
         create_time: nowDate.getTime(),
       });
+      await service.redis.updateLogsInRedis();
       return ctx.retrunInfo(0, '', '新建日志成功');
     } catch (error) {
       return ctx.retrunInfo(-1, '', error.message);
@@ -46,9 +62,6 @@ class LogService extends Service {
         {
           model: ctx.model.Log.LogAlterTime,
         },
-        {
-          model: ctx.model.Log.LogType,
-        },
       ],
     });
 
@@ -65,26 +78,26 @@ class LogService extends Service {
     const query = ctx.query;
     const logsInRedis = await service.redis.getLogsInRedis();
     const res = [];
-    const isAlter = await service.util.transfromStringToBool(query.is_alter);
     const year = await service.util.transfromStringToNumber(query.year);
     const month = await service.util.transfromStringToNumber(query.month);
     const date = await service.util.transfromStringToNumber(query.date);
+    const logBlackList = await service.cache.get('logBlackList') || [];
 
     logsInRedis.forEach(log => {
-      if (log.year === year &&
-        log.month === month &&
-        log.date === date &&
-        log.is_alter === isAlter) {
-        const temp = {
-          log_id: log.id,
-          title: log.title,
-          content: log.content,
-          create_time: log.create_time,
-          type: log.log_type.value,
-          is_alter: log.is_alter,
-          select_time: log.select_time,
-        };
-        res.push(temp);
+      if (logBlackList.indexOf(log.id) === -1) {
+        if (log.year === year &&
+            log.month === month &&
+            log.date === date) {
+          const temp = {
+            log_id: log.id,
+            title: log.title,
+            content: log.content,
+            create_time: log.create_time,
+            is_alter: log.is_alter,
+            select_time: log.select_time,
+          };
+          res.push(temp);
+        }
       }
     });
     return ctx.retrunInfo(0, res, '');
@@ -96,14 +109,14 @@ class LogService extends Service {
    * @memberof LogService
    */
   async modifyLogInfo() {
-    const { ctx } = this;
+    const { ctx, service } = this;
     const query = ctx.request.body;
     const { log_id, select_time, modify_content, title } = query;
     let transaction;
 
     try {
       transaction = await ctx.model.transaction();
-      const log = await ctx.model.Log.Log.findByPk(log_id); // 查找指定的user数据
+      const log = await ctx.model.Log.Log.findByPk(log_id); // 查找指定的日志数据
       await log.update({
         select_time,
         title,
@@ -121,6 +134,7 @@ class LogService extends Service {
         transaction,
       });
       await transaction.commit();
+      await service.redis.updateLogsInRedis();
       return ctx.retrunInfo(0, '', '修改成功');
     } catch (error) {
       await transaction.rollback();
@@ -164,6 +178,7 @@ class LogService extends Service {
     const query = ctx.request.body;
     const logID = query.log_id;
     const res = await service.redis.reserveLogBlackListInRedis(logID);
+    await service.redis.updateLogsInRedis();
     return res;
   }
 }

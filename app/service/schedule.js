@@ -14,14 +14,14 @@ class ScheduleService extends Service {
     const { title, content, warn_time } = query;
     const jwtData = await service.jwt.getJWtData();
     const userID = jwtData.userID;
-    const res = await ctx.model.Schedule.Schedule.create({
+    await ctx.model.Schedule.Schedule.create({
       user_id: userID,
       title,
       content,
       warn_time,
       create_time: new Date().getTime(),
     });
-    return res;
+    return ctx.retrunInfo(0, '', '新建日程成功');
   }
 
   /**
@@ -30,21 +30,14 @@ class ScheduleService extends Service {
    */
   async getSchedulesInDataBase() {
     const { ctx } = this;
-    const scheduleListInDataBase = await ctx.model.Schedule.Schedule.findAll({
-      include: [
-        {
-          model: ctx.model.Schedule.ScheduleAlterTime,
-        },
-      ],
-    });
-
+    const scheduleListInDataBase = await ctx.model.Schedule.Schedule.findAll();
     return scheduleListInDataBase;
   }
 
   /**
    * @description 获取日程列表信息
    * @return {object} 返回信息
-   * @memberof LogService
+   * @memberof ScheduleService
    */
   async getSchedulesList() {
     const { ctx, service } = this;
@@ -94,15 +87,6 @@ class ScheduleService extends Service {
         warn_time,
         content,
         title,
-      }, {
-        transaction,
-      });
-
-      await ctx.model.Schedule.ScheduleAlterTime.create({
-        title,
-        content,
-        warn_time,
-        schedule_id,
       }, {
         transaction,
       });

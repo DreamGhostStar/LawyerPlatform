@@ -2,7 +2,7 @@
 
 module.exports = () => {
   return async function jwtErr(ctx, next) {
-    const lawID = ctx.query.law_id || ctx.request.body.law_id;
+    const lawID = ctx.request.body.id;
 
     if (!lawID) {
       ctx.body = ctx.retrunInfo(-1, '', '请求参数错误');

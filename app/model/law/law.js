@@ -72,8 +72,8 @@ module.exports = app => {
       type: DECIMAL(10, 2),
       allowNull: true,
     },
-    remove_id: {
-      type: INTEGER,
+    remove_time: {
+      type: STRING(32),
       allowNull: true,
     },
   }, {

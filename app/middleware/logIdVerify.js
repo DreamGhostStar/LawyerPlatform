@@ -14,6 +14,10 @@ module.exports = () => {
       ctx.body = ctx.retrunInfo(-1, '', '日志不存在');
       return;
     }
+    if (!log.is_alter) {
+      ctx.body = ctx.retrunInfo(-1, '', '该日志不允许被删除或修改');
+      return;
+    }
     await next();
   };
 };

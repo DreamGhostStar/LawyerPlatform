@@ -6,7 +6,7 @@ class LogController extends Controller {
   // 新建日志
   async create() {
     const { ctx, service } = this;
-    const res = await service.log.create();
+    const res = await service.log.generate();
     ctx.body = res;
   }
 

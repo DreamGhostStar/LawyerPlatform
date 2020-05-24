@@ -24,6 +24,18 @@ class RedisService extends Service {
     return lawListInRedis;
   }
 
+  async getLawAssistantsInRedis() {
+    const { service } = this;
+
+    let lawAssistantListInRedis = await service.cache.get('lawAssistants');
+    if (!lawAssistantListInRedis) {
+      lawAssistantListInRedis = await service.law.getLawAssistantsInDataBase();
+      await service.cache.set('lawAssistants', lawAssistantListInRedis);
+    }
+
+    return lawAssistantListInRedis;
+  }
+
   /**
    * @description 从缓存中获取用户数据
    * @return {Array} 缓存中的用户数据
@@ -84,7 +96,7 @@ class RedisService extends Service {
   async reserveLogBlackListInRedis(logID) {
     const { ctx, service } = this;
     const logBlackList = await service.cache.get('logBlackList') || [];
-    const isExist = logBlackList.indexOf() > -1;
+    const isExist = logBlackList.indexOf(logID) > -1;
     if (isExist) {
       return ctx.retrunInfo(-1, '', '已经删除了该日志，不可重复删除');
     }
@@ -138,7 +150,7 @@ class RedisService extends Service {
   async reserveScheduleBlackListInRedis(scheduleID) {
     const { ctx, service } = this;
     const scheduleBlackList = await service.cache.get('scheduleBlackList') || [];
-    const isExist = scheduleBlackList.indexOf() > -1;
+    const isExist = scheduleBlackList.indexOf(scheduleID) > -1;
     if (isExist) {
       return ctx.retrunInfo(-1, '', '已经删除了该日程，不可重复删除');
     }

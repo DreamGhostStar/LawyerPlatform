@@ -38,10 +38,7 @@ module.exports = app => {
     freezeTableName: true, // 使用自定义表名
   });
 
-  Schedule.associate = function() {
-    // 一对多，一个日志有多条修改记录
-    app.model.Schedule.Schedule.hasMany(app.model.Schedule.ScheduleAlterTime, { foreignKey: 'schedule_id' });
-  };
+  Schedule.associate = function() {};
 
   return Schedule;
 };
