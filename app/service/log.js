@@ -12,7 +12,7 @@ class LogService extends Service {
     const { ctx } = this;
     const query = ctx.request.body;
     const { title, content, select_time, lawyer_id } = query;
-    const res = await this.create(title, content, select_time, false, lawyer_id);
+    const res = await this.create(title, content, select_time, true, lawyer_id);
     return res;
   }
 
@@ -75,7 +75,7 @@ class LogService extends Service {
   }
 
   /**
-   * @description 获取日志列表信息
+   * @description 获取普通日志列表信息
    * @return {object} 返回信息
    * @memberof LogService
    */
@@ -91,7 +91,8 @@ class LogService extends Service {
     logsInRedis.forEach(log => {
       if (log.year === year &&
         log.month === month &&
-        log.date === date) {
+        log.date === date &&
+        log.is_alter === true) {
         const temp = {
           log_id: log.id,
           title: log.title,

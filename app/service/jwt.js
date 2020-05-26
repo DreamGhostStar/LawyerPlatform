@@ -60,7 +60,6 @@ class JwtService extends Service {
   }
 
   /**
-   * FIXME:好像有点问题
    * @description 设置jwt的时候将对应的userID储存到redis中
    * @param {Number} userID 用户ID
    * @memberof JwtService
@@ -85,11 +84,11 @@ class JwtService extends Service {
     let isInsert = false;
     for (let index = 0; index < whiteList.length; index++) {
       const jwtData = whiteList[index];
+      if (jwtData.userID === userID) {
+        jwtData.createTime = nowDate;
+        isInsert = true;
+      }
       if ((nowDate - jwtData.createTime) < 60 * 60 * 24 * 1000) {
-        if (jwtData.userID === userID) {
-          jwtData.createTime = nowDate;
-          isInsert = true;
-        }
         if (jwtData.userID > userID && !isInsert) {
           newWhiteList.push({
             userID,

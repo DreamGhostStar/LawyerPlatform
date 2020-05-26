@@ -14,6 +14,10 @@ module.exports = {
     enable: true,
     package: 'egg-jwt',
   },
+  alinode: {
+    enable: false,
+    package: 'egg-alinode',
+  },
   cors: {
     enable: true,
     package: 'egg-cors',

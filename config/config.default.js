@@ -82,16 +82,6 @@ module.exports = appInfo => {
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
   };
 
-  config.sequelize = {
-    dialect: 'mysql',
-    host: '106.14.174.206',
-    port: 3306,
-    database: 'lawyer',
-    username: 'root',
-    password: '990308myc',
-    timezone: '+08:00',
-  };
-
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
