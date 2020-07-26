@@ -13,7 +13,6 @@ class _CasesState extends State<Cases>{
   bool isall;
   String caseStatus;
   
-
   String _choice = '全部';
   @override
   Widget build(BuildContext context){
