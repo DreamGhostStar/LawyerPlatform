@@ -76,13 +76,13 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-  # fonts:
-  #   - family: title
-  #     fonts:
-  #       - asset: fonts/title.ttf
-  #   - family: decoration
-  #     fonts:
-  #       - asset: fonts/decoration.ttf
-  #   - family: main
-  #     fonts:
-  #       - asset: fonts/main.ttf
+  fonts:
+    - family: title
+      fonts:
+        - asset: font/title.ttf
+    - family: decoration
+      fonts:
+        - asset: font/decoration.ttf
+    - family: main
+      fonts:
+        - asset: font/main.ttf

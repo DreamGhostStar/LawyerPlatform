@@ -16,7 +16,11 @@ class _MypageState extends State<Mypage> {
         ),
         child: GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, '/login');
+            // if (user == null) {
+              Navigator.pushNamed(context, '/loginSelect');
+            // } else {
+            //   Navigator.pushNamed(context, '/userDetail');
+            // }
           },
           child: Container(
             margin: EdgeInsets.all(20),

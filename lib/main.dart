@@ -7,6 +7,8 @@ import './demo/Schedule.dart';
 import './model/BottomNavigationItem.dart';
 import './demo/Login.dart';
 import './demo/Startloading.dart';
+import './demo/Login_select.dart';
+import './demo/User_detail.dart';
 
 void main() => runApp(MyApp());
 
@@ -28,10 +30,8 @@ class MyApp extends StatelessWidget {
         '/start': (BuildContext context) => LoadingPage(),
         '/home': (BuildContext context) => GeneralFramework(),
         '/login': (BuildContext context) => Login(),
-        '/user': (BuildContext context) => Mypage(),
-        '/log': (BuildContext context) => Log(),
-        '/case': (BuildContext context) => Cases(),
-        '/Schedule': (BuildContext context) => Schedule(),
+        '/userDetail': (BuildContext context) => UserDetail(),
+        '/loginSelect': (BuildContext context)=>LoginSelect(),  
       },
     );
   }

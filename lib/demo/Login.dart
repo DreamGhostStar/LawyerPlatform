@@ -12,7 +12,10 @@ class Login extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('律师平台'),
+            Text(
+              '律师平台',
+              style: TextStyle(fontFamily: 'main', fontSize: 50),
+            ),
             Container(
               padding: EdgeInsets.all(30),
               child: Column(
@@ -84,7 +87,7 @@ class _RegisterFormState extends State<RegisterForm> {
           Container(
             width: double.infinity, //宽度与上面的部件对齐
             child: RaisedButton(
-              child: Text('Register', style: TextStyle(color: Colors.white)),
+              child: Text('登录', style: TextStyle(color: Colors.white)),
               color: Colors.blueAccent[700],
               elevation: 1,
               onPressed: () {
@@ -94,7 +97,7 @@ class _RegisterFormState extends State<RegisterForm> {
                       SnackBar(
                     //在底部弹出提示栏
                     content: Text(
-                      'Registering...',
+                      'Loading...',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 15,

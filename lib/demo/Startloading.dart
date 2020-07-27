@@ -69,14 +69,14 @@ class _LoadingPageState extends State<LoadingPage> {
                     children: <Widget>[
                       Text(
                         '律师平台',
-                        style: TextStyle(fontSize: 40, fontFamily: 'title'),
+                        style: TextStyle(fontSize: 55, fontFamily: 'title'),
                       ),
                       Padding(
-                        padding: new EdgeInsets.only(top: 20),
+                        padding: new EdgeInsets.only(top: 25),
                         child: Text(
                           '致力于专业的法律援助和咨询',
-                          style: TextStyle(
-                              color: Colors.grey, fontFamily: 'decoration'),
+                          style:
+                              TextStyle(fontSize: 22, fontFamily: 'decoration'),
                         ),
                       )
                     ],

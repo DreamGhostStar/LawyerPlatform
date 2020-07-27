@@ -10,7 +10,7 @@ class _ScheduleState extends State<Schedule>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      body: Text('Schedule'),
+      body: Text('日程'),
     );
   }
 }
