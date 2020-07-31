@@ -31,14 +31,18 @@ class MyApp extends StatelessWidget {
         '/home': (BuildContext context) => GeneralFramework(),
         '/login': (BuildContext context) => Login(),
         '/userDetail': (BuildContext context) => UserDetail(),
-        '/loginSelect': (BuildContext context)=>LoginSelect(),  
+        '/loginSelect': (BuildContext context) => LoginSelect(),
       },
     );
   }
 }
 
 //以下是页面的基本架构，完成了由bottomNavigationBar触发的页面切换
+// ignore: must_be_immutable
 class GeneralFramework extends StatefulWidget {
+  int currentIndex;
+
+  GeneralFramework({Key key, this.currentIndex = 0}) : super(key: key);
   @override
   _GeneralFrameworkState createState() => _GeneralFrameworkState();
 }
@@ -54,7 +58,7 @@ class _GeneralFrameworkState extends State<GeneralFramework> {
     Schedule(),
     Mypage(),
   ];
-  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -75,16 +79,16 @@ class _GeneralFrameworkState extends State<GeneralFramework> {
           bottomNavigationBar: (BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             items: bottomTabls,
-            currentIndex: _currentIndex,
+            currentIndex: widget.currentIndex,
             fixedColor: Colors.orange,
             elevation: 20,
             onTap: (index) {
               setState(() {
-                _currentIndex = index;
+                widget.currentIndex = index;
               });
             },
           )),
-          body: tabBodies[_currentIndex],
+          body: tabBodies[widget.currentIndex],
         ));
   }
 }
