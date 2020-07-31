@@ -63,8 +63,8 @@ class _RegisterFormState extends State<RegisterForm> {
       child: Column(
         children: <Widget>[
           TextFormField(
-            decoration: InputDecoration(
-                labelText: 'Username', helperText: 'Input username'),
+            decoration:
+                InputDecoration(labelText: '用户名', helperText: 'Input username'),
             onSaved: (value) {
               username = value;
             },
@@ -73,8 +73,8 @@ class _RegisterFormState extends State<RegisterForm> {
           ),
           TextFormField(
             obscureText: true,
-            decoration: InputDecoration(
-                labelText: 'Password', helperText: 'Input password'),
+            decoration:
+                InputDecoration(labelText: '密码', helperText: 'Input password'),
             onSaved: (value) {
               password = value;
             },
