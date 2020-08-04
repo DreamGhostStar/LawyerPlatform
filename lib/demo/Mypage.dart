@@ -130,7 +130,7 @@ class _UserBasicInfoState extends State<UserBasicInfo> {
               ),
               Text(
                 user.name,
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
               )
             ],
           ),

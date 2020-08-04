@@ -4,7 +4,6 @@ import './demo/Cases.dart';
 import './demo/Log.dart';
 import './demo/Mypage.dart';
 import './demo/Schedule.dart';
-import './model/BottomNavigationItem.dart';
 import './demo/Login.dart';
 import './demo/Startloading.dart';
 import './demo/Login_select.dart';
@@ -48,8 +47,6 @@ class GeneralFramework extends StatefulWidget {
 }
 
 class _GeneralFrameworkState extends State<GeneralFramework> {
-  final List<BottomNavigationBarItem> bottomTabs = bottomTabls;
-
   DateTime lastPopTime; //上次点击时间
 
   final List tabBodies = [
@@ -57,6 +54,25 @@ class _GeneralFrameworkState extends State<GeneralFramework> {
     Log(),
     Schedule(),
     Mypage(),
+  ];
+
+  final List<BottomNavigationBarItem> bottomTabls = [
+    BottomNavigationBarItem(
+      icon: Icon(Icons.content_paste),
+      title: Text('案件'),
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.local_activity),
+      title: Text('日志'),
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.schedule),
+      title: Text('日程'),
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.people),
+      title: Text('我的'),
+    ),
   ];
 
   @override

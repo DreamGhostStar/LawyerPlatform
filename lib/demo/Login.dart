@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'dart:async';
 import 'package:lawyerplatform/main.dart';
 import 'package:lawyerplatform/model/BaseUserInfo.dart';
+import 'package:lawyerplatform/model/LoginAvatar.dart';
 
 //这是登录页面
 class Login extends StatefulWidget {
@@ -208,7 +206,7 @@ class _RegisterFormState extends State<RegisterForm> {
                     user = BaseUserInfo.init({
                       'nickname': '用户$phonenumber',
                       'avatar':
-                          'http://cloud-medicine.youchen-blog.cn/avatar.jpg'
+                          'http://img.duoziwang.com/2017/06/08/B16106482.jpg'
                     });
                     Navigator.of(context).pushAndRemoveUntil(
                         new MaterialPageRoute(
@@ -227,36 +225,5 @@ class _RegisterFormState extends State<RegisterForm> {
         ),
       );
     return myWidget;
-  }
-}
-
-Future<PhoneValidate> fetchPost() async {
-  final response = await http.post('http://106.14.174.206:7003/api/login/note');
-  print(response.statusCode);
-  if (response.statusCode == 200)
-    return PhoneValidate.fromJson(json.decode(response.body));
-  else
-    throw Exception('Failed to load post');
-}
-
-class PhoneValidate {
-  String phoneNumber;
-  String verificationCode;
-  int platform;
-
-  PhoneValidate({this.phoneNumber, this.verificationCode, this.platform});
-
-  PhoneValidate.fromJson(Map<String, dynamic> json) {
-    phoneNumber = json['phoneNumber'];
-    verificationCode = json['verification_code'];
-    platform = json['platform'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['phoneNumber'] = this.phoneNumber;
-    data['verification_code'] = this.verificationCode;
-    data['platform'] = this.platform;
-    return data;
   }
 }
