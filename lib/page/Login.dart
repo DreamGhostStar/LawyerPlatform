@@ -14,9 +14,14 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+        body: SingleChildScrollView(
+      //解决键盘弹出时组件溢出的问题
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          SizedBox(
+            height: 120,
+          ),
           Text(
             title,
             style: TextStyle(fontFamily: 'main', fontSize: 30),
@@ -57,7 +62,7 @@ class _LoginState extends State<Login> {
           ),
         ],
       ),
-    );
+    ));
   }
 }
 
@@ -72,10 +77,12 @@ class RegisterForm extends StatefulWidget {
 
 class _RegisterFormState extends State<RegisterForm> {
   final registerFormKey = GlobalKey<FormState>();
-  String username, password, phonenumber;
+  String username, password, phonenumber, code;
   bool autovalidate = false;
+  bool autovalidate2 = false;
   bool _obscure = true;
   var eyeColor = Colors.grey;
+  var codeTextColor = Colors.blue;
 
   String validateUsername(value) {
     if (value.isEmpty) {
@@ -98,6 +105,13 @@ class _RegisterFormState extends State<RegisterForm> {
     return null;
   }
 
+  String validatecode(value) {
+    if (value.isEmpty) {
+      return '请输入验证码';
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget myWidget = Form(
@@ -106,8 +120,7 @@ class _RegisterFormState extends State<RegisterForm> {
       child: Column(
         children: <Widget>[
           TextFormField(
-            decoration:
-                InputDecoration(labelText: '用户名', helperText: 'Input username'),
+            decoration: InputDecoration(labelText: '用户名'),
             onSaved: (value) {
               username = value;
             },
@@ -118,7 +131,6 @@ class _RegisterFormState extends State<RegisterForm> {
             obscureText: _obscure,
             decoration: InputDecoration(
                 labelText: '密码',
-                helperText: 'Input password',
                 suffixIcon: IconButton(
                     icon: Icon(
                       Icons.remove_red_eye,
@@ -179,12 +191,36 @@ class _RegisterFormState extends State<RegisterForm> {
         child: Column(
           children: <Widget>[
             TextFormField(
-              decoration: InputDecoration(hintText: '请输入手机号'),
+              decoration: InputDecoration(labelText: '手机号'),
               onSaved: (value) {
                 phonenumber = value;
               },
               validator: validateNumber, //验证表单数据
-              autovalidate: autovalidate, //自定义的自动验证
+              autovalidate: autovalidate2, //自定义的自动验证
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                  labelText: '验证码',
+                  suffix: GestureDetector(
+                    child: Text(
+                      '发送验证码',
+                      style: TextStyle(color: codeTextColor),
+                    ),
+                    onTap: () {
+                      setState(() {
+                        codeTextColor = Colors.grey;
+                      });
+                      fetchPost().then((PhoneValidate value) {
+                        print(
+                            '请求结果：\nphoneNumber:${value.phoneNumber}\nplatForm:${value.platform}\nverificationCode:${value.verificationCode}');
+                      });
+                    },
+                  )),
+              onSaved: (value) {
+                code = value;
+              },
+              validator: validatecode, //验证表单数据
+              autovalidate: autovalidate2, //自定义的自动验证
             ),
             SizedBox(
               height: 30,
@@ -192,17 +228,12 @@ class _RegisterFormState extends State<RegisterForm> {
             Container(
               width: double.infinity, //宽度与上面的部件对齐
               child: RaisedButton(
-                child: Text('获取验证码', style: TextStyle(color: Colors.white)),
+                child: Text('登录', style: TextStyle(color: Colors.white)),
                 color: Colors.blueAccent[700],
                 elevation: 5,
                 onPressed: () {
                   if (registerFormKey.currentState.validate()) {
                     registerFormKey.currentState.save();
-
-                    fetchPost().then((PhoneValidate value) {
-                      print(
-                          '请求结果：\nphoneNumber:${value.phoneNumber}\nplatForm:${value.platform}\nverificationCode:${value.verificationCode}');
-                    });
                     user = BaseUserInfo.init({
                       'nickname': '用户$phonenumber',
                       'avatar':
@@ -215,7 +246,7 @@ class _RegisterFormState extends State<RegisterForm> {
                         (route) => route == null);
                   } else {
                     setState(() {
-                      autovalidate = true;
+                      autovalidate2 = true;
                     });
                   }
                 },

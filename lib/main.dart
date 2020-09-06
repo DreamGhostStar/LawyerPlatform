@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import './demo/Cases.dart';
-import './demo/Log.dart';
-import './demo/Mypage.dart';
-import './demo/Schedule.dart';
-import './demo/Login.dart';
-import './demo/Startloading.dart';
-import './demo/Login_select.dart';
-import './demo/User_detail.dart';
+import 'package:lawyerplatform/page/Cases.dart';
+import 'package:lawyerplatform/page/Log.dart';
+import 'package:lawyerplatform/page/Login.dart';
+import 'package:lawyerplatform/page/Login_select.dart';
+import 'package:lawyerplatform/page/Mypage.dart';
+import 'package:lawyerplatform/page/Schedule.dart';
+import 'package:lawyerplatform/page/Startloading.dart';
+import 'package:lawyerplatform/page/User_detail.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,9 +16,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          //fontFamily: 'main', // 设置全局字体
+          fontFamily: 'main', // 设置全局字体
           primarySwatch: Colors.blue,
           highlightColor: Color.fromRGBO(255, 255, 255, 0.5),
           splashColor: Colors.white70 //设置点击按钮时的水波纹效果
@@ -37,7 +38,6 @@ class MyApp extends StatelessWidget {
 }
 
 //以下是页面的基本架构，完成了由bottomNavigationBar触发的页面切换
-// ignore: must_be_immutable
 class GeneralFramework extends StatefulWidget {
   int currentIndex;
 

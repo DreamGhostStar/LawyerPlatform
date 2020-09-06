@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lawyerplatform/demo/Register.dart';
+import 'package:lawyerplatform/page/Register.dart';
 import 'Login.dart';
 
 class LoginSelect extends StatefulWidget {

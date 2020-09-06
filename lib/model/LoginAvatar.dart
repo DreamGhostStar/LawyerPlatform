@@ -12,16 +12,17 @@ Future<PhoneValidate> fetchPost() async {
 }
 
 class PhoneValidate {
-  String phoneNumber;
-  String verificationCode;
-  int platform;
+  final String phoneNumber;
+  final String verificationCode;
+  final int platform;
 
   PhoneValidate({this.phoneNumber, this.verificationCode, this.platform});
 
-  PhoneValidate.fromJson(Map<String, dynamic> json) {
-    phoneNumber = json['phoneNumber'];
-    verificationCode = json['verification_code'];
-    platform = json['platform'];
+  factory PhoneValidate.fromJson(Map<String, dynamic> json) {
+    return PhoneValidate(
+        phoneNumber: json['phoneNumber'],
+        verificationCode: json['verification_code'],
+        platform: json['platform']);
   }
 
   Map<String, dynamic> toJson() {
