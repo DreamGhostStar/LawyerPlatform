@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lawyerplatform/page/Cases.dart';
 import 'package:lawyerplatform/page/Log.dart';
@@ -24,6 +25,14 @@ class MyApp extends StatelessWidget {
           highlightColor: Color.fromRGBO(255, 255, 255, 0.5),
           splashColor: Colors.white70 //设置点击按钮时的水波纹效果
           ),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('zh', 'CN'),
+        const Locale('en', 'US'),
+      ],
       initialRoute: '/start',
       // 开始路由
       routes: <String, WidgetBuilder>{
