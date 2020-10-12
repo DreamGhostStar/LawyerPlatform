@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:lawyerplatform/page/Cases.dart';
-import 'package:lawyerplatform/page/Log.dart';
-import 'package:lawyerplatform/page/Login.dart';
-import 'package:lawyerplatform/page/Login_select.dart';
-import 'package:lawyerplatform/page/Mypage.dart';
-import 'package:lawyerplatform/page/Schedule.dart';
-import 'package:lawyerplatform/page/Startloading.dart';
-import 'package:lawyerplatform/page/User_detail.dart';
+import 'package:lawyerplatform/page/log.dart';
+import 'package:lawyerplatform/page/schedule.dart';
+import 'package:lawyerplatform/page/case_list.dart';
+import 'package:lawyerplatform/page/login.dart';
+import 'package:lawyerplatform/page/login_select.dart';
+import 'package:lawyerplatform/page/my_page.dart';
+import 'package:lawyerplatform/page/start_loading.dart';
+import 'package:lawyerplatform/page/user_detail.dart';
 
 void main() => runApp(MyApp());
 

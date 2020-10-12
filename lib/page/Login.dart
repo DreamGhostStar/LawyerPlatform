@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lawyerplatform/main.dart';
-import 'package:lawyerplatform/model/BaseUserInfo.dart';
-import 'package:lawyerplatform/model/LoginAvatar.dart';
+import 'package:lawyerplatform/model/base_user_info.dart';
+import 'package:lawyerplatform/model/login_avatar.dart';
 
 //这是登录页面
 class Login extends StatefulWidget {

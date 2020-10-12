@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lawyerplatform/model/BaseUserInfo.dart';
+import 'package:lawyerplatform/model/base_user_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 //这是我的页面
 

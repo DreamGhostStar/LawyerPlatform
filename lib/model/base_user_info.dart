@@ -1,3 +1,4 @@
+//用于我的页面展示
 class BaseUserInfo {
   final String name;
   final String avatar;

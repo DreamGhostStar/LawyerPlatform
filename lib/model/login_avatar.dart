@@ -1,14 +1,13 @@
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 
 Future<PhoneValidate> fetchPost() async {
-  final response = await http.post('http://106.14.174.206:7003/api/login/note');
-  print(response.statusCode);
-  if (response.statusCode == 200)
-    return PhoneValidate.fromJson(json.decode(response.body));
-  else
-    throw Exception('Failed to load post');
+  // final response = await http.post('http://106.14.174.206:7003/api/login/note');
+  // print(response.statusCode);
+  // if (response.statusCode == 200)
+  //   return PhoneValidate.fromJson(json.decode(response.body));
+  // else
+  //   throw Exception('Failed to load post');
 }
 
 class PhoneValidate {
