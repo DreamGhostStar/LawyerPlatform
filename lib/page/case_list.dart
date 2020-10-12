@@ -10,13 +10,11 @@ class Cases extends StatefulWidget {
   _CasesState createState() => _CasesState();
 }
 
-class _CasesState extends State<Cases> {
-  // List<String> _label = ['全部', '在办', '归档']; //获取案件列表要用的参数
+class _CasesState extends State<Cases> with TickerProviderStateMixin {
   bool showMoreLoading = false; //上拉加载状态
   ScrollController _scrollController = ScrollController();
+  TabController _tabController;
   List<CaseItem> _caseList = [];
-  // bool isall;
-  // String caseStatus;
 
   @override
   void dispose() {
@@ -27,6 +25,7 @@ class _CasesState extends State<Cases> {
   @override
   void initState() {
     super.initState();
+    _tabController = TabController(length: 3, vsync: this);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
@@ -79,39 +78,55 @@ class _CasesState extends State<Cases> {
     return;
   }
 
-  // String _choice = '全部';
+  List<Widget> _tabs = [
+    Container(child: Text('全部')),
+    Container(child: Text('在办')),
+    Container(child: Text('归档'))
+  ];
+
+  _caseListDemo(int id) {
+    //id为案件状态，0为全部，1为在办，2为归档
+    return RefreshIndicator(
+      onRefresh: _refresh,
+      displacement: 40,
+      child: ListView.builder(
+          shrinkWrap: true,
+          controller: _scrollController,
+          itemCount: _caseList.length + 1,
+          itemBuilder: (context, index) {
+            if (index == _caseList.length) {
+              return _buildProgressIndicator();
+            } else {
+              return CaseItems(
+                name: _caseList[index].name,
+                hostname: _caseList[index].host.name,
+                hostphone: _caseList[index].host.phone,
+                type: _caseList[index].type,
+              );
+            }
+          }),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-        length: 3,
-        child: Scaffold(
-            backgroundColor: Colors.grey[100],
-            appBar: AppBar(
-              title: SearchBox(
-                hintTEXT: '搜索案件',
-              ),
-              centerTitle: true,
-              bottom: TabBar(
-                tabs: [Text('全部'), Text('在办'), Text('归档')],
-                isScrollable: true,
-              ),
-            ),
-            body: RefreshIndicator(
-              onRefresh: _refresh,
-              displacement: 40,
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  controller: _scrollController,
-                  itemCount: _caseList.length + 1,
-                  itemBuilder: (context, index) {
-                    if (index == _caseList.length) {
-                      return _buildProgressIndicator();
-                    } else {
-                      return CaseItems(
-                        name: _caseList[index].name,
-                      );
-                    }
-                  }),
-            )));
+    return Scaffold(
+        backgroundColor: Colors.grey[100],
+        appBar: AppBar(
+          title: SearchBox(
+            hintTEXT: '搜索案件',
+          ),
+          centerTitle: true,
+          bottom: TabBar(
+            controller: _tabController,
+            tabs: _tabs,
+            isScrollable: true,
+          ),
+        ),
+        body: TabBarView(controller: _tabController, children: [
+          _caseListDemo(0),
+          _caseListDemo(1),
+          _caseListDemo(2),
+        ]));
   }
 }
