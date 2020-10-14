@@ -102,6 +102,8 @@ class _CasesState extends State<Cases> with TickerProviderStateMixin {
                 hostname: _caseList[index].host.name,
                 hostphone: _caseList[index].host.phone,
                 type: _caseList[index].type,
+                audit: _caseList[index].audit,
+                caseid: _caseList[index].id,
               );
             }
           }),
@@ -112,17 +114,19 @@ class _CasesState extends State<Cases> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey[100],
-        appBar: AppBar(
-          title: SearchBox(
-            hintTEXT: '搜索案件',
-          ),
-          centerTitle: true,
-          bottom: TabBar(
-            controller: _tabController,
-            tabs: _tabs,
-            isScrollable: true,
-          ),
-        ),
+        appBar: PreferredSize(
+            child: AppBar(
+              title: SearchBox(
+                hintTEXT: '搜索案件',
+              ),
+              centerTitle: true,
+              bottom: TabBar(
+                controller: _tabController,
+                tabs: _tabs,
+                isScrollable: true,
+              ),
+            ),
+            preferredSize: Size.fromHeight(85)),
         body: TabBarView(controller: _tabController, children: [
           _caseListDemo(0),
           _caseListDemo(1),

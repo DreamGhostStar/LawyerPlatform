@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:lawyerplatform/components/util.dart';
+import 'package:lawyerplatform/page/case_info.dart';
 
 class CaseItems extends StatefulWidget {
+  final num caseid;
   final String name;
   final String type;
   final String hostname;
   final num hostphone;
+  final String audit;
   CaseItems(
       {Key key,
       @required this.name,
       @required this.type,
       @required this.hostname,
-      @required this.hostphone})
+      @required this.hostphone,
+      @required this.audit,
+      @required this.caseid})
       : super(key: key);
 
   @override
@@ -29,7 +34,11 @@ class _CaseItemsState extends State<CaseItems> {
             splashColor: Colors.yellow.withOpacity(0.3),
             highlightColor: Colors.yellow.withOpacity(0.1),
             onTap: () {
-              //TODO:
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => CaseInfo(
+                        id: widget.caseid,
+                        casename: widget.name,
+                      )));
             },
             child: Container(
                 color: Colors.white,
@@ -50,10 +59,18 @@ class _CaseItemsState extends State<CaseItems> {
                                       fontFamily: 'main',
                                       fontWeight: FontWeight.bold)),
                             ),
-                            Container(
-                              padding: EdgeInsets.only(top: 3),
-                              child: Text(' ' + widget.type),
-                            ),
+                            Row(
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.only(top: 3),
+                                  child: Text(' ' + widget.type),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(top: 3),
+                                  child: Text('·' + widget.audit),
+                                )
+                              ],
+                            )
                           ],
                         ),
                         IconButton(
@@ -63,32 +80,47 @@ class _CaseItemsState extends State<CaseItems> {
                                   context: context,
                                   builder: (context) {
                                     return Container(
-                                        padding: EdgeInsets.all(10),
-                                        height: 70,
-                                        child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                width: double.infinity,
-                                                child: RaisedButton(
-                                                  color: Colors.blue,
-                                                  child: Text(
-                                                    '修改案件',
-                                                    style: TextStyle(
-                                                        color: Colors.white),
-                                                  ),
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                    openAlertDialog(context,
-                                                        () {
-                                                      print('确定');
-                                                      //TODO:
-                                                    }, '确认修改吗？');
-                                                  },
-                                                ),
-                                              )
-                                            ]));
+                                        height: 130,
+                                        color: Colors.grey[200],
+                                        child: Column(children: [
+                                          Container(
+                                            width: double.infinity,
+                                            child: FlatButton(
+                                              color: Colors.white,
+                                              child: Text(
+                                                '修改案件',
+                                              ),
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                                openAlertDialog(context, () {
+                                                  print('确定');
+                                                  //TODO:
+                                                }, '确认修改吗？');
+                                              },
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Container(
+                                              color: Colors.white,
+                                              width: double.infinity,
+                                              child: FlatButton(
+                                                color: Colors.white,
+                                                child: Align(
+                                                    alignment:
+                                                        Alignment.bottomCenter,
+                                                    child: Column(children: [
+                                                      SizedBox(height: 10),
+                                                      Text('取消',
+                                                          style: TextStyle(
+                                                              fontSize: 16))
+                                                    ])),
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                            ),
+                                          )
+                                        ]));
                                   });
                             })
                       ]),
