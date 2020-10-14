@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:crypto/crypto.dart';
 import 'package:convert/convert.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 //工具类
 VoidCallback openAlertDialog(
@@ -54,4 +55,11 @@ String generateMd5(String data) {
   var digest = md5.convert(content);
   // 这里其实就是 digest.toString()
   return hex.encode(digest.bytes);
+}
+
+// 获取token
+Future<String> getToken() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String token = prefs.getString('Authorization');
+  return token;
 }
