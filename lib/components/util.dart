@@ -33,6 +33,31 @@ VoidCallback openAlertDialog(
       });
 }
 
+void openSimpleDialog(BuildContext context, String content) {
+  showDialog(
+      context: context,
+      builder: (context) => SimpleDialog(
+            title: Text('提示'),
+            children: [
+              Container(
+                margin: EdgeInsets.only(left: 10),
+                child: Text(content),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: FlatButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      '取消',
+                      style: TextStyle(color: Colors.blue),
+                    )),
+              )
+            ],
+          ));
+}
+
 // 加载中状态框
 Widget loadingWidget(bool loading) {
   if (loading) {

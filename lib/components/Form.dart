@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lawyerplatform/model/base_user_info.dart';
 import '../main.dart';
 
 class RegisterForm extends StatefulWidget {
@@ -171,16 +173,16 @@ class _RegisterFormState extends State<RegisterForm> {
                       color: Colors.blueAccent[700],
                       elevation: 5,
                       onPressed: () {
-                        if (registerFormKey.currentState.validate()) {
-                          //TODO:后端验证
-                          _entry();
-                          print('填写正确');
-                        } else {
-                          setState(() {
-                            autovalidate = true;
-                            print(autovalidate);
-                          });
-                        }
+                        // if (registerFormKey.currentState.validate()) {
+                        //TODO:后端验证
+                        _entry();
+                        Fluttertoast.showToast(msg: '登陆成功');
+                        // } else {
+                        //   setState(() {
+                        //     autovalidate = true;
+                        //     print(autovalidate);
+                        //   });
+                        // }
                       }),
                 )
               ],
@@ -217,7 +219,9 @@ class _RegisterFormState extends State<RegisterForm> {
                             style: TextStyle(
                                 color: sendingCode ? Colors.grey : Colors.blue),
                           ),
-                          onTap: sendingCode ? null : _pressSendCode,  //若正在发送验证码，则为null，实现禁用按钮
+                          onTap: sendingCode
+                              ? null
+                              : _pressSendCode, //若正在发送验证码，则为null，实现禁用按钮
                         ))),
                 SizedBox(height: 30),
                 Container(
