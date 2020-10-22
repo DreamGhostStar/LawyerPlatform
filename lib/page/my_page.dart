@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lawyerplatform/components/basic_info.dart';
+import 'package:lawyerplatform/components/my_page_function.dart';
 import 'package:lawyerplatform/model/base_user_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 //这是我的页面
@@ -9,138 +12,117 @@ class Mypage extends StatefulWidget {
 }
 
 class _MypageState extends State<Mypage> {
+  BaseUserInfo _user;
+
+  getMyFunctionList() {
+    //获取个人中心功能列表
+    List<MyFunctionItem> _list = [];
+    _list.addAll(myFunctionStatic);
+    if (_user != null) {
+      _list.insert(_list.length - 2,
+          MyFunctionItem.init({'icon': Icons.vpn_key, 'text': '修改密码'}));
+    }
+    return _list;
+  }
+
+  //进入不同的页面
+  enterVarious(String type) async {
+    if (type == '退出登录') {
+      user = null;
+
+      // 清除token
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.remove('Authorization');
+
+      Fluttertoast.showToast(
+        msg: '成功退出',
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+      );
+      setState(() {
+        _user = null;
+      });
+      return;
+    }
+    Map<String, String> contrast = {
+      '关于我们': '/about',
+      '错误中心': '/error',
+      '修改密码': '/alter',
+    };
+    Navigator.pushNamed(context, contrast[type]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(title: Text('个人中心'), centerTitle: true),
         backgroundColor: Colors.grey[200],
-        body: ListView(
-          children: <Widget>[
-            GestureDetector(
-              onTap: () {
-                if (user == null) {
-                  Navigator.pushNamed(context, '/loginSelect');
-                } else {
-                  Navigator.pushNamed(context, '/userDetail');
-                }
-              },
-              child: Container(
-                margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  children: <Widget>[UserBasicInfo()],
-                ),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20)),
-                    color: Colors.white),
-              ),
-            ),
-          ],
-        ));
-  }
-}
-
-class UserAvatar extends StatelessWidget {
-  final double imageStyle; // 用户头像avatar样式
-  UserAvatar({Key key, this.imageStyle = 80}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: imageStyle,
-      height: imageStyle,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(imageStyle / 2),
-        child: FadeInImage.assetNetwork(
-          placeholder: 'images/loading.gif', // 占位图
-          image: user.avatar,
-        ),
-      ),
-    );
-  }
-}
-
-class UserBasicInfo extends StatefulWidget {
-  @override
-  _UserBasicInfoState createState() => _UserBasicInfoState();
-}
-
-class _UserBasicInfoState extends State<UserBasicInfo> {
-  static const double imageStyle = 80; //照片宽高
-  @override
-  void initState() {
-    super.initState();
-    getUserInfo();
-  }
-
-  void getUserInfo() async {
-    SharedPreferences perfs = await SharedPreferences.getInstance();
-    String token = perfs.getString('Authorization'); //待填
-    if (token != null) {
-      // TODO: 获取后端数据
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Widget infoShow = Row(
-      children: <Widget>[
-        Container(
-          width: imageStyle,
-          height: imageStyle,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(imageStyle / 2),
-            child: Image.asset('images/defaultAvatar.jpg'),
+        body: Column(children: <Widget>[
+          UserBasicInfo(
+            user: _user,
           ),
-        ),
-        SizedBox(
-          width: 20,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              '点击登录',
-              style: TextStyle(fontSize: 24),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              '学法、知法、守法、用法',
-              style: TextStyle(color: Colors.grey),
-            ),
-          ],
-        )
-      ],
-    );
-
-    // 条件渲染
-    // 如果有用户数据则渲染用户数据
-    if (user != null) {
-      infoShow = Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              UserAvatar(),
-              SizedBox(
-                width: 20,
-              ),
-              Text(
-                user.name,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-              )
-            ],
-          ),
-          Icon(
-            Icons.arrow_forward_ios,
-            size: 16,
-          )
-        ],
-      );
-    }
-    return infoShow;
+          ListView.builder(
+              shrinkWrap: true,
+              physics: new NeverScrollableScrollPhysics(),
+              itemCount: getMyFunctionList().length,
+              itemBuilder: (BuildContext context, int index) {
+                // if (_user == null && index == getMyFunctionList().length - 1) {
+                //   return Container();
+                // }
+                return Material(
+                  color: Colors.white,
+                  child: InkWell(
+                    child: Column(
+                      children: [
+                        // index > (getMyFunctionList().length - 3)
+                        //     ? Container(height: 15, color: Colors.grey[200])
+                        //     : Container(),
+                        Container(
+                            padding: EdgeInsets.only(
+                              left: 10,
+                              right: 10,
+                              top: 20,
+                              bottom: 20,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Icon(
+                                      getMyFunctionList()[index].icon,
+                                      color: Colors.lightBlueAccent,
+                                      size: 26,
+                                    ),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      getMyFunctionList()[index].text,
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                  ],
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 12,
+                                )
+                              ],
+                            ))
+                      ],
+                    ),
+                    onTap: () {
+                      if (_user == null) {
+                        Fluttertoast.showToast(
+                          msg: '请先登录',
+                          backgroundColor: Colors.black,
+                          textColor: Colors.white,
+                        );
+                        return;
+                      }
+                      enterVarious(getMyFunctionList()[index].text);
+                    },
+                  ),
+                );
+              })
+        ]));
   }
 }

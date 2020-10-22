@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lawyerplatform/page/about.dart';
+import 'package:lawyerplatform/page/alter_passward.dart';
+import 'package:lawyerplatform/page/error_center.dart';
 import 'package:lawyerplatform/page/log.dart';
 import 'package:lawyerplatform/page/schedule.dart';
 import 'package:lawyerplatform/page/case_list.dart';
-import 'package:lawyerplatform/page/login.dart';
-import 'package:lawyerplatform/page/login_select.dart';
 import 'package:lawyerplatform/page/my_page.dart';
 import 'package:lawyerplatform/page/start_loading.dart';
-import 'package:lawyerplatform/page/user_detail.dart';
 
 void main() => runApp(MyApp());
 
@@ -38,9 +38,9 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/start': (BuildContext context) => LoadingPage(),
         '/home': (BuildContext context) => GeneralFramework(),
-        '/login': (BuildContext context) => Login(),
-        '/userDetail': (BuildContext context) => UserDetail(),
-        '/loginSelect': (BuildContext context) => LoginSelect(),
+        '/about': (BuildContext context) => About(),
+        '/error': (BuildContext context) => ErrorCenter(),
+        '/alter': (BuildContext context) => AlterPassword(),
       },
     );
   }

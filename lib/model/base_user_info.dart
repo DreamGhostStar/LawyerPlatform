@@ -1,7 +1,7 @@
 //用于我的页面展示
 class BaseUserInfo {
-  final String name;
-  final String avatar;
+  String name;
+  String avatar;
 
   BaseUserInfo({this.name, this.avatar});
 
@@ -11,3 +11,5 @@ class BaseUserInfo {
 }
 
 BaseUserInfo user;
+// =
+//     BaseUserInfo.init({"name": "方俊", "avator": "images/defaultAvator.jpg"});

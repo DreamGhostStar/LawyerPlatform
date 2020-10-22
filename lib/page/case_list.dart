@@ -119,6 +119,7 @@ class _CasesState extends State<Cases> with TickerProviderStateMixin {
               title: SearchBox(
                 hintTEXT: '搜索案件',
               ),
+              automaticallyImplyLeading: false,
               centerTitle: true,
               bottom: TabBar(
                 controller: _tabController,
