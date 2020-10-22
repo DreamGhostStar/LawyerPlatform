@@ -14,6 +14,7 @@ class _LoadingPageState extends State<LoadingPage> {
   void initState() {
     super.initState();
     startCountdownTimer();
+    //TODO:通过token获取用户信息
   }
 
   // 每隔一秒执行一次这个函数，更新倒计时
