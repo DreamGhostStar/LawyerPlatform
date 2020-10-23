@@ -14,7 +14,8 @@ class Mypage extends StatefulWidget {
 class _MypageState extends State<Mypage> {
   BaseUserInfo _user = BaseUserInfo.init({
     'nickname': '朱元璋',
-    'avatar': 'http://p3.pstatp.com/large/59300000e1bb4d73d43e'
+    'avatar': 'http://p3.pstatp.com/large/59300000e1bb4d73d43e',
+    'lawyerID': '4008000000'
   });
 
   getMyFunctionList() {

@@ -98,9 +98,19 @@ class _UserBasicInfoState extends State<UserBasicInfo> {
               SizedBox(
                 width: 20,
               ),
-              Text(
-                widget.user.nickname,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+              Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      widget.user.nickname,
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                    ),
+                    SizedBox(height: 15),
+                    Text(widget.user.lawyerID),
+                  ],
+                ),
               )
             ],
           ),

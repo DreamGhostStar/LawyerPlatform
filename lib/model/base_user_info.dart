@@ -2,11 +2,15 @@
 class BaseUserInfo {
   String nickname;
   String avatar;
+  String lawyerID;
 
-  BaseUserInfo({this.nickname, this.avatar});
+  BaseUserInfo({this.nickname, this.avatar, this.lawyerID});
 
   factory BaseUserInfo.init(Map<String, dynamic> json) {
-    return BaseUserInfo(nickname: json['nickname'], avatar: json['avatar']);
+    return BaseUserInfo(
+        nickname: json['nickname'],
+        avatar: json['avatar'],
+        lawyerID: json['lawyerID']);
   }
 }
 
