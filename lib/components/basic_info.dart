@@ -4,7 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class UserAvatar extends StatelessWidget {
   final double imageStyle; // 用户头像avatar样式
-  UserAvatar({Key key, this.imageStyle = 80}) : super(key: key);
+  final BaseUserInfo user;
+  UserAvatar({Key key, this.imageStyle = 80, @required this.user})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class UserAvatar extends StatelessWidget {
         borderRadius: BorderRadius.circular(imageStyle / 2),
         child: FadeInImage.assetNetwork(
           placeholder: 'images/loading.gif', // 占位图
-          image: user.avatar,
+          image: this.user.avatar,
         ),
       ),
     );
@@ -82,18 +84,22 @@ class _UserBasicInfoState extends State<UserBasicInfo> {
 
     // 条件渲染
     // 如果有用户数据则渲染用户数据
-    if (user != null) {
+    if (widget.user != null) {
+      print(widget.user.avatar);
+      print(widget.user.nickname);
       infoShow = Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Row(
             children: <Widget>[
-              UserAvatar(),
+              UserAvatar(
+                user: widget.user,
+              ),
               SizedBox(
                 width: 20,
               ),
               Text(
-                user.name,
+                widget.user.nickname,
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
               )
             ],
@@ -107,7 +113,7 @@ class _UserBasicInfoState extends State<UserBasicInfo> {
     }
     return GestureDetector(
       onTap: () {
-        if (user == null) {
+        if (widget.user == null) {
           Navigator.pushNamed(context, '/loginSelect');
         } else {
           Navigator.pushNamed(context, '/userDetail');

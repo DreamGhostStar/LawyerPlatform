@@ -12,7 +12,10 @@ class Mypage extends StatefulWidget {
 }
 
 class _MypageState extends State<Mypage> {
-  BaseUserInfo _user;
+  BaseUserInfo _user = BaseUserInfo.init({
+    'nickname': '朱元璋',
+    'avatar': 'http://p3.pstatp.com/large/59300000e1bb4d73d43e'
+  });
 
   getMyFunctionList() {
     //获取个人中心功能列表
@@ -28,7 +31,7 @@ class _MypageState extends State<Mypage> {
   //进入不同的页面
   enterVarious(String type) async {
     if (type == '退出登录') {
-      user = null;
+      _user = null;
 
       // 清除token
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -57,7 +60,7 @@ class _MypageState extends State<Mypage> {
     return Scaffold(
         appBar: AppBar(title: Text('个人中心'), centerTitle: true),
         backgroundColor: Colors.grey[200],
-        body: Column(children: <Widget>[
+        body: ListView(children: <Widget>[
           UserBasicInfo(
             user: _user,
           ),

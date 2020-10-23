@@ -1,15 +1,15 @@
 //用于我的页面展示
 class BaseUserInfo {
-  String name;
+  String nickname;
   String avatar;
 
-  BaseUserInfo({this.name, this.avatar});
+  BaseUserInfo({this.nickname, this.avatar});
 
   factory BaseUserInfo.init(Map<String, dynamic> json) {
-    return BaseUserInfo(name: json['nickname'], avatar: json['avatar']);
+    return BaseUserInfo(nickname: json['nickname'], avatar: json['avatar']);
   }
 }
 
-BaseUserInfo user;
+// BaseUserInfo user;
 // =
 //     BaseUserInfo.init({"name": "方俊", "avator": "images/defaultAvator.jpg"});
