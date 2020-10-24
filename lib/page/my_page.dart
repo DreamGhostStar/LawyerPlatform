@@ -63,9 +63,11 @@ class _MypageState extends State<Mypage> {
         backgroundColor: Colors.grey[200],
         body: ListView(children: <Widget>[
           UserBasicInfo(
+            //头部
             user: _user,
           ),
           ListView.builder(
+              //功能模块
               shrinkWrap: true,
               physics: new NeverScrollableScrollPhysics(),
               itemCount: getMyFunctionList().length,

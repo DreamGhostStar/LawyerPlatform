@@ -108,7 +108,7 @@ class _UserBasicInfoState extends State<UserBasicInfo> {
                           TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
                     ),
                     SizedBox(height: 15),
-                    Text(widget.user.lawyerID),
+                    Text('ID: ' + widget.user.lawyerID),
                   ],
                 ),
               )

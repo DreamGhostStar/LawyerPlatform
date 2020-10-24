@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lawyerplatform/components/case_item.dart';
 import 'package:lawyerplatform/components/util.dart';
 import 'package:lawyerplatform/model/search_item.dart';
 
@@ -65,41 +66,13 @@ class _SearchCaseState extends State<SearchCase> {
           : ListView.builder(
               itemCount: _list.length,
               itemBuilder: (BuildContext context, int index) {
-                return InkWell(
-                  child: Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            width: 1,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ),
-                      padding: EdgeInsets.all(10),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.find_in_page, size: 40),
-                          SizedBox(width: 10),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                // Tag(
-                                //   text: searchTagTexts[_list[index].type],
-                                //   bgColor: Colors.grey,
-                                //   fontSize: 12,
-                                // ),
-                                SizedBox(height: 5),
-                                Text(
-                                  _list[index].content,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      )),
+                return CaseItems(
+                  audit: _list[index].audit,
+                  caseid: _list[index].id,
+                  hostname: _list[index].host.name,
+                  name: _list[index].name,
+                  hostphone: _list[index].host.phone,
+                  type: _list[index].type,
                 );
               }),
     );
