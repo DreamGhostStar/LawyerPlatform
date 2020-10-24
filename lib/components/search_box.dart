@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lawyerplatform/page/search_case.dart';
 
 class SearchBox extends StatelessWidget {
   final double boxWidth;
@@ -30,11 +31,14 @@ class SearchBox extends StatelessWidget {
                     width: boxWidth,
                     child: Align(
                       child: Container(
-                        child: Text(hintTEXT),
-                      ),
+                          child: Text(hintTEXT,
+                              style: TextStyle(color: Colors.grey))),
                       alignment: Alignment.centerLeft,
                     )),
-                onTap: () {})
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => SearchCase()));
+                })
           ],
         ),
       ),

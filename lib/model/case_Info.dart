@@ -1,6 +1,6 @@
 import 'package:lawyerplatform/model/lawyer_base_info.dart';
 
-class CaseItem {
+class CaseDetailItem {
   final String name; //案件名
   final String baseInfo; //基本信息
   final String state; //案件状态
@@ -12,7 +12,7 @@ class CaseItem {
   LawyerBaseInfo host; //主办人
   List<LawyerBaseInfo> guest;
 
-  CaseItem(
+  CaseDetailItem(
       {this.baseInfo,
       this.state,
       this.scale,
@@ -24,7 +24,7 @@ class CaseItem {
       this.guest,
       this.type});
 
-  factory CaseItem.init(Map<String, dynamic> json) {
+  factory CaseDetailItem.init(Map<String, dynamic> json) {
     List<LawyerBaseInfo> getList(list) {
       List<LawyerBaseInfo> arr = [];
       print(list);
@@ -34,7 +34,7 @@ class CaseItem {
       return arr;
     }
 
-    return CaseItem(
+    return CaseDetailItem(
         baseInfo: json['base_info'],
         state: json['state'],
         scale: json['scale'],

@@ -10,11 +10,14 @@ class Cases extends StatefulWidget {
   _CasesState createState() => _CasesState();
 }
 
+//分页显示
+//一页渲染20条
 class _CasesState extends State<Cases> with TickerProviderStateMixin {
+  int page = 1; //页码，自增
   bool showMoreLoading = false; //上拉加载状态
   ScrollController _scrollController = ScrollController();
   TabController _tabController;
-  List<CaseItem> _caseList = [];
+  List<CaseListItem> _caseList = [];
 
   @override
   void dispose() {
@@ -56,7 +59,7 @@ class _CasesState extends State<Cases> with TickerProviderStateMixin {
     await Future.delayed(Duration(seconds: 2), () {
       if (mounted) {
         setState(() {
-          _caseList.addAll(newCaseList);
+          _caseList.addAll(newCaseList); //申请下一页的数据
           showMoreLoading = false;
         });
       }
@@ -68,7 +71,7 @@ class _CasesState extends State<Cases> with TickerProviderStateMixin {
     await Future.delayed(Duration(seconds: 2), () {
       _caseList.clear(); // 清除当前状态数据
       setState(() {
-        _caseList.addAll(caseListModel);
+        _caseList.addAll(caseListModel); //申请展示第一页的数据
       });
       Fluttertoast.showToast(
           msg: '刷新成功',
@@ -117,7 +120,7 @@ class _CasesState extends State<Cases> with TickerProviderStateMixin {
         appBar: PreferredSize(
             child: AppBar(
               title: SearchBox(
-                hintTEXT: '搜索案件',
+                hintTEXT: ' 搜 索 案 件',
               ),
               automaticallyImplyLeading: false,
               centerTitle: true,
