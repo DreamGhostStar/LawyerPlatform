@@ -26,9 +26,12 @@ dependencies:
   crypto: ^2.0.6
   fluttertoast: ^3.0.3   
   # 弹窗效果
+  image_picker: ^0.6.7+4
+  left_scroll_actions: ^1.4.0
   shared_preferences: ^0.5.8
+  url_launcher: ^5.5.0
   # 本地存储
-  dio: ^2.0.9
+  dio: ^3.0.9
   flutter_localizations:
     sdk: flutter
 

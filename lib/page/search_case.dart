@@ -39,7 +39,7 @@ class _SearchCaseState extends State<SearchCase> {
         title: Container(
           decoration: BoxDecoration(
               border: Border.all(color: Colors.grey[200], width: 1),
-              color: Colors.grey[200],
+              color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(15))),
           alignment: Alignment.center,
           height: 35,
@@ -54,7 +54,9 @@ class _SearchCaseState extends State<SearchCase> {
             cursorColor: Colors.black,
             decoration: InputDecoration(
                 border: InputBorder.none,
-                icon: Icon(Icons.search),
+                icon: Icon(
+                  Icons.search,
+                ),
                 hintText: '搜索案件',
                 hintStyle: TextStyle(fontSize: 16, color: Colors.grey)),
             style: TextStyle(fontSize: 16, color: Colors.black),

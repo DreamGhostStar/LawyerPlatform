@@ -4,8 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class UserAvatar extends StatelessWidget {
   final double imageStyle; // 用户头像avatar样式
-  final BaseUserInfo user;
-  UserAvatar({Key key, this.imageStyle = 80, @required this.user})
+  final String avatar;
+  UserAvatar({Key key, this.imageStyle = 80, @required this.avatar})
       : super(key: key);
 
   @override
@@ -17,7 +17,7 @@ class UserAvatar extends StatelessWidget {
         borderRadius: BorderRadius.circular(imageStyle / 2),
         child: FadeInImage.assetNetwork(
           placeholder: 'images/loading.gif', // 占位图
-          image: this.user.avatar,
+          image: this.avatar,
         ),
       ),
     );
@@ -93,7 +93,7 @@ class _UserBasicInfoState extends State<UserBasicInfo> {
           Row(
             children: <Widget>[
               UserAvatar(
-                user: widget.user,
+                avatar: widget.user.avatar,
               ),
               SizedBox(
                 width: 20,

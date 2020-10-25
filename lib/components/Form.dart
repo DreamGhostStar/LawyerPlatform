@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:lawyerplatform/model/base_user_info.dart';
 import '../main.dart';
 
 class RegisterForm extends StatefulWidget {

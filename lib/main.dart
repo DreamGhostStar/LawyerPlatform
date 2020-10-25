@@ -23,7 +23,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           fontFamily: 'main', // 设置全局字体
-          primarySwatch: Colors.blue,
+          primaryColor: Colors.grey[100],
+          primaryTextTheme:
+              TextTheme(title: TextStyle(color: Colors.black, fontSize: 23)),
           highlightColor: Color.fromRGBO(255, 255, 255, 0.5),
           splashColor: Colors.white70 //设置点击按钮时的水波纹效果
           ),
@@ -109,7 +111,7 @@ class _GeneralFrameworkState extends State<GeneralFramework> {
             type: BottomNavigationBarType.fixed,
             items: bottomTabls,
             currentIndex: widget.currentIndex,
-            fixedColor: Colors.orange,
+            fixedColor: Colors.cyan[300],
             elevation: 20,
             onTap: (index) {
               setState(() {

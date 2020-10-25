@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lawyerplatform/components/case_item.dart';
 import 'package:lawyerplatform/components/search_box.dart';
 import 'package:lawyerplatform/model/case_list.dart';
+import 'package:lawyerplatform/page/search_case.dart';
 //这是案件页面
 
 class Cases extends StatefulWidget {
@@ -119,8 +120,14 @@ class _CasesState extends State<Cases> with TickerProviderStateMixin {
         backgroundColor: Colors.grey[100],
         appBar: PreferredSize(
             child: AppBar(
-              title: SearchBox(
-                hintTEXT: ' 搜 索 案 件',
+              title: GestureDetector(
+                child: SearchBox(
+                  hintTEXT: ' 搜 索 案 件',
+                ),
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => SearchCase()));
+                },
               ),
               automaticallyImplyLeading: false,
               centerTitle: true,

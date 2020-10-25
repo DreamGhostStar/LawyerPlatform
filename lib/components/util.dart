@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto/crypto.dart';
 import 'package:convert/convert.dart';
@@ -74,6 +76,29 @@ Widget loadingWidget(bool loading) {
   return Container();
 }
 
+// 上传图片
+upLoadImage(File image, ValueChanged<String> callback) async {
+  // String path = image.path;
+  // String name = path.substring(path.lastIndexOf("/") + 1, path.length);
+
+  // FormData formdata = FormData.fromMap(
+  // {"file": await MultipartFile.fromFile(path, filename: name)});
+
+  // Dio dio = new Dio();
+  // Response respone = await dio.post<String>(
+  // "$backIP/user/upFile",
+  // data: formdata,
+  // );
+  // if (jsonDecode(respone.data)['code'] == 0) {
+  //   Fluttertoast.showToast(
+  //     msg: "图片上传成功",
+  //     gravity: ToastGravity.CENTER,
+  //     textColor: Colors.grey,
+  //   );
+  // callback(jsonDecode(respone.data)['data']);
+  // print(jsonDecode(respone.data)['data']);
+  // }
+}
 // md5加密
 String generateMd5(String data) {
   var content = new Utf8Encoder().convert(data);
