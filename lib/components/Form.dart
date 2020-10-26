@@ -31,7 +31,7 @@ class _RegisterFormState extends State<RegisterForm> {
   String codeError = '';
   bool autovalidate = false;
   bool autovalidate2 = false;
-  bool _obscureText = false;
+  bool _obscureText = true;
   var eyeColor = Colors.grey;
   var codeTextColor = Colors.blue;
 
@@ -137,7 +137,12 @@ class _RegisterFormState extends State<RegisterForm> {
                     controller: usernameController,
                     decoration: InputDecoration(
                       labelText: '用户名',
+                      labelStyle: TextStyle(color: Colors.black45),
                       helperText: '只能输入15位字母或数字',
+                      focusedBorder: UnderlineInputBorder(
+                        //选中时下边框颜色
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
                     )),
                 TextFormField(
                   inputFormatters: [
@@ -151,7 +156,12 @@ class _RegisterFormState extends State<RegisterForm> {
                   controller: passwordController,
                   decoration: InputDecoration(
                       labelText: '密码',
+                      labelStyle: TextStyle(color: Colors.black45),
                       helperText: '只能输入15位字母或数字',
+                      focusedBorder: UnderlineInputBorder(
+                        //选中时下边框颜色
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
                       suffixIcon: IconButton(
                           icon: Icon(
                             Icons.remove_red_eye,
@@ -206,7 +216,14 @@ class _RegisterFormState extends State<RegisterForm> {
                   validator: phoneValidator,
                   autovalidate: autovalidate2,
                   controller: phoneController,
-                  decoration: InputDecoration(labelText: '手机号'),
+                  decoration: InputDecoration(
+                    labelText: '手机号',
+                    focusedBorder: UnderlineInputBorder(
+                      //选中时下边框颜色
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    labelStyle: TextStyle(color: Colors.black45),
+                  ),
                 ),
                 TextFormField(
                     inputFormatters: [
@@ -219,6 +236,11 @@ class _RegisterFormState extends State<RegisterForm> {
                     controller: codeController,
                     decoration: InputDecoration(
                         labelText: '验证码',
+                        focusedBorder: UnderlineInputBorder(
+                          //选中时下边框颜色
+                          borderSide: BorderSide(color: Colors.blue),
+                        ),
+                        labelStyle: TextStyle(color: Colors.black45),
                         suffix: InkWell(
                           child: Text(
                             sendingCode ? '发送验证码(${_countdownTime}s)' : '发送验证码',

@@ -46,6 +46,7 @@ class _MypageState extends State<Mypage> {
       '关于我们': '/about',
       '错误中心': '/error',
       '修改密码': '/alter',
+      '电子名片': '/card',
     };
     Navigator.pushNamed(context, contrast[type]);
   }
@@ -53,7 +54,10 @@ class _MypageState extends State<Mypage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('个人中心'), centerTitle: true),
+        appBar: AppBar(
+            title: Text('个人中心'),
+            automaticallyImplyLeading: false,
+            centerTitle: true),
         backgroundColor: Colors.grey[200],
         body: ListView(children: <Widget>[
           UserBasicInfo(

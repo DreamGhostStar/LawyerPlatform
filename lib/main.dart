@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lawyerplatform/page/about.dart';
 import 'package:lawyerplatform/page/alter_passward.dart';
+import 'package:lawyerplatform/page/electri_card.dart';
 import 'package:lawyerplatform/page/error_center.dart';
 import 'package:lawyerplatform/page/log.dart';
 import 'package:lawyerplatform/page/login_select.dart';
@@ -46,7 +47,8 @@ class MyApp extends StatelessWidget {
         '/error': (BuildContext context) => ErrorCenter(),
         '/alter': (BuildContext context) => AlterPassword(),
         '/userDetail': (BuildContext context) => UserDetail(),
-        '/loginSelect': (BuildContext context) => LoginSelect()
+        '/loginSelect': (BuildContext context) => LoginSelect(),
+        '/card': (BuildContext context) => ElectriCard()
       },
     );
   }

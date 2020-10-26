@@ -19,6 +19,7 @@ class MyFunctionItem {
 }
 
 List<MyFunctionItem> myFunctionStatic = [
+  MyFunctionItem.init({'icon': Icons.perm_contact_calendar, 'text': '电子名片'}),
   MyFunctionItem.init({'icon': Icons.account_circle, 'text': '关于我们'}),
   MyFunctionItem.init({'icon': Icons.error_outline, 'text': '错误中心'}),
   MyFunctionItem.init({'icon': Icons.exit_to_app, 'text': '退出登录'}),

@@ -59,7 +59,7 @@ class _CasesState extends State<Cases> with TickerProviderStateMixin {
     setState(() {
       showMoreLoading = true;
     });
-    await Future.delayed(Duration(seconds: 2), () {
+    await Future.delayed(Duration(seconds: 1), () {
       if (mounted) {
         setState(() {
           _caseList.addAll(newCaseList); //申请下一页的数据
@@ -85,9 +85,9 @@ class _CasesState extends State<Cases> with TickerProviderStateMixin {
   }
 
   List<Widget> _tabs = [
-    Container(child: Text('全部')),
-    Container(child: Text('在办')),
-    Container(child: Text('归档'))
+    Container(child: Text('全部', style: TextStyle(fontWeight: FontWeight.bold))),
+    Container(child: Text('在办', style: TextStyle(fontWeight: FontWeight.bold))),
+    Container(child: Text('归档', style: TextStyle(fontWeight: FontWeight.bold)))
   ];
 
   _caseListDemo(int id) {
@@ -140,7 +140,7 @@ class _CasesState extends State<Cases> with TickerProviderStateMixin {
               bottom: TabBar(
                 controller: _tabController,
                 tabs: _tabs,
-                isScrollable: true,
+                unselectedLabelColor: Colors.grey,
               ),
             ),
             preferredSize: Size.fromHeight(85)),
