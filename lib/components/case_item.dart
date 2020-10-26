@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lawyerplatform/components/util.dart';
+import 'package:lawyerplatform/model/base_user_info.dart';
 import 'package:lawyerplatform/page/case_info.dart';
 
 class CaseItems extends StatefulWidget {
@@ -34,11 +36,15 @@ class _CaseItemsState extends State<CaseItems> {
             splashColor: Colors.yellow.withOpacity(0.3),
             highlightColor: Colors.yellow.withOpacity(0.1),
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => CaseInfo(
-                        id: widget.caseid,
-                        casename: widget.name,
-                      )));
+              if (user == null) {
+                Fluttertoast.showToast(msg: '请先登录');
+              } else {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => CaseInfo(
+                          id: widget.caseid,
+                          casename: widget.name,
+                        )));
+              }
             },
             child: Container(
                 color: Colors.white,
@@ -76,52 +82,80 @@ class _CaseItemsState extends State<CaseItems> {
                         IconButton(
                             icon: Icon(Icons.more_horiz),
                             onPressed: () {
-                              showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) {
-                                    return Container(
-                                        height: 130,
-                                        color: Colors.grey[200],
-                                        child: Column(children: [
-                                          Container(
-                                            width: double.infinity,
-                                            child: FlatButton(
-                                              color: Colors.white,
-                                              child: Text(
-                                                '修改案件',
-                                              ),
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                                openAlertDialog(context, () {
-                                                  print('确定');
-                                                  //TODO:
-                                                }, '确认修改吗？');
-                                              },
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Container(
-                                              color: Colors.white,
+                              if (user == null) {
+                                Fluttertoast.showToast(msg: '请先登录');
+                              } else {
+                                showModalBottomSheet(
+                                    context: context,
+                                    builder: (context) {
+                                      return Container(
+                                          height: 200,
+                                          color: Colors.grey[200],
+                                          child: Column(children: [
+                                            Container(
                                               width: double.infinity,
                                               child: FlatButton(
                                                 color: Colors.white,
-                                                child: Align(
-                                                    alignment:
-                                                        Alignment.bottomCenter,
-                                                    child: Column(children: [
-                                                      SizedBox(height: 10),
-                                                      Text('取消',
-                                                          style: TextStyle(
-                                                              fontSize: 16))
-                                                    ])),
+                                                child: Text(
+                                                  '修改案件',
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                  openAlertDialog(context, () {
+                                                    print('确定');
+                                                    //TODO:
+                                                  }, '确认修改吗？');
+                                                },
+                                              ),
+                                            ),
+                                            Container(
+                                              width: double.infinity,
+                                              child: FlatButton(
+                                                color: Colors.white,
+                                                child: Text(
+                                                  '上传代理词',
+                                                ),
                                                 onPressed: () {
                                                   Navigator.pop(context);
                                                 },
                                               ),
                                             ),
-                                          )
-                                        ]));
-                                  });
+                                            Container(
+                                              width: double.infinity,
+                                              child: FlatButton(
+                                                color: Colors.white,
+                                                child: Text(
+                                                  '申请结案',
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Container(
+                                                color: Colors.white,
+                                                width: double.infinity,
+                                                child: FlatButton(
+                                                  color: Colors.white,
+                                                  child: Align(
+                                                      alignment: Alignment
+                                                          .bottomCenter,
+                                                      child: Column(children: [
+                                                        SizedBox(height: 10),
+                                                        Text('取消',
+                                                            style: TextStyle(
+                                                                fontSize: 16))
+                                                      ])),
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                ),
+                                              ),
+                                            )
+                                          ]));
+                                    });
+                              }
                             })
                       ]),
                   Divider(

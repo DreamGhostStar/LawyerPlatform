@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lawyerplatform/components/case_item.dart';
 import 'package:lawyerplatform/components/search_box.dart';
+import 'package:lawyerplatform/model/base_user_info.dart';
 import 'package:lawyerplatform/model/case_list.dart';
+import 'package:lawyerplatform/model/lawyer_detail_info.dart';
 import 'package:lawyerplatform/page/search_case.dart';
 //这是案件页面
 
@@ -125,8 +127,12 @@ class _CasesState extends State<Cases> with TickerProviderStateMixin {
                   hintTEXT: ' 搜 索 案 件',
                 ),
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => SearchCase()));
+                  if (user == null) {
+                    Fluttertoast.showToast(msg: '请先登录');
+                  } else {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => SearchCase()));
+                  }
                 },
               ),
               automaticallyImplyLeading: false,

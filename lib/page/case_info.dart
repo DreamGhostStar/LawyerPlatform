@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lawyerplatform/components/popmenu_button.dart';
 
 class CaseInfo extends StatefulWidget {
   final num id;
@@ -10,7 +11,8 @@ class CaseInfo extends StatefulWidget {
   _CaseInfoState createState() => _CaseInfoState();
 }
 
-class _CaseInfoState extends State<CaseInfo> {
+class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
+  TabController _tabController;
   bool _loading = false;
 
   Future<Null> _init() async {
@@ -31,7 +33,14 @@ class _CaseInfoState extends State<CaseInfo> {
   @override
   void initState() {
     super.initState();
+    _tabController = new TabController(length: 2, vsync: this);
     _init();
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   Widget titleText(String text) {
@@ -82,8 +91,6 @@ class _CaseInfoState extends State<CaseInfo> {
                 Divider(),
                 baseRow('代理词', '代理词'),
                 Divider(),
-                baseRow('结案文书', '结案文书'),
-                Divider(),
               ])),
         ),
         Container(
@@ -106,8 +113,6 @@ class _CaseInfoState extends State<CaseInfo> {
                 Divider(),
                 baseRow('代理词', '代理词'),
                 Divider(),
-                baseRow('结案文书', '结案文书'),
-                Divider(),
               ])),
         ),
         Align(
@@ -121,16 +126,49 @@ class _CaseInfoState extends State<CaseInfo> {
     }
   }
 
+  Widget _childLayout2() {
+    if (_loading) {
+      return Center(child: Container(child: CircularProgressIndicator()));
+    } else {
+      return ListView(children: [
+        Center(
+          child: Text('案件日志'),
+        )
+      ]);
+    }
+  }
+
+  List<Widget> _tabs = [
+    Container(
+        child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [Icon(Icons.info_outline), Text('案件信息')],
+    )),
+    Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [Icon(Icons.library_books), Text('案件日志')],
+      ),
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          widget.casename,
+        appBar: PreferredSize(
+          child: AppBar(
+            title: Text(widget.casename),
+            bottom: TabBar(
+              tabs: _tabs,
+              controller: _tabController,
+            ),
+            centerTitle: true,
+            actions: [popMenuButton()],
+          ),
+          preferredSize: Size.fromHeight(85),
         ),
-        centerTitle: true,
-      ),
-      body: _childLayout(),
-    );
+        body: TabBarView(controller: _tabController, children: [
+          _childLayout(), //案件信息
+          _childLayout2(), //案件日志
+        ]));
   }
 }

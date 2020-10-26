@@ -12,17 +12,11 @@ class Mypage extends StatefulWidget {
 }
 
 class _MypageState extends State<Mypage> {
-  BaseUserInfo _user = BaseUserInfo.init({
-    'nickname': '朱元璋',
-    'avatar': 'http://p3.pstatp.com/large/59300000e1bb4d73d43e',
-    'lawyerID': '4008000000'
-  });
-
   getMyFunctionList() {
     //获取个人中心功能列表
     List<MyFunctionItem> _list = [];
     _list.addAll(myFunctionStatic);
-    if (_user != null) {
+    if (user != null) {
       _list.insert(_list.length - 2,
           MyFunctionItem.init({'icon': Icons.vpn_key, 'text': '修改密码'}));
     }
@@ -32,7 +26,7 @@ class _MypageState extends State<Mypage> {
   //进入不同的页面
   enterVarious(String type) async {
     if (type == '退出登录') {
-      _user = null;
+      user = null;
 
       // 清除token
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -44,7 +38,7 @@ class _MypageState extends State<Mypage> {
         textColor: Colors.white,
       );
       setState(() {
-        _user = null;
+        user = null;
       });
       return;
     }
@@ -64,7 +58,7 @@ class _MypageState extends State<Mypage> {
         body: ListView(children: <Widget>[
           UserBasicInfo(
             //头部
-            user: _user,
+            user: user,
           ),
           ListView.builder(
               //功能模块
@@ -72,7 +66,7 @@ class _MypageState extends State<Mypage> {
               physics: new NeverScrollableScrollPhysics(),
               itemCount: getMyFunctionList().length,
               itemBuilder: (BuildContext context, int index) {
-                // if (_user == null && index == getMyFunctionList().length - 1) {
+                // if (user == null && index == getMyFunctionList().length - 1) {
                 //   return Container();
                 // }
                 return Material(
@@ -116,7 +110,7 @@ class _MypageState extends State<Mypage> {
                       ],
                     ),
                     onTap: () {
-                      if (_user == null) {
+                      if (user == null) {
                         Fluttertoast.showToast(
                           msg: '请先登录',
                           backgroundColor: Colors.black,

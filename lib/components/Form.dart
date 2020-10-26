@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lawyerplatform/model/base_user_info.dart';
 import '../main.dart';
 
 class RegisterForm extends StatefulWidget {
@@ -174,6 +175,12 @@ class _RegisterFormState extends State<RegisterForm> {
                       onPressed: () {
                         // if (registerFormKey.currentState.validate()) {
                         //TODO:后端验证
+                        user = BaseUserInfo.init({
+                          'nickname': '朱元璋',
+                          'avatar':
+                              'http://p3.pstatp.com/large/59300000e1bb4d73d43e',
+                          'lawyerID': '4008000000'
+                        });
                         _entry();
                         Fluttertoast.showToast(msg: '登陆成功');
                         // } else {

@@ -14,6 +14,6 @@ class BaseUserInfo {
   }
 }
 
-// BaseUserInfo user;
+BaseUserInfo user;
 // =
 //     BaseUserInfo.init({"name": "方俊", "avator": "images/defaultAvator.jpg"});
