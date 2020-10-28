@@ -61,8 +61,8 @@ class _AlterPasswordState extends State<AlterPassword> {
                     SizedBox(height: 20),
                     TextFormField(
                       inputFormatters: [
-                        FilteringTextInputFormatter(RegExp("[a-zA-z]|[0-9]"),
-                            allow: true), //限制字母或数字
+                        // FilteringTextInputFormatter(RegExp("[a-zA-z]|[0-9]"),
+                        //     allow: true), //限制字母或数字
                         LengthLimitingTextInputFormatter(15) //最大长度
                       ],
                       validator: oldpasswardValidator,
@@ -92,8 +92,8 @@ class _AlterPasswordState extends State<AlterPassword> {
                     SizedBox(height: 30),
                     TextFormField(
                       inputFormatters: [
-                        FilteringTextInputFormatter(RegExp("[a-zA-z]|[0-9]"),
-                            allow: true), //限制字母或数字
+                        // FilteringTextInputFormatter(RegExp("[a-zA-z]|[0-9]"),
+                        //     allow: true), //限制字母或数字
                         LengthLimitingTextInputFormatter(15) //最大长度
                       ],
                       validator: newpasswardValidator,

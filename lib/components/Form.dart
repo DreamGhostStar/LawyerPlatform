@@ -128,8 +128,8 @@ class _RegisterFormState extends State<RegisterForm> {
               children: [
                 TextFormField(
                     inputFormatters: [
-                      FilteringTextInputFormatter(RegExp("[a-zA-z]|[0-9]"),
-                          allow: true), //限制字母或数字
+                      // FilteringTextInputFormatter(RegExp("[a-zA-z]|[0-9]"),
+                      //     allow: true), //限制字母或数字
                       LengthLimitingTextInputFormatter(15) //最大长度
                     ],
                     validator: usernameValidator,
@@ -146,8 +146,8 @@ class _RegisterFormState extends State<RegisterForm> {
                     )),
                 TextFormField(
                   inputFormatters: [
-                    FilteringTextInputFormatter(RegExp("[a-zA-z]|[0-9]"),
-                        allow: true), //限制字母或数字
+                    // FilteringTextInputFormatter(RegExp("[a-zA-z]|[0-9]"),
+                    //     allow: true), //限制字母或数字
                     LengthLimitingTextInputFormatter(15) //最大长度
                   ],
                   validator: passwardValidator,
@@ -209,8 +209,8 @@ class _RegisterFormState extends State<RegisterForm> {
               children: [
                 TextFormField(
                   inputFormatters: [
-                    FilteringTextInputFormatter(RegExp("[0-9]"),
-                        allow: true), //限制数字
+                    // FilteringTextInputFormatter(RegExp("[0-9]"),
+                    //     allow: true), //限制数字
                     LengthLimitingTextInputFormatter(15) //最大长度
                   ],
                   validator: phoneValidator,
@@ -227,8 +227,8 @@ class _RegisterFormState extends State<RegisterForm> {
                 ),
                 TextFormField(
                     inputFormatters: [
-                      FilteringTextInputFormatter(RegExp("[0-9]"),
-                          allow: true), //限制数字
+                      // FilteringTextInputFormatter(RegExp("[0-9]"),
+                      //     allow: true), //限制数字
                       LengthLimitingTextInputFormatter(6) //最大长度
                     ],
                     validator: codeValidator,
