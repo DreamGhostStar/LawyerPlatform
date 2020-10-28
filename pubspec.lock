@@ -92,6 +92,13 @@ packages:
       url: "http://pub.flutter-io.cn"
     source: hosted
     version: "5.2.1"
+  flui:
+    dependency: "direct main"
+    description:
+      name: flui
+      url: "http://pub.flutter-io.cn"
+    source: hosted
+    version: "0.9.2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -161,6 +168,13 @@ packages:
       url: "http://pub.flutter-io.cn"
     source: hosted
     version: "0.16.1"
+  json_annotation:
+    dependency: transitive
+    description:
+      name: json_annotation
+      url: "http://pub.flutter-io.cn"
+    source: hosted
+    version: "3.1.0"
   left_scroll_actions:
     dependency: "direct main"
     description:

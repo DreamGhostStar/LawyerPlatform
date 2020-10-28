@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:flui/flui.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto/crypto.dart';
 import 'package:convert/convert.dart';
@@ -58,6 +59,16 @@ void openSimpleDialog(BuildContext context, String content) {
               )
             ],
           ));
+}
+
+//骨架屏
+Widget skeleton() {
+  return FLSkeleton(
+    shape: BoxShape.rectangle,
+    borderRadius: BorderRadius.circular(2),
+    margin: EdgeInsets.only(left: 60, top: 10, right: 10),
+    height: 20,
+  );
 }
 
 // 加载中状态框

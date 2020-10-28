@@ -20,7 +20,7 @@ class _UserDetailState extends State<UserDetail> {
   final RegExp regPhone = RegExp(r"^1[0-9]{10}$");
   final RegExp regName = RegExp(r"^[\u4E00-\u9FA5A-Za-z]{0,6}$");
   final String phoneErorrText = '手机号必须全由数字组成且必须为11位';
-  final String nameErorrText = '姓名只能由中文或英文组成且不能超过6位';
+  final String nameErorrText = '由中文或英文组成且不能超过6位';
   bool _loading = false;
   int sex;
   // String _image;

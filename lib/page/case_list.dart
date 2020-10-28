@@ -4,7 +4,6 @@ import 'package:lawyerplatform/components/case_item.dart';
 import 'package:lawyerplatform/components/search_box.dart';
 import 'package:lawyerplatform/model/base_user_info.dart';
 import 'package:lawyerplatform/model/case_list.dart';
-import 'package:lawyerplatform/model/lawyer_detail_info.dart';
 import 'package:lawyerplatform/page/search_case.dart';
 //这是案件页面
 
