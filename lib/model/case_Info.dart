@@ -2,18 +2,24 @@ import 'package:lawyerplatform/model/lawyer_base_info.dart';
 
 class CaseDetailItem {
   final String name; //案件名
-  final String baseInfo; //基本信息
+  final String baseInfo; //案由
+  final String detailInfo; //案件详情
   final String state; //案件状态
   final num scale; //主办协办比例
   final String agencyWord; //代理词url
-  final String finishFile;
+  final String finishFile; //结案文书url 可能为null
   final String type; //案件类型
   final String audit; //案件审级
-  LawyerBaseInfo host; //主办人
-  List<LawyerBaseInfo> guest;
+  final String plaintiff; //原告
+  final String defendant; //被告
+  final String host; //主办人
+  final List<String> guest;
 
   CaseDetailItem(
       {this.baseInfo,
+      this.detailInfo,
+      this.plaintiff,
+      this.defendant,
       this.state,
       this.scale,
       this.agencyWord,
@@ -25,17 +31,20 @@ class CaseDetailItem {
       this.type});
 
   factory CaseDetailItem.init(Map<String, dynamic> json) {
-    List<LawyerBaseInfo> getList(list) {
-      List<LawyerBaseInfo> arr = [];
+    List<String> getList(list) {
+      List<String> arr = [];
       print(list);
-      list.forEach((dynamic item) {
-        arr.add(LawyerBaseInfo.init(item));
+      list.forEach((item) {
+        arr.add(item);
       });
       return arr;
     }
 
     return CaseDetailItem(
         baseInfo: json['base_info'],
+        detailInfo: json['detail_info'],
+        plaintiff: json['plaintiff'],
+        defendant: json['defendant'],
         state: json['state'],
         scale: json['scale'],
         agencyWord: json['agency_word'],
@@ -44,6 +53,22 @@ class CaseDetailItem {
         type: json['type'],
         audit: json['audit'],
         guest: getList(json['guest_list']),
-        host: LawyerBaseInfo.init(json['host']));
+        host: json['host']);
   }
 }
+
+CaseDetailItem caseDetailItemModel = CaseDetailItem.init({
+  'base_info': '案件基本信息',
+  'detail_info': '案件详细信息',
+  'plaintiff': '老虎',
+  'defendant': '李逵',
+  'state': '在办',
+  'scale': 0.6,
+  'agency_word': 'a',
+  'finishFile': 'a',
+  'name': '李逵打虎',
+  'type': '民事',
+  'audit': '一审',
+  'guest_list': ['sa','ds'],
+  'host': '张三'
+});

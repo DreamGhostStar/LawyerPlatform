@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lawyerplatform/model/base_user_info.dart';
+import 'package:lawyerplatform/page/finish_case.dart';
 
 class popMenuButton extends StatefulWidget {
   popMenuButton({Key key}) : super(key: key);
@@ -55,7 +56,10 @@ class _popMenuButtonState extends State<popMenuButton> {
                 Fluttertoast.showToast(
                   msg: '请先登录',
                 );
-              } else {}
+              } else {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => FinishCase()));
+              }
             }
             break;
         }

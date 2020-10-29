@@ -37,7 +37,6 @@ class _FinishCaseState extends State<FinishCase> {
         body: !_haveagent
             ? FLNoticeBar.notice(
                 text: '注意:您还未上传代理词.',
-                delay: Duration(seconds: 10),
               )
             : null);
   }

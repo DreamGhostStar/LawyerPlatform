@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lawyerplatform/components/popmenu_button.dart';
+import 'package:lawyerplatform/model/case_Info.dart';
 
 class CaseInfo extends StatefulWidget {
   final num id;
   final String casename;
+
   CaseInfo({Key key, @required this.id, @required this.casename})
       : super(key: key);
 
@@ -14,12 +16,14 @@ class CaseInfo extends StatefulWidget {
 class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
   TabController _tabController;
   bool _loading = false;
+  CaseDetailItem _caseDetailItem;
 
   Future<Null> _init() async {
     setState(() {
       _loading = true;
     });
-    Future.delayed(Duration(milliseconds: 2000), () {
+    _caseDetailItem = caseDetailItemModel;
+    Future.delayed(Duration(milliseconds: 200), () {
       if (mounted) {
         setState(() {
           _loading = false;
@@ -55,15 +59,75 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
   }
 
   Widget baseRow(String text1, String text2) {
-    return Container(
-        padding: EdgeInsets.only(top: 8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            titleText(text1),
-            wordText(text2),
-          ],
-        ));
+    return Column(
+      children: [
+        Container(
+            padding: EdgeInsets.only(top: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                titleText(text1),
+                wordText(text2),
+              ],
+            )),
+        Divider()
+      ],
+    );
+  }
+
+  _guestRow(List<String> list) {
+    int number = list.length;
+    print('~~~~~~~');
+    print(number);
+    if (number == 0)
+      return Container();
+    else if (number == 1)
+      return Column(children: [
+        baseRow('协办人', list[0]),
+        baseRow('主协比例', _caseDetailItem.scale.toString())
+      ]);
+    else {
+      return Column(
+        children: [
+          Column(
+              children: list
+                  .map((e) => baseRow('协办人' + list.indexOf(e).toString(), e))),
+          baseRow('主协比例', _caseDetailItem.scale.toString())
+        ],
+      );
+    }
+  }
+
+  Widget agencyRow(String agencyUrl, Function _function) {
+    return Column(
+      children: [
+        Container(
+            padding: EdgeInsets.only(top: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                titleText('代理词'),
+                InkWell(
+                    child:
+                        Text(agencyUrl, style: TextStyle(color: Colors.blue)),
+                    onTap: () {
+                      _function();
+                    })
+              ],
+            )),
+        Divider()
+      ],
+    );
+  }
+
+  _agencyRow(bool have, String agencyUrl) {
+    print(have);
+    print(agencyUrl);
+    if (have) {
+      return agencyRow('点击查看', () {print('查看代理词');});
+    } else {
+      return agencyRow('还没有代理词,点击上传', () {print('上传代理词');});
+    }
   }
 
   Widget _childLayout() {
@@ -81,16 +145,15 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
         Card(
           margin: EdgeInsets.all(10),
           child: Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(15),
               child: Column(children: [
-                baseRow('案件类型', '案件类型'),
-                Divider(),
-                baseRow('案件审级', '案件审级'),
-                Divider(),
-                baseRow('主协比例', '主协比例'),
-                Divider(),
-                baseRow('代理词', '代理词'),
-                Divider(),
+                baseRow('原告姓名', _caseDetailItem.plaintiff),
+                baseRow('被告姓名', _caseDetailItem.defendant),
+                baseRow('案件类型', _caseDetailItem.type),
+                baseRow('案件状态', _caseDetailItem.state),
+                baseRow('案件审级', _caseDetailItem.audit),
+                baseRow('案由', _caseDetailItem.baseInfo),
+                baseRow('案件详情', '_caseDetailItem.detailInfo'),
               ])),
         ),
         Container(
@@ -103,16 +166,13 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
         Card(
           margin: EdgeInsets.all(10),
           child: Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(15),
               child: Column(children: [
-                baseRow('主办人', '主办人'),
-                Divider(),
-                baseRow('协办人', '协办人'),
-                Divider(),
-                baseRow('主协比例', '主协比例'),
-                Divider(),
-                baseRow('代理词', '代理词'),
-                Divider(),
+                baseRow('主办人', _caseDetailItem.host),
+//                _guestRow(_caseDetailItem.guest),
+
+                _agencyRow(_caseDetailItem.agencyWord != '',
+                    _caseDetailItem.agencyWord),
               ])),
         ),
         Align(
@@ -151,6 +211,7 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
       ),
     ),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
