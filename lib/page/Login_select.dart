@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lawyerplatform/components/login_button.dart';
 import 'package:lawyerplatform/page/register.dart';
 import 'login.dart';
 
@@ -60,32 +61,9 @@ class _LoginSelectState extends State<LoginSelect> {
                         side: BorderSide(color: Colors.lightBlueAccent)),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(left: 20, right: 20, top: 30),
-                  width: double.infinity,
-                  height: 40,
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          colors: [Colors.lightBlueAccent, Colors.blueAccent]),
-                      // 渐变色
-                      borderRadius: BorderRadius.circular(20)),
-                  child: RaisedButton(
-                    onPressed: () {
-                      entryLogin('登录');
-                    },
-                    child: Text(
-                      '登录',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.w100),
-                    ),
-                    color: Colors.transparent,
-                    elevation: 0,
-                    highlightElevation: 0,
-                    // 点击时阴影隐藏
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                  ),
-                ),
+                loginButton(() {
+                  entryLogin('登录');
+                })
               ],
             )
           ],

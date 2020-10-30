@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lawyerplatform/components/login_button.dart';
 import 'package:lawyerplatform/model/base_user_info.dart';
 import '../main.dart';
 
@@ -175,32 +176,23 @@ class _RegisterFormState extends State<RegisterForm> {
                             });
                           })),
                 ),
-                SizedBox(height: 30),
-                Container(
-                  width: double.infinity,
-                  child: RaisedButton(
-                      child: Text('登录', style: TextStyle(color: Colors.white)),
-                      color: Colors.blueAccent[700],
-                      elevation: 5,
-                      onPressed: () {
-                        // if (registerFormKey.currentState.validate()) {
-                        //TODO:后端验证
-                        user = BaseUserInfo.init({
-                          'nickname': '朱元璋',
-                          'avatar':
-                              'http://p3.pstatp.com/large/59300000e1bb4d73d43e',
-                          'lawyerID': '4008000000'
-                        });
-                        _entry();
-                        Fluttertoast.showToast(msg: '登陆成功');
-                        // } else {
-                        //   setState(() {
-                        //     autovalidate = true;
-                        //     print(autovalidate);
-                        //   });
-                        // }
-                      }),
-                )
+                loginButton(() {
+                  // if (registerFormKey.currentState.validate()) {
+                  //TODO:后端验证
+                  user = BaseUserInfo.init({
+                    'nickname': '朱元璋',
+                    'avatar': 'http://p3.pstatp.com/large/59300000e1bb4d73d43e',
+                    'lawyerID': '4008000000'
+                  });
+                  _entry();
+                  Fluttertoast.showToast(msg: '登陆成功');
+                  // } else {
+                  //   setState(() {
+                  //     autovalidate = true;
+                  //     print(autovalidate);
+                  //   });
+                  // }
+                })
               ],
             ))
         : Form(
@@ -251,25 +243,17 @@ class _RegisterFormState extends State<RegisterForm> {
                               ? null
                               : _pressSendCode, //若正在发送验证码，则为null，实现禁用按钮
                         ))),
-                SizedBox(height: 30),
-                Container(
-                  width: double.infinity,
-                  child: RaisedButton(
-                      child: Text('登录', style: TextStyle(color: Colors.white)),
-                      color: Colors.blueAccent[700],
-                      elevation: 5,
-                      onPressed: () {
-                        if (registerFormKey.currentState.validate()) {
-                          // TODO:后端验证
-                          _entry();
-                          print('right');
-                        } else {
-                          setState(() {
-                            autovalidate2 = true;
-                          });
-                        }
-                      }),
-                )
+                loginButton(() {
+                  if (registerFormKey.currentState.validate()) {
+                    // TODO:后端验证
+                    _entry();
+                    print('right');
+                  } else {
+                    setState(() {
+                      autovalidate2 = true;
+                    });
+                  }
+                })
               ],
             ));
     return mywidget;
