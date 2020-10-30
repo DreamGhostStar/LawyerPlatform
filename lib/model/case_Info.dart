@@ -1,5 +1,3 @@
-import 'package:lawyerplatform/model/lawyer_base_info.dart';
-
 class CaseDetailItem {
   final String name; //案件名
   final String baseInfo; //案由
@@ -33,7 +31,6 @@ class CaseDetailItem {
   factory CaseDetailItem.init(Map<String, dynamic> json) {
     List<String> getList(list) {
       List<String> arr = [];
-      print(list);
       list.forEach((item) {
         arr.add(item);
       });
@@ -59,7 +56,8 @@ class CaseDetailItem {
 
 CaseDetailItem caseDetailItemModel = CaseDetailItem.init({
   'base_info': '案件基本信息',
-  'detail_info': '案件详细信息',
+  'detail_info':
+      '案件详细信息ssf sdfl;k sl;fk sl;adfk sl;adfk asl;dfj skldjf klashd ',
   'plaintiff': '老虎',
   'defendant': '李逵',
   'state': '在办',
@@ -69,6 +67,6 @@ CaseDetailItem caseDetailItemModel = CaseDetailItem.init({
   'name': '李逵打虎',
   'type': '民事',
   'audit': '一审',
-  'guest_list': ['sa', 'ds'],
+  'guest_list': ['李四'],
   'host': '张三'
 });

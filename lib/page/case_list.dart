@@ -4,7 +4,6 @@ import 'package:lawyerplatform/components/case_item.dart';
 import 'package:lawyerplatform/components/case_list_skeleton.dart';
 import 'package:lawyerplatform/components/search_box.dart';
 import 'package:lawyerplatform/model/base_user_info.dart';
-import 'package:lawyerplatform/model/case_Info.dart';
 import 'package:lawyerplatform/model/case_list.dart';
 import 'package:lawyerplatform/page/search_case.dart';
 //这是案件页面
@@ -63,14 +62,14 @@ class _CasesState extends State<Cases> with TickerProviderStateMixin {
     await Future.delayed(Duration(seconds: 3), () {
       if (mounted) {
         setState(() {
-          _caseList.addAll(newCaseList); //申请下一页的数据
+          _caseList.addAll(caseListModel); //申请下一页的数据
           showMoreLoading = false;
         });
       }
     });
   }
 
-  // 下拉刷新，请求下一页的数据
+  // 下拉刷新
   Future<Null> _refresh() async {
     await Future.delayed(Duration(seconds: 2), () {
       _caseList.clear(); // 清除当前状态数据

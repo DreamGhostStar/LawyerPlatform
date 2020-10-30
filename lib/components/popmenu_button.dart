@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lawyerplatform/model/base_user_info.dart';
+import 'package:lawyerplatform/page/alter_case.dart';
 import 'package:lawyerplatform/page/finish_case.dart';
 
 class popMenuButton extends StatefulWidget {
-  popMenuButton({Key key}) : super(key: key);
+  final num id; //案件号
+  popMenuButton({Key key, @required this.id}) : super(key: key);
 
   @override
   _popMenuButtonState createState() => _popMenuButtonState();
@@ -38,7 +40,12 @@ class _popMenuButtonState extends State<popMenuButton> {
                 Fluttertoast.showToast(
                   msg: '请先登录',
                 );
-              } else {}
+              } else {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => AlterCase(
+                          id: widget.id,
+                        )));
+              }
             }
             break;
           case 'B':

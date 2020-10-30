@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lawyerplatform/components/case_info_raw.dart';
 import 'package:lawyerplatform/components/popmenu_button.dart';
 import 'package:lawyerplatform/model/case_Info.dart';
 
@@ -47,35 +48,10 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
     super.dispose();
   }
 
-  Widget baseRow(String text1, String text2) {
-    return Column(
-      children: [
-        Container(
-            padding: EdgeInsets.only(top: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  text1,
-                  style: TextStyle(color: Colors.grey),
-                ),
-                Text(
-                  text2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            )),
-        Divider()
-      ],
-    );
-  }
-
   _guestRow(List<String> list) {
     int number = list.length;
     if (number == 0)
-      return Container();
-    else if (number == 1)
-      return baseRow('协办人', list[0]);
+      return List<Container>();
     else {
       return list.map((e) => baseRow('协办人', e)).toList();
     }
@@ -116,8 +92,6 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
   }
 
   _agencyRow(bool have, String agencyUrl) {
-    print(have);
-    print(agencyUrl);
     if (have) {
       return agencyRow('点击查看', () {
         print('查看代理词');
@@ -127,16 +101,6 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
         print('上传代理词');
       });
     }
-  }
-
-  Widget title(String title) {
-    return Container(
-      padding: EdgeInsets.only(top: 10, left: 10, right: 10),
-      child: Text(
-        title,
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-      ),
-    );
   }
 
   Widget _childLayout() {
@@ -222,14 +186,17 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
     return Scaffold(
         appBar: PreferredSize(
           child: AppBar(
-            title: Text(widget.casename),
-            bottom: TabBar(
-              tabs: _tabs,
-              controller: _tabController,
-            ),
-            centerTitle: true,
-            actions: [popMenuButton()],
-          ),
+              title: Text(widget.casename),
+              bottom: TabBar(
+                tabs: _tabs,
+                controller: _tabController,
+              ),
+              centerTitle: true,
+              actions: [
+                popMenuButton(
+                  id: widget.id,
+                )
+              ]),
           preferredSize: Size.fromHeight(85),
         ),
         body: TabBarView(controller: _tabController, children: [

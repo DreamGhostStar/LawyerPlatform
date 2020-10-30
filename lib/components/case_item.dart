@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:lawyerplatform/components/util.dart';
 import 'package:lawyerplatform/model/base_user_info.dart';
 import 'package:lawyerplatform/page/case_info.dart';
 import 'package:lawyerplatform/page/finish_case.dart';
@@ -60,7 +59,10 @@ class _CaseItemsState extends State<CaseItems> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
+                              width: 270,
                               child: Text(widget.name,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontFamily: 'main',
@@ -90,25 +92,9 @@ class _CaseItemsState extends State<CaseItems> {
                                     context: context,
                                     builder: (context) {
                                       return Container(
-                                          height: 200,
+                                          height: 160,
                                           color: Colors.grey[200],
                                           child: Column(children: [
-                                            Container(
-                                              width: double.infinity,
-                                              child: FlatButton(
-                                                color: Colors.white,
-                                                child: Text(
-                                                  '修改案件',
-                                                ),
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                  openAlertDialog(context, () {
-                                                    print('确定');
-                                                    //TODO:
-                                                  }, '确认修改吗？');
-                                                },
-                                              ),
-                                            ),
                                             Container(
                                               width: double.infinity,
                                               child: FlatButton(

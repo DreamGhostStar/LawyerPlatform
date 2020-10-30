@@ -22,7 +22,7 @@ class CaseListItem {
 List<CaseListItem> caseListModel = [
   new CaseListItem.init({
     'id': 00001,
-    'name': '李晓娟离婚案',
+    'name': '谢统开诉袁德方装修合同纠纷',
     'type': '民事',
     'audit': '一审',
     'host': {
@@ -34,7 +34,7 @@ List<CaseListItem> caseListModel = [
   }),
   new CaseListItem.init({
     'id': 00001,
-    'name': '财产纠纷案',
+    'name': '拆迁安置补偿纠纷',
     'type': '民事',
     'audit': '二审',
     'host': {
@@ -70,7 +70,7 @@ List<CaseListItem> caseListModel = [
   }),
   new CaseListItem.init({
     'id': 00001,
-    'name': '张硕失窃案',
+    'name': '张硕手机失窃案',
     'type': '民事',
     'audit': '二审',
     'host': {
@@ -106,77 +106,77 @@ List<CaseListItem> caseListModel = [
   }),
 ];
 
-List<CaseListItem> newCaseList = [
-  new CaseListItem.init({
-    'id': 00002,
-    'name': '李逵打虎',
-    'type': '民事',
-    'audit': '二审',
-    'host': {
-      'name': '李四',
-      'id': 002,
-      'phone': 1332131231,
-      'lawyerNumber': '32133'
-    }
-  }),
-  new CaseListItem.init({
-    'id': 00002,
-    'name': '李逵打虎',
-    'type': '民事',
-    'audit': '二审',
-    'host': {
-      'name': '李四',
-      'id': 002,
-      'phone': 1332131231,
-      'lawyerNumber': '32133'
-    }
-  }),
-  new CaseListItem.init({
-    'id': 00002,
-    'name': '李逵打虎',
-    'type': '民事',
-    'audit': '二审',
-    'host': {
-      'name': '李四',
-      'id': 002,
-      'phone': 1332131231,
-      'lawyerNumber': '32133'
-    }
-  }),
-  new CaseListItem.init({
-    'id': 00002,
-    'name': '李逵打虎',
-    'type': '民事',
-    'audit': '二审',
-    'host': {
-      'name': '李四',
-      'id': 002,
-      'phone': 1332131231,
-      'lawyerNumber': '32133'
-    }
-  }),
-  new CaseListItem.init({
-    'id': 00002,
-    'name': '李逵打虎',
-    'type': '民事',
-    'audit': '二审',
-    'host': {
-      'name': '李四',
-      'id': 002,
-      'phone': 1332131231,
-      'lawyerNumber': '32133'
-    }
-  }),
-  new CaseListItem.init({
-    'id': 00002,
-    'name': '李逵打虎',
-    'type': '民事',
-    'audit': '二审',
-    'host': {
-      'name': '李四',
-      'id': 002,
-      'phone': 1332131231,
-      'lawyerNumber': '32133'
-    }
-  })
-];
+// List<CaseListItem> newCaseList = [
+//   new CaseListItem.init({
+//     'id': 00002,
+//     'name': '李逵打虎',
+//     'type': '民事',
+//     'audit': '二审',
+//     'host': {
+//       'name': '李四',
+//       'id': 002,
+//       'phone': 1332131231,
+//       'lawyerNumber': '32133'
+//     }
+//   }),
+//   new CaseListItem.init({
+//     'id': 00002,
+//     'name': '李逵打虎',
+//     'type': '民事',
+//     'audit': '二审',
+//     'host': {
+//       'name': '李四',
+//       'id': 002,
+//       'phone': 1332131231,
+//       'lawyerNumber': '32133'
+//     }
+//   }),
+//   new CaseListItem.init({
+//     'id': 00002,
+//     'name': '李逵打虎',
+//     'type': '民事',
+//     'audit': '二审',
+//     'host': {
+//       'name': '李四',
+//       'id': 002,
+//       'phone': 1332131231,
+//       'lawyerNumber': '32133'
+//     }
+//   }),
+//   new CaseListItem.init({
+//     'id': 00002,
+//     'name': '李逵打虎',
+//     'type': '民事',
+//     'audit': '二审',
+//     'host': {
+//       'name': '李四',
+//       'id': 002,
+//       'phone': 1332131231,
+//       'lawyerNumber': '32133'
+//     }
+//   }),
+//   new CaseListItem.init({
+//     'id': 00002,
+//     'name': '李逵打虎',
+//     'type': '民事',
+//     'audit': '二审',
+//     'host': {
+//       'name': '李四',
+//       'id': 002,
+//       'phone': 1332131231,
+//       'lawyerNumber': '32133'
+//     }
+//   }),
+//   new CaseListItem.init({
+//     'id': 00002,
+//     'name': '李逵打虎',
+//     'type': '民事',
+//     'audit': '二审',
+//     'host': {
+//       'name': '李四',
+//       'id': 002,
+//       'phone': 1332131231,
+//       'lawyerNumber': '32133'
+//     }
+//   })
+// ];
