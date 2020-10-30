@@ -22,61 +22,61 @@ class CaseListItem {
 List<CaseListItem> caseListModel = [
   new CaseListItem.init({
     'id': 00001,
-    'name': '武松打虎',
+    'name': '李晓娟离婚案',
     'type': '民事',
-    'audit': '二审',
+    'audit': '一审',
     'host': {
-      'name': '张三',
+      'name': '马奕辰',
       'id': 001,
-      'phone': 1332131231,
+      'phone': 13321312318,
       'lawyerNumber': '32133'
     }
   }),
   new CaseListItem.init({
     'id': 00001,
-    'name': '武松打虎',
+    'name': '财产纠纷案',
     'type': '民事',
     'audit': '二审',
     'host': {
-      'name': '张三',
+      'name': '王小波',
       'id': 001,
-      'phone': 1332131231,
+      'phone': 13321312318,
       'lawyerNumber': '32133'
     }
   }),
   new CaseListItem.init({
     'id': 00001,
-    'name': '武松打虎',
+    'name': '抚养权争夺案',
     'type': '民事',
     'audit': '二审',
     'host': {
-      'name': '张三',
+      'name': '李思维',
       'id': 001,
-      'phone': 1332131231,
+      'phone': 13321312318,
       'lawyerNumber': '32133'
     }
   }),
   new CaseListItem.init({
     'id': 00001,
-    'name': '武松打虎',
+    'name': '遗产分配案',
     'type': '民事',
-    'audit': '二审',
+    'audit': '一审',
     'host': {
-      'name': '张三',
+      'name': '赵卫东',
       'id': 001,
-      'phone': 1332131231,
+      'phone': 13321312318,
       'lawyerNumber': '32133'
     }
   }),
   new CaseListItem.init({
     'id': 00001,
-    'name': '武松打虎',
+    'name': '张硕失窃案',
     'type': '民事',
     'audit': '二审',
     'host': {
       'name': '张三',
       'id': 001,
-      'phone': 1332131231,
+      'phone': 13321312318,
       'lawyerNumber': '32133'
     }
   }),

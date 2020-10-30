@@ -47,17 +47,6 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
     super.dispose();
   }
 
-  Widget titleText(String text) {
-    return Text(
-      text,
-      style: TextStyle(color: Colors.grey),
-    );
-  }
-
-  Widget wordText(String text) {
-    return Text(text);
-  }
-
   Widget baseRow(String text1, String text2) {
     return Column(
       children: [
@@ -66,8 +55,14 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                titleText(text1),
-                wordText(text2),
+                Text(
+                  text1,
+                  style: TextStyle(color: Colors.grey),
+                ),
+                Text(
+                  text2,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ],
             )),
         Divider()
@@ -77,24 +72,21 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
 
   _guestRow(List<String> list) {
     int number = list.length;
-    print('~~~~~~~');
-    print(number);
     if (number == 0)
       return Container();
     else if (number == 1)
-      return Column(children: [
-        baseRow('协办人', list[0]),
-        baseRow('主协比例', _caseDetailItem.scale.toString())
-      ]);
+      return baseRow('协办人', list[0]);
     else {
-      return Column(
-        children: [
-          Column(
-              children: list
-                  .map((e) => baseRow('协办人' + list.indexOf(e).toString(), e))),
-          baseRow('主协比例', _caseDetailItem.scale.toString())
-        ],
-      );
+      return list.map((e) => baseRow('协办人', e)).toList();
+    }
+  }
+
+  _scaleRow(List<String> list) {
+    int number = list.length;
+    if (number == 0) {
+      return Container();
+    } else {
+      return baseRow('主协比例', _caseDetailItem.scale.toString());
     }
   }
 
@@ -106,7 +98,10 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                titleText('代理词'),
+                Text(
+                  '代理词',
+                  style: TextStyle(color: Colors.grey),
+                ),
                 InkWell(
                     child:
                         Text(agencyUrl, style: TextStyle(color: Colors.blue)),
@@ -124,10 +119,24 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
     print(have);
     print(agencyUrl);
     if (have) {
-      return agencyRow('点击查看', () {print('查看代理词');});
+      return agencyRow('点击查看', () {
+        print('查看代理词');
+      });
     } else {
-      return agencyRow('还没有代理词,点击上传', () {print('上传代理词');});
+      return agencyRow('还没有代理词,点击上传', () {
+        print('上传代理词');
+      });
     }
+  }
+
+  Widget title(String title) {
+    return Container(
+      padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+      child: Text(
+        title,
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      ),
+    );
   }
 
   Widget _childLayout() {
@@ -135,13 +144,7 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
       return Center(child: Container(child: CircularProgressIndicator()));
     } else {
       return ListView(children: [
-        Container(
-          padding: EdgeInsets.only(top: 10, left: 10, right: 10),
-          child: Text(
-            '基本信息',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-        ),
+        title('基本信息'),
         Card(
           margin: EdgeInsets.all(10),
           child: Container(
@@ -152,25 +155,27 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
                 baseRow('案件类型', _caseDetailItem.type),
                 baseRow('案件状态', _caseDetailItem.state),
                 baseRow('案件审级', _caseDetailItem.audit),
-                baseRow('案由', _caseDetailItem.baseInfo),
-                baseRow('案件详情', '_caseDetailItem.detailInfo'),
               ])),
         ),
-        Container(
-          padding: EdgeInsets.only(top: 10, left: 10, right: 10),
-          child: Text(
-            '办案人员',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-        ),
+        title('办案人员'),
         Card(
           margin: EdgeInsets.all(10),
           child: Container(
               padding: EdgeInsets.all(15),
               child: Column(children: [
                 baseRow('主办人', _caseDetailItem.host),
-//                _guestRow(_caseDetailItem.guest),
-
+                Column(children: _guestRow(_caseDetailItem.guest)),
+                _scaleRow(_caseDetailItem.guest),
+              ])),
+        ),
+        title('详细信息'),
+        Card(
+          margin: EdgeInsets.all(10),
+          child: Container(
+              padding: EdgeInsets.all(15),
+              child: Column(children: [
+                baseRow('案由', _caseDetailItem.baseInfo),
+                baseRow('案件详情', _caseDetailItem.detailInfo),
                 _agencyRow(_caseDetailItem.agencyWord != '',
                     _caseDetailItem.agencyWord),
               ])),
