@@ -56,14 +56,11 @@ class _AlterCaseState extends State<AlterCase> {
     guestNumber = _caseDetailItem.guest.length; //用于构建原有的协办人
     if (guestNumber != 0) {
       for (int i = 0; i < guestNumber; i++) {
-        _oldguestControllerList.add(new TextEditingController());
+        _oldguestControllerList.add(TextEditingController());
+        _oldguestControllerList[i].text = _caseDetailItem.guest[i];
+        print('!!!!!');
+        print(_oldguestControllerList[i].text);
       }
-      print(_caseDetailItem.guest[0]);
-      _oldguestControllerList.map((e) => e.text = _caseDetailItem.guest[
-          _oldguestControllerList
-              .indexOf(e)]); //遍历协办人控制器数组，令控制器的文字等于原来协办人数组中的文字
-      print('!!!!!');
-      print(_oldguestControllerList[0].text);
     }
 
     Future.delayed(Duration(milliseconds: 200), () {
@@ -101,6 +98,7 @@ class _AlterCaseState extends State<AlterCase> {
                     onChanged: (value) {
                       setState(() {
                         selectValue1 = value;
+                        print(selectValue1);
                       });
                     })
               ],
@@ -134,6 +132,7 @@ class _AlterCaseState extends State<AlterCase> {
                     onChanged: (value) {
                       setState(() {
                         selectValue2 = value;
+                        print(selectValue2);
                       });
                     })
               ],
@@ -169,20 +168,20 @@ class _AlterCaseState extends State<AlterCase> {
       return List<Container>();
     } else {
       return Column(
-        children: _caseDetailItem.guest
+        children: _oldguestControllerList
             .map((e) => Slidable(
-                  child: editRow(
-                      '协办人',
-                      _oldguestControllerList[_caseDetailItem.guest.indexOf(e)],
-                      1),
+                  child: editRow('协办人', e, 1),
                   actionPane: SlidableDrawerActionPane(),
                   actionExtentRatio: 0.25,
                   actions: <Widget>[
                     IconSlideAction(
                       caption: '删除',
-                      color: Colors.red,
+                      color: Colors.red[600],
                       onTap: () {
                         //TODO:
+                        setState(() {
+                          _oldguestControllerList.remove(e);
+                        });
                       },
                       icon: Icons.delete,
                     )
@@ -203,9 +202,12 @@ class _AlterCaseState extends State<AlterCase> {
                 actions: <Widget>[
                   IconSlideAction(
                     caption: '删除',
-                    color: Colors.red,
+                    color: Colors.red[600],
                     onTap: () {
                       //TODO:
+                      setState(() {
+                        _guestControllerList.remove(e);
+                      });
                     },
                     icon: Icons.delete,
                   )
@@ -236,7 +238,7 @@ class _AlterCaseState extends State<AlterCase> {
               ),
               onPressed: () {
                 setState(() {
-                  _guestControllerList.add(new TextEditingController());
+                  _guestControllerList.add(TextEditingController());
                 });
               },
             ),
@@ -249,8 +251,14 @@ class _AlterCaseState extends State<AlterCase> {
               onPressed: () {
                 //TODO:
                 print('**********');
-                _oldguestControllerList.map((e) => print(e.text));
-                _guestControllerList.map((e) => print(e.text));
+                print(_oldguestControllerList.length);
+                print(_guestControllerList.length);
+                for (var i = 0; i < _oldguestControllerList.length; i++) {
+                  print(_oldguestControllerList[i].text);
+                }
+                for (var i = 0; i < _guestControllerList.length; i++) {
+                  print(_guestControllerList[i].text);
+                }
               },
             ),
           ],

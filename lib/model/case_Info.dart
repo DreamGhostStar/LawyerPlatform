@@ -67,6 +67,6 @@ CaseDetailItem caseDetailItemModel = CaseDetailItem.init({
   'name': '李逵打虎',
   'type': '民事',
   'audit': '一审',
-  'guest_list': ['李四'],
+  'guest_list': ['李四', '王五'],
   'host': '张三'
 });
