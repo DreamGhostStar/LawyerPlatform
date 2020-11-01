@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lawyerplatform/components/case_info_raw.dart';
 import 'package:lawyerplatform/components/popmenu_button.dart';
 import 'package:lawyerplatform/model/case_Info.dart';
+import 'package:lawyerplatform/page/upload_agency.dart';
+import 'package:lawyerplatform/page/watch_agency.dart';
 
 class CaseInfo extends StatefulWidget {
   final num id;
@@ -95,10 +97,14 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
     if (have) {
       return agencyRow('点击查看', () {
         print('查看代理词');
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => WatchAgency()));
       });
     } else {
       return agencyRow('还没有代理词,点击上传', () {
         print('上传代理词');
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => UploadAgencyWord()));
       });
     }
   }

@@ -62,7 +62,7 @@ CaseDetailItem caseDetailItemModel = CaseDetailItem.init({
   'defendant': '李逵',
   'state': '在办',
   'scale': 0.6,
-  'agency_word': 'a',
+  'agency_word': '',
   'finishFile': 'a',
   'name': '李逵打虎',
   'type': '民事',

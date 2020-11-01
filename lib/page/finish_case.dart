@@ -1,5 +1,7 @@
 import 'package:flui/flui.dart';
 import 'package:flutter/material.dart';
+import 'package:lawyerplatform/components/util.dart';
+import '../model/case_Info.dart';
 
 class FinishCase extends StatefulWidget {
   FinishCase({Key key}) : super(key: key);
@@ -21,7 +23,10 @@ class _FinishCaseState extends State<FinishCase> {
     setState(() {
       _loading = true;
     });
-    await Future.delayed(Duration(seconds: 12), () {
+    if (caseDetailItemModel.agencyWord != '') {
+      _haveagent = true;
+    }
+    await Future.delayed(Duration(seconds: 2), () {
       setState(() {
         _loading = false;
       });
@@ -34,10 +39,13 @@ class _FinishCaseState extends State<FinishCase> {
     return Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: AppBar(title: Text('申请结案')),
-        body: !_haveagent
-            ? FLNoticeBar.notice(
-                text: '注意:您还未上传代理词.',
-              )
-            : null);
+        body: _loading
+            ? loadingWidget(_loading)
+            : !_haveagent
+                ? FLNoticeBar.notice(
+                    text: '注意:您还未上传代理词.',
+                    delay: Duration(seconds: 1),
+                  )
+                : null);
   }
 }
