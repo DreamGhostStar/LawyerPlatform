@@ -59,7 +59,7 @@ class _CasesState extends State<Cases> with TickerProviderStateMixin {
     setState(() {
       showMoreLoading = true;
     });
-    await Future.delayed(Duration(seconds: 3), () {
+    await Future.delayed(Duration(seconds: 2), () {
       if (mounted) {
         setState(() {
           _caseList.addAll(caseListModel); //申请下一页的数据

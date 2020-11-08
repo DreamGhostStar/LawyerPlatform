@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lawyerplatform/components/case_info_raw.dart';
+import 'package:lawyerplatform/components/case_info_skeleton.dart';
 import 'package:lawyerplatform/components/popmenu_button.dart';
 import 'package:lawyerplatform/model/case_Info.dart';
 import 'package:lawyerplatform/page/upload_agency.dart';
@@ -26,7 +27,7 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
       _loading = true;
     });
     _caseDetailItem = caseDetailItemModel;
-    Future.delayed(Duration(milliseconds: 200), () {
+    Future.delayed(Duration(seconds: 10), () {
       if (mounted) {
         setState(() {
           _loading = false;
@@ -42,6 +43,11 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
     super.initState();
     _tabController = new TabController(length: 2, vsync: this);
     _init();
+    _tabController.addListener(() {
+      if (_tabController.index == _tabController.animation.value) {
+        _init();
+      }
+    });
   }
 
   @override
@@ -109,9 +115,13 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
     }
   }
 
+  _buildProgressIndicator() {
+    return CaseInfoSkeleton();
+  }
+
   Widget _childLayout() {
     if (_loading) {
-      return Center(child: Container(child: CircularProgressIndicator()));
+      return _buildProgressIndicator();
     } else {
       return ListView(children: [
         title('基本信息'),
