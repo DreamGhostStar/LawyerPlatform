@@ -69,7 +69,7 @@ class _GeneralFrameworkState extends State<GeneralFramework> {
   final List tabBodies = [
     Cases(),
     Log(),
-    Schedule(),
+    SchedulePage(),
     Mypage(),
   ];
 

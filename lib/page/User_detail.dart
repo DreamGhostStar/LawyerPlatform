@@ -2,7 +2,6 @@ import 'dart:io';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:lawyerplatform/components/above_loading.dart';
 import 'package:lawyerplatform/components/basic_info.dart';
 import 'package:lawyerplatform/components/util.dart';
 import 'package:image_picker/image_picker.dart';
@@ -315,8 +314,7 @@ class _UserDetailState extends State<UserDetail> {
                   child: GestureDetector(
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(30),
-                        child: Image.network(
-                            'https://i04piccdn.sogoucdn.com/88e76a52c396e3a7'),
+                        child: Image.asset('images/logo.jpg'),
                       ),
                       onTap: () {
                         pickImage();
@@ -330,8 +328,7 @@ class _UserDetailState extends State<UserDetail> {
                   child: GestureDetector(
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(30),
-                        child: Image.network(
-                            'https://i04piccdn.sogoucdn.com/88e76a52c396e3a7'),
+                        child: Image.asset('images/logo.jpg'),
                       ),
                       onTap: () {
                         pickImage();

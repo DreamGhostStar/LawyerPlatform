@@ -9,7 +9,7 @@ class LoadingPage extends StatefulWidget {
 
 class _LoadingPageState extends State<LoadingPage> {
   Timer _timer;
-  int _countdownTime = 5; // 倒计时秒数
+  int _countdownTime = 1; // 倒计时秒数
   @override
   void initState() {
     super.initState();
@@ -84,18 +84,6 @@ class _LoadingPageState extends State<LoadingPage> {
                   )
                 ],
               ),
-              Positioned(
-                child: RaisedButton(
-                  child: Text(
-                    '跳过 $_countdownTime',
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                  onPressed: entryHome,
-                  color: Colors.grey,
-                ),
-                right: 10,
-                top: 15,
-              )
             ],
             alignment: Alignment.center,
           )),
