@@ -27,7 +27,7 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
       _loading = true;
     });
     _caseDetailItem = caseDetailItemModel;
-    Future.delayed(Duration(seconds: 10), () {
+    Future.delayed(Duration(seconds: 2), () {
       if (mounted) {
         setState(() {
           _loading = false;
