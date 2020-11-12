@@ -60,10 +60,10 @@ CaseDetailItem caseDetailItemModel = CaseDetailItem.init({
       '案件详细信息ssf sdfl;k sl;fk sl;adfk sl;adfk asl;dfj skldjf klashd ',
   'plaintiff': '老虎',
   'defendant': '李逵',
-  'state': '在办',
+  'state': '归档',
   'scale': 0.6,
-  'agency_word': '',
-  'finishFile': 'a',
+  'agency_word': 'dailici', ////若为空，用空字符串表示
+  'finishFile': '', //若为空，用空字符串表示
   'name': '李逵打虎',
   'type': '民事',
   'audit': '一审',

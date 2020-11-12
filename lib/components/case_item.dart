@@ -97,7 +97,7 @@ class _CaseItemsState extends State<CaseItems> {
                                           child: Column(children: [
                                             Container(
                                               width: double.infinity,
-                                              child: FlatButton(
+                                              child: RaisedButton(
                                                 color: Colors.white,
                                                 child: Text(
                                                   '上传代理词',
@@ -109,7 +109,7 @@ class _CaseItemsState extends State<CaseItems> {
                                             ),
                                             Container(
                                               width: double.infinity,
-                                              child: FlatButton(
+                                              child: RaisedButton(
                                                 color: Colors.white,
                                                 child: Text(
                                                   '申请结案',

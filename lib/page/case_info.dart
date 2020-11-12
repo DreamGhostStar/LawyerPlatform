@@ -4,7 +4,7 @@ import 'package:lawyerplatform/components/case_info_skeleton.dart';
 import 'package:lawyerplatform/components/popmenu_button.dart';
 import 'package:lawyerplatform/model/case_Info.dart';
 import 'package:lawyerplatform/page/upload_agency.dart';
-import 'package:lawyerplatform/page/watch_agency.dart';
+import 'package:lawyerplatform/page/watch_html.dart';
 
 class CaseInfo extends StatefulWidget {
   final num id;
@@ -74,7 +74,7 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
     }
   }
 
-  Widget agencyRow(String agencyUrl, Function _function) {
+  Widget specialRow(String title, String agencyUrl, Function _function) {
     return Column(
       children: [
         Container(
@@ -83,7 +83,7 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '代理词',
+                  title,
                   style: TextStyle(color: Colors.grey),
                 ),
                 InkWell(
@@ -101,17 +101,38 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
 
   _agencyRow(bool have, String agencyUrl) {
     if (have) {
-      return agencyRow('点击查看', () {
-        print('查看代理词');
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => WatchAgency()));
+      return specialRow('代理词', '点击查看', () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => WatchHtml(
+                  title: '代理词',
+                )));
       });
     } else {
-      return agencyRow('还没有代理词,点击上传', () {
-        print('上传代理词');
+      return specialRow('代理词', '还没有代理词 点击上传', () {
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => UploadAgencyWord()));
       });
+    }
+  }
+
+  _finishbookRow(bool isfinish, bool ishave) {
+    if (isfinish) {
+      //如果已经归档，判断是否上传了结案文书
+      if (ishave) {
+        return specialRow('结案文书', '点击查看', () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => WatchHtml(
+                    title: '结案文书',
+                  )));
+        });
+      } else {
+        return specialRow('结案文书', '还没有结案文书 点击上传', () {
+          //TODO:
+        });
+      }
+    } else {
+      //若还在办，则返回空盒子
+      return Container();
     }
   }
 
@@ -158,6 +179,8 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
                 baseRow('案件详情', _caseDetailItem.detailInfo),
                 _agencyRow(_caseDetailItem.agencyWord != '',
                     _caseDetailItem.agencyWord),
+                _finishbookRow(_caseDetailItem.state == '归档',
+                    _caseDetailItem.finishFile == '')
               ])),
         ),
         Align(

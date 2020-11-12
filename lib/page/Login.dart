@@ -54,7 +54,10 @@ class _LoginState extends State<Login> {
                           });
                         },
                         child: Align(
-                          child: Text(title == '账号密码登录' ? '手机验证码登录' : '账号密码登录'),
+                          child: Text(
+                            title == '账号密码登录' ? '手机验证码登录' : '账号密码登录',
+                            style: TextStyle(color: Colors.blue),
+                          ),
                           alignment: Alignment.bottomLeft,
                         ),
                       )

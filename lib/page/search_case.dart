@@ -19,7 +19,7 @@ class _SearchCaseState extends State<SearchCase> {
     setState(() {
       _loading = true;
     });
-    Future.delayed(Duration(milliseconds: 2000), () {
+    Future.delayed(Duration(milliseconds: 200), () {
       if (mounted) {
         setState(() {
           _list.addAll(searchListModel);
