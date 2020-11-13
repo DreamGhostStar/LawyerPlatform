@@ -26,7 +26,12 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
     setState(() {
       _loading = true;
     });
-    _caseDetailItem = caseDetailItemModel;
+    if (_tabController.index == 1) {
+      //TODO:案件日志接口
+    } else {
+      // TODO:案件信息接口
+      _caseDetailItem = caseDetailItemModel;
+    }
     Future.delayed(Duration(seconds: 2), () {
       if (mounted) {
         setState(() {
@@ -44,6 +49,7 @@ class _CaseInfoState extends State<CaseInfo> with TickerProviderStateMixin {
     _tabController = new TabController(length: 2, vsync: this);
     _init();
     _tabController.addListener(() {
+      print(_tabController.index);
       if (_tabController.index == _tabController.animation.value) {
         _init();
       }
