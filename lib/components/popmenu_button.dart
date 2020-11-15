@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lawyerplatform/model/base_user_info.dart';
 import 'package:lawyerplatform/page/alter_case.dart';
 import 'package:lawyerplatform/page/finish_case.dart';
+import 'package:lawyerplatform/page/upload_agency.dart';
 
 class popMenuButton extends StatefulWidget {
   final num id; //案件号
@@ -54,7 +55,10 @@ class _popMenuButtonState extends State<popMenuButton> {
                 Fluttertoast.showToast(
                   msg: '请先登录',
                 );
-              } else {}
+              } else {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => UploadAgencyWord()));
+              }
             }
             break;
           case 'C':

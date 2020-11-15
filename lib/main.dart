@@ -3,8 +3,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lawyerplatform/page/about.dart';
 import 'package:lawyerplatform/page/alter_passward.dart';
+import 'package:lawyerplatform/page/daytime_phone.dart';
 import 'package:lawyerplatform/page/electri_card.dart';
 import 'package:lawyerplatform/page/error_center.dart';
+import 'package:lawyerplatform/page/income.dart';
 import 'package:lawyerplatform/page/log.dart';
 import 'package:lawyerplatform/page/login_select.dart';
 import 'package:lawyerplatform/page/schedule.dart';
@@ -48,7 +50,9 @@ class MyApp extends StatelessWidget {
         '/alter': (BuildContext context) => AlterPassword(),
         '/userDetail': (BuildContext context) => UserDetail(),
         '/loginSelect': (BuildContext context) => LoginSelect(),
-        '/card': (BuildContext context) => ElectriCard()
+        '/card': (BuildContext context) => ElectriCard(),
+        '/income': (BuildContext context) => Income(),
+        '/phone': (BuildContext context) => DayTimePhone()
       },
     );
   }

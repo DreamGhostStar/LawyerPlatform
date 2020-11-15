@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lawyerplatform/model/base_user_info.dart';
 import 'package:lawyerplatform/page/case_info.dart';
 import 'package:lawyerplatform/page/finish_case.dart';
+import 'package:lawyerplatform/page/upload_agency.dart';
 
 class CaseItems extends StatefulWidget {
   final num caseid;
@@ -104,6 +105,11 @@ class _CaseItemsState extends State<CaseItems> {
                                                 ),
                                                 onPressed: () {
                                                   Navigator.pop(context);
+                                                  Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              UploadAgencyWord()));
                                                 },
                                               ),
                                             ),

@@ -26,7 +26,7 @@ class _FinishCaseState extends State<FinishCase> {
     if (caseDetailItemModel.agencyWord != '') {
       _haveagent = true;
     }
-    await Future.delayed(Duration(seconds: 2), () {
+    await Future.delayed(Duration(seconds: 1), () {
       setState(() {
         _loading = false;
       });
