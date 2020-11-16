@@ -43,7 +43,7 @@ void openSimpleDialog(BuildContext context, String content) {
             title: Text('提示'),
             children: [
               Container(
-                margin: EdgeInsets.only(left: 10),
+                margin: EdgeInsets.only(left: 25),
                 child: Text(content),
               ),
               Align(
@@ -53,7 +53,7 @@ void openSimpleDialog(BuildContext context, String content) {
                       Navigator.pop(context);
                     },
                     child: Text(
-                      '取消',
+                      '确定',
                       style: TextStyle(color: Colors.blue),
                     )),
               )
