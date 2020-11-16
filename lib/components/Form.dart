@@ -216,33 +216,36 @@ class _RegisterFormState extends State<RegisterForm> {
                     ),
                     labelStyle: TextStyle(color: Colors.black45),
                   ),
+                  keyboardType: TextInputType.phone,
                 ),
                 TextFormField(
-                    inputFormatters: [
-                      // FilteringTextInputFormatter(RegExp("[0-9]"),
-                      //     allow: true), //限制数字
-                      LengthLimitingTextInputFormatter(6) //最大长度
-                    ],
-                    validator: codeValidator,
-                    autovalidate: autovalidate2,
-                    controller: codeController,
-                    decoration: InputDecoration(
-                        labelText: '验证码',
-                        focusedBorder: UnderlineInputBorder(
-                          //选中时下边框颜色
-                          borderSide: BorderSide(color: Colors.blue),
+                  inputFormatters: [
+                    // FilteringTextInputFormatter(RegExp("[0-9]"),
+                    //     allow: true), //限制数字
+                    LengthLimitingTextInputFormatter(6) //最大长度
+                  ],
+                  keyboardType: TextInputType.phone, //手机号
+                  validator: codeValidator,
+                  autovalidate: autovalidate2,
+                  controller: codeController,
+                  decoration: InputDecoration(
+                      labelText: '验证码',
+                      focusedBorder: UnderlineInputBorder(
+                        //选中时下边框颜色
+                        borderSide: BorderSide(color: Colors.blue),
+                      ),
+                      labelStyle: TextStyle(color: Colors.black45),
+                      suffix: InkWell(
+                        child: Text(
+                          sendingCode ? '发送验证码(${_countdownTime}s)' : '发送验证码',
+                          style: TextStyle(
+                              color: sendingCode ? Colors.grey : Colors.blue),
                         ),
-                        labelStyle: TextStyle(color: Colors.black45),
-                        suffix: InkWell(
-                          child: Text(
-                            sendingCode ? '发送验证码(${_countdownTime}s)' : '发送验证码',
-                            style: TextStyle(
-                                color: sendingCode ? Colors.grey : Colors.blue),
-                          ),
-                          onTap: sendingCode
-                              ? null
-                              : _pressSendCode, //若正在发送验证码，则为null，实现禁用按钮
-                        ))),
+                        onTap: sendingCode
+                            ? null
+                            : _pressSendCode, //若正在发送验证码，则为null，实现禁用按钮
+                      )),
+                ),
                 loginButton(() {
                   if (registerFormKey.currentState.validate()) {
                     // TODO:后端验证
