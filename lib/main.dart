@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_picker/flutter_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lawyerplatform/page/about.dart';
 import 'package:lawyerplatform/page/alter_passward.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
           splashColor: Colors.white70 //设置点击按钮时的水波纹效果
           ),
       localizationsDelegates: [
+        PickerLocalizationsDelegate.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],

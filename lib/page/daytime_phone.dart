@@ -16,16 +16,12 @@ class _DayTimePhoneState extends State<DayTimePhone> {
   List<WorkPhoneItem> _list = [];
   List<ExpansionPanelItem> _expansionPanelItems = [];
 
-  Future _load() async {
-    setState(() {
-      _loading = true;
-    });
-    _list.addAll(workPhoneListmodel);
-    print(_list.length);
+  _createExpansionList() {
     _list.forEach((e) {
       //日常电话列表中的每一项构建一个收缩面板项
       _expansionPanelItems.add(ExpansionPanelItem(
-        headerText: e.name,
+        header:
+            Text(e.name, style: TextStyle(fontFamily: 'main', fontSize: 22)),
         body: Container(
           padding: EdgeInsets.all(20),
           width: double.infinity,
@@ -67,6 +63,15 @@ class _DayTimePhoneState extends State<DayTimePhone> {
         isExpanded: false,
       ));
     });
+  }
+
+  Future _load() async {
+    setState(() {
+      _loading = true;
+    });
+    _list.addAll(workPhoneListmodel);
+    print(_list.length);
+    _createExpansionList(); //添加收缩面板数据项
     print(_list.length);
     print(_expansionPanelItems.length);
     Future.delayed(Duration(seconds: 1), () {
@@ -118,15 +123,10 @@ class _DayTimePhoneState extends State<DayTimePhone> {
                           headerBuilder:
                               (BuildContext context, bool isExpanded) {
                             return Container(
-                              padding: EdgeInsets.only(
-                                  left: 20, right: 20, top: 10, bottom: 10),
-                              margin: EdgeInsets.only(top: 10, bottom: 10),
-                              child: Text(
-                                e.headerText,
-                                style:
-                                    TextStyle(fontFamily: 'main', fontSize: 23),
-                              ),
-                            );
+                                padding: EdgeInsets.only(
+                                    left: 20, right: 20, top: 10, bottom: 10),
+                                margin: EdgeInsets.only(top: 10, bottom: 10),
+                                child: e.header);
                           },
                           body: e.body,
                           isExpanded: e.isExpanded);

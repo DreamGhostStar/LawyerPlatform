@@ -42,15 +42,12 @@ class _LoginState extends State<Login> {
                           setState(() {
                             if (title == '账号密码登录') {
                               title = '手机验证码登录';
-                              RegisterForm(
-                                title: title,
-                              );
                             } else {
                               title = '账号密码登录';
-                              RegisterForm(
-                                title: title,
-                              );
                             }
+                            RegisterForm(
+                              title: title,
+                            );
                           });
                         },
                         child: Align(
