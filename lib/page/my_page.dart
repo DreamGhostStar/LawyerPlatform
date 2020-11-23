@@ -48,7 +48,8 @@ class _MypageState extends State<Mypage> {
       '修改密码': '/alter',
       '电子名片': '/card',
       '查看收入': '/income',
-      '日常电话': '/phone'
+      '日常电话': '/phone',
+      '我的通知': '/notice'
     };
     Navigator.pushNamed(context, contrast[type]);
   }

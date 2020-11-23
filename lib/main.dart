@@ -10,6 +10,7 @@ import 'package:lawyerplatform/page/error_center.dart';
 import 'package:lawyerplatform/page/income.dart';
 import 'package:lawyerplatform/page/log.dart';
 import 'package:lawyerplatform/page/login_select.dart';
+import 'package:lawyerplatform/page/notice.dart';
 import 'package:lawyerplatform/page/schedule.dart';
 import 'package:lawyerplatform/page/case_list.dart';
 import 'package:lawyerplatform/page/my_page.dart';
@@ -19,11 +20,10 @@ import 'package:lawyerplatform/page/user_detail.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Lawyer Platform',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           fontFamily: 'main', // 设置全局字体
@@ -54,13 +54,15 @@ class MyApp extends StatelessWidget {
         '/loginSelect': (BuildContext context) => LoginSelect(),
         '/card': (BuildContext context) => ElectriCard(),
         '/income': (BuildContext context) => Income(),
-        '/phone': (BuildContext context) => DayTimePhone()
+        '/phone': (BuildContext context) => DayTimePhone(),
+        '/notice': (BuildContext context) => Notice()
       },
     );
   }
 }
 
 //以下是页面的基本架构，完成了由bottomNavigationBar触发的页面切换
+// ignore: must_be_immutable
 class GeneralFramework extends StatefulWidget {
   int currentIndex;
 

@@ -33,6 +33,9 @@ class _IncomeState extends State<Income> {
       _expansionList.clear(); //防止重复添加
     });
     print(incomeListModel.length);
+
+    //将后端传来的数据添加到expansionList中，构造收缩面板项
+    //TODO:当年案件数量为0时单独处理
     incomeListModel.forEach((e) {
       _expansionList.add(ExpansionPanelItem(
           header: Row(
@@ -45,11 +48,13 @@ class _IncomeState extends State<Income> {
               Text('总收入:￥' + e.yearSalary.toString())
             ],
           ),
+          //TODO:foreach 和 map 的区别
           body: Container(
               margin: EdgeInsets.only(left: 20, right: 20),
               child: Column(
                 children: e.cases
                     .map(
+                      //TODO:普通函数和箭头函数的区别
                       (item) => Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -96,6 +101,7 @@ class _IncomeState extends State<Income> {
   }
 
   _pickyear(BuildContext context) {
+    //年份选择器
     Picker(
       adapter: PickerDataAdapter(
         data: _yearList
