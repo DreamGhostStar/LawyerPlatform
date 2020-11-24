@@ -38,11 +38,10 @@ class UserService extends Service {
     for (let index = 0; index < userListInRedis.length; index++) {
       if (userListInRedis[index].phone_number === phoneNumber) {
         userData = userListInRedis[index];
-        break;
       }
     }
-
-    return userData;
+    
+    return userData
   }
 
   /**

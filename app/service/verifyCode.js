@@ -26,6 +26,7 @@ class VerifyCodeService extends Service {
     ctx.session.maxAge = 1000 * 60 * 5; // 5分钟
     ctx.session.renew = false; // 设置在连续访问的时候不刷新剩余时间
     ctx.session.imageVerifyCode = captcha.text;
+    console.log(captcha.text)
     return res;
   }
 

@@ -26,11 +26,11 @@ class LoginService extends Service {
   // 手机号和密码登录
   async inPassword(query) {
     const { ctx, service } = this;
-    const { phoneNumber, password } = query.phoneNumber;
+    const { phoneNumber, password } = query;
     const userData = await service.user.getUserDataByPhone(phoneNumber);
 
     if (userData.password !== password) {
-      return ctx.retrunInfo(401, '', '用户名或密码错误');
+      return ctx.retrunInfo(1, '', '用户名或密码错误');
     }
 
     // 生成 token 的方式
