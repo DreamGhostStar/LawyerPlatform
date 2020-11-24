@@ -31,7 +31,7 @@ class _CaseItemsState extends State<CaseItems> {
   Widget build(BuildContext context) {
     return Material(
         color: Colors.transparent,
-        borderRadius: BorderRadius.circular(12),
+        // borderRadius: BorderRadius.circular(12),
         elevation: 0,
         child: InkWell(
             splashColor: Colors.yellow.withOpacity(0.3),

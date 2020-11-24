@@ -12,6 +12,8 @@ class Mypage extends StatefulWidget {
 }
 
 class _MypageState extends State<Mypage> {
+  bool have_notice = true;
+
   getMyFunctionList() {
     //获取个人中心功能列表
     List<MyFunctionItem> _list = [];
@@ -54,6 +56,60 @@ class _MypageState extends State<Mypage> {
     Navigator.pushNamed(context, contrast[type]);
   }
 
+  _functionList(IconData icon, String text, Function function) {
+    return Material(
+      color: Colors.white,
+      child: InkWell(
+        child: Container(
+          padding: EdgeInsets.only(
+            left: 10,
+            right: 10,
+            top: 20,
+            bottom: 20,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Icon(
+                    icon,
+                    color: Colors.lightBlueAccent,
+                    size: 26,
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    text,
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
+              Icon(
+                Icons.arrow_forward_ios,
+                size: 12,
+              )
+            ],
+          ),
+        ),
+        onTap: () {
+          function();
+        },
+      ),
+    );
+  }
+
+  _comeFunction(String text) {
+    if (user == null) {
+      Fluttertoast.showToast(
+        msg: '请先登录',
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+      );
+      return;
+    }
+    enterVarious(text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,62 +129,40 @@ class _MypageState extends State<Mypage> {
               physics: new NeverScrollableScrollPhysics(),
               itemCount: getMyFunctionList().length,
               itemBuilder: (BuildContext context, int index) {
-                // if (user == null && index == getMyFunctionList().length - 1) {
-                //   return Container();
-                // }
-                return Material(
-                  color: Colors.white,
-                  child: InkWell(
-                    child: Column(
+                if (getMyFunctionList()[index].text == '我的通知') {
+                  if (have_notice) {
+                    return Stack(
                       children: [
-                        // index > (getMyFunctionList().length - 3)
-                        //     ? Container(height: 15, color: Colors.grey[200])
-                        //     : Container(),
-                        Container(
-                            padding: EdgeInsets.only(
-                              left: 10,
-                              right: 10,
-                              top: 20,
-                              bottom: 20,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Icon(
-                                      getMyFunctionList()[index].icon,
-                                      color: Colors.lightBlueAccent,
-                                      size: 26,
-                                    ),
-                                    SizedBox(width: 10),
-                                    Text(
-                                      getMyFunctionList()[index].text,
-                                      style: TextStyle(fontSize: 20),
-                                    ),
-                                  ],
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 12,
-                                )
-                              ],
-                            ))
+                        _functionList(getMyFunctionList()[index].icon, '我的通知',
+                            () {
+                          _comeFunction(getMyFunctionList()[index].text);
+                        }),
+                        Positioned(
+                          left: 34,
+                          bottom: 41,
+                          child: Icon(
+                            Icons.brightness_1,
+                            color: Colors.red,
+                            size: 8,
+                          ), //通知用的红点,
+                        )
                       ],
-                    ),
-                    onTap: () {
-                      if (user == null) {
-                        Fluttertoast.showToast(
-                          msg: '请先登录',
-                          backgroundColor: Colors.black,
-                          textColor: Colors.white,
-                        );
-                        return;
-                      }
-                      enterVarious(getMyFunctionList()[index].text);
-                    },
-                  ),
-                );
+                    );
+                  } else {
+                    return Stack(
+                      children: [
+                        _functionList(getMyFunctionList()[index].icon, '我的通知',
+                            () {
+                          _comeFunction(getMyFunctionList()[index].text);
+                        })
+                      ],
+                    );
+                  }
+                }
+                return _functionList(getMyFunctionList()[index].icon,
+                    getMyFunctionList()[index].text, () {
+                  _comeFunction(getMyFunctionList()[index].text);
+                });
               })
         ]));
   }

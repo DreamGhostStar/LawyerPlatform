@@ -41,7 +41,7 @@ class _CasesState extends State<Cases> with TickerProviderStateMixin {
     _loadData();
   }
 
-  // 加载中状态框
+  // 骨架屏
   Widget _buildProgressIndicator() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
