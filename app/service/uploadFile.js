@@ -77,7 +77,7 @@ class UploadFileService extends Service {
     const { ctx, service } = this;
     const query = ctx.query;
     const arr = [ null, 'agency_word', 'final_report' ];
-    const law = await service.law.getWordUrl(parseInt(query.law_id), arr[query.type]);
+    const law = await service.law.lawUtil.getWordUrl(parseInt(query.law_id), arr[query.type]);
     return ctx.retrunInfo(0, law, '');
   }
 }

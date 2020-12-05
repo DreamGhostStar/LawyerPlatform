@@ -9,7 +9,7 @@ class RedisService extends Service {
    */
   async updateLawsInRedis() {
     const { service } = this;
-    const lawListInRedis = await service.law.getLawsInDataBase();
+    const lawListInRedis = await service.law.lawUtil.getLawsInDataBase();
     await this.ctx.service.cache.set('laws', lawListInRedis);
   }
 
@@ -17,7 +17,7 @@ class RedisService extends Service {
     const { service } = this;
     let lawListInRedis = await service.cache.get('laws'); // 调用缓存
     if (!lawListInRedis) {
-      lawListInRedis = await service.law.getLawsInDataBase();
+      lawListInRedis = await service.law.lawUtil.getLawsInDataBase();
       await service.cache.set('laws', lawListInRedis);
     }
 

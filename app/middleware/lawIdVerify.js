@@ -9,7 +9,7 @@ module.exports = () => {
       return;
     }
 
-    const law = await ctx.service.law.getLawByID(parseInt(lawID));
+    const law = await ctx.service.law.lawUtil.getLawByID(parseInt(lawID));
     if (!law) {
       ctx.body = ctx.retrunInfo(-1, '', '案件不存在');
       return;

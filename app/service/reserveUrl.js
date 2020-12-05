@@ -15,7 +15,7 @@ class LawService extends Service {
       return ctx.retrunInfo(-1, '', '请求参数错误');
     }
 
-    const law = await service.law.getLawByID(query.law_id);
+    const law = await service.law.lawUtil.getLawByID(query.law_id);
     if (!law) {
       return ctx.retrunInfo(-1, '', '该案件不存在');
     }

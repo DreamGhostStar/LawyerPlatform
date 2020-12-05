@@ -1,12 +1,16 @@
-
+# 设置编程语言
 language: node_js
+# 指定 NodeJs 版本，也可直接设为 stable
 node_js:
-  - '10'
-before_install:
-  - npm i npminstall -g
-install:
-  - npminstall
+  - "stable"
+# 缓存依赖
+cache:
+  directories:
+  - node_modules
+# 设置需要监听的分支
+branches:
+  only:
+    - backend
+# 需要执行的脚本
 script:
-  - npm run ci
-after_script:
-  - npminstall codecov && codecov
+  - yarn build
