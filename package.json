@@ -40,13 +40,13 @@
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
-    "test:nowatch": "cross-env CI=true",
+    "build": "cross-env CI=true",
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
     "autod": "autod",
-    "prepublishOnly": "yarn test:nowatch"
+    "prepublishOnly": "yarn build"
   },
   "ci": {
     "version": "10"
