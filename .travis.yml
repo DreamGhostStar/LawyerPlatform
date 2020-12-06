@@ -15,5 +15,6 @@ addons:
   ssh_known_hosts: 
   - 106.14.174.206
 after_success:
+  - chmod 600 ~/.ssh/id_rsa
   - rm -rf root@106.14.174.206:/project/lawyer/*
   - scp -o stricthostkeychecking=no -r ./* root@106.14.174.206:/project/lawyer/*
