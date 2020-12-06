@@ -4,11 +4,6 @@ node_js:
 cache:
   directories:
   - node_modules
-<<<<<<< HEAD
-=======
-env:
-  - CI=true
->>>>>>> 50dfbd1... feat: 更新travis
 install:
 - npm install
 branches:
