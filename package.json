@@ -39,14 +39,13 @@
     "stop": "egg-scripts stop --title=egg-server-sequelize-project",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
-    "test": "npm run lint -- --fix && npm run test-local",
-    "build": "cross-env CI=true",
+    "test": "cross-env CI=true",
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
     "autod": "autod",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn test"
   },
   "ci": {
     "version": "10"
