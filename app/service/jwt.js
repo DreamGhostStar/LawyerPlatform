@@ -21,7 +21,7 @@ class JwtService extends Service {
    * @description 获取jwt生成的token
    * @param {Object} storeData 将要在token中存储的数据
    * @param {Object} options 额外设置
-   * @return {String} token字符串
+   * @return {string} token字符串
    * @memberof JwtService
    */
   async getToken(storeData, options) {

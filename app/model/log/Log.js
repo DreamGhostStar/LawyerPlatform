@@ -9,7 +9,7 @@ module.exports = app => {
       autoIncrement: true,
     },
     title: {
-      type: STRING,
+      type: STRING(32),
       allowNull: false,
     },
     content: {

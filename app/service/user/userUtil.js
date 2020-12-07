@@ -42,7 +42,7 @@ class UserUtilService extends Service {
       }
     }
     
-    return userData
+    return userData;
   }
 }
 

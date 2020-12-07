@@ -21,7 +21,7 @@ module.exports = app => {
       allowNull: false,
     },
     base_info: { // 案由
-      type: STRING,
+      type: STRING(128),
       allowNull: false,
     },
     detail_info: { // 详情

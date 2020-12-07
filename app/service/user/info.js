@@ -11,9 +11,9 @@ class InfoService extends Service {
    * @memberof UserService
    */
   async baseInfo(userID, ownUserID) {
-    const { ctx, service } = this
+    const { ctx, service } = this;
     let userInfo;
-    const targetUserID = userID === null ? userID : ownUserID
+    const targetUserID = userID === null ? userID : ownUserID;
     const userListInRedis = await service.redis.getUserInRedis();
     userListInRedis.forEach(user => {
       if (user.id === targetUserID) {
@@ -21,7 +21,7 @@ class InfoService extends Service {
         return;
       }
     });
-    const { name, avatar, lawyer_number } = userInfo
+    const { name, avatar, lawyer_number } = userInfo;
     return ctx.retrunInfo(0, { name, avatar, lawyer_number }, '');
   }
 
