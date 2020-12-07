@@ -16,7 +16,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1589345138749_9496';
 
   // add your middleware config here
-  config.middleware = [ 'jwtErr' ];
+  config.middleware = ['jwtErr'];
 
   config.jwtErr = {
     ignore(ctx) {
@@ -56,7 +56,7 @@ module.exports = appInfo => {
   };
 
   config.multipart = {
-    fileExtensions: [ '.docx', '.txt' ], // 增加对 apk 扩展名的文件支持
+    fileExtensions: ['.docx', '.txt'], // 增加对 apk 扩展名的文件支持
   };
 
   config.redis = { // 单个redis
@@ -75,7 +75,7 @@ module.exports = appInfo => {
   };
 
   // 错误处理
-  config.onerror= {
+  config.onerror = {
     all(err, ctx) {
       // 在此处定义针对所有响应类型的错误处理方法
       // 注意，定义了 config.all 之后，其他错误处理方法不会再生效
@@ -96,6 +96,48 @@ module.exports = appInfo => {
       // 一般来说，不需要特殊针对 jsonp 进行错误定义，jsonp 的错误处理会自动调用 json 错误处理，并包装成 jsonp 的响应格式
     },
   };
+
+  // 引入Op模块
+  const Op = require('sequelize').Op;
+  config.sequelize = {
+    // 使用默认运算符别名
+    operatorsAliases: {
+      $eq: Op.eq,
+      $ne: Op.ne,
+      $gte: Op.gte,
+      $gt: Op.gt,
+      $lte: Op.lte,
+      $lt: Op.lt,
+      $not: Op.not,
+      $in: Op.in,
+      $notIn: Op.notIn,
+      $is: Op.is,
+      $like: Op.like,
+      $notLike: Op.notLike,
+      $iLike: Op.iLike,
+      $notILike: Op.notILike,
+      $regexp: Op.regexp,
+      $notRegexp: Op.notRegexp,
+      $iRegexp: Op.iRegexp,
+      $notIRegexp: Op.notIRegexp,
+      $between: Op.between,
+      $notBetween: Op.notBetween,
+      $overlap: Op.overlap,
+      $contains: Op.contains,
+      $contained: Op.contained,
+      $adjacent: Op.adjacent,
+      $strictLeft: Op.strictLeft,
+      $strictRight: Op.strictRight,
+      $noExtendRight: Op.noExtendRight,
+      $noExtendLeft: Op.noExtendLeft,
+      $and: Op.and,
+      $or: Op.or,
+      $any: Op.any,
+      $all: Op.all,
+      $values: Op.values,
+      $col: Op.col
+    },
+  }
 
   // add your user config here
   const userConfig = {

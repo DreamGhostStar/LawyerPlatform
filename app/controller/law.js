@@ -54,6 +54,20 @@ class LawController extends Controller {
       ctx.body = res;
     }
   }
+
+  // 搜索案件
+  async getLawInfo() {
+    const { ctx, service } = this;
+    const query = ctx.query;
+    const title = query.title;
+    if (ctx.isNull(title)) {
+      ctx.status = 400;
+      ctx.body = ctx.retrunInfo(-1, '', '请求参数错误');
+    } else {
+      const res = await service.law.searchLaw.search(title);
+      ctx.body = res;
+    }
+  }
 }
 
 module.exports = LawController;

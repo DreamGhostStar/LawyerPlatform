@@ -38,6 +38,7 @@ module.exports = app => {
   // 案件相关
   router.get('/api/case/getList', controller.law.getLawList);
   router.get('/api/case', controller.law.getLawInfo);
+  router.get('/api/case/searchCase', controller.law.getLawInfo);
   router.put('/api/case', lawIdVerify, controller.law.alterLaw);
   router.put('/api/admin/case', lawIdVerify, controller.law.addLaw);
 
