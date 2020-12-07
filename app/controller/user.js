@@ -21,7 +21,7 @@ class UserController extends Controller {
   // 修改密码接口
   async modifyPassword() {
     const { ctx, service } = this;
-    const res = await service.user.modifyPassword(ctx.request.body.new_password);
+    const res = await service.user.modifyPassword.modifyPassword(ctx.request.body.new_password);
     ctx.body = res;
   }
 
@@ -32,7 +32,7 @@ class UserController extends Controller {
     ctx.body = res;
   }
 
-  // 获取用户信息
+  // 获取用户详细信息
   async getUserInfo() {
     const { ctx, service } = this;
     const jwtData = await service.jwt.getJWtData();
@@ -41,10 +41,25 @@ class UserController extends Controller {
       ctx.body = ctx.retrunInfo(-1, '', 'token错误');
     }
 
-    const res = await service.user.getUserInfo(jwtData.userID);
+    const res = await service.user.info.detailInfo(jwtData.userID);
     ctx.body = res;
   }
 
+  // 获取用户基本信息
+  async getBaseUserInfo() {
+    const { ctx, service } = this;
+    const query = ctx.query
+    const userID = query.userID
+    const jwtData = await service.jwt.getJWtData();
+    if (!jwtData) {
+      ctx.body = ctx.retrunInfo(-1, '', 'token错误');
+    }
+
+    const res = await service.user.info.baseInfo(userID, jwtData.userID);
+    ctx.body = res;
+  }
+
+  // 修改头像
   async modifyAvatar() {
     const { ctx, service } = this;
     const res = await service.reserveUrl.modifyAvatarUrl();

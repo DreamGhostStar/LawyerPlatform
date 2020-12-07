@@ -18,6 +18,7 @@ module.exports = app => {
 
   // 用户相关
   router.get('/api/user/getInfo', controller.user.getUserInfo);
+  router.get('/api/user/getBasicInfo', controller.user.getBaseUserInfo);
   router.post('/api/user/alterPassword', controller.user.modifyPassword);
   router.post('/api/user/reserveAvatarUrl', controller.user.modifyAvatar);
   router.post('/api/user/exit', controller.user.exit);
