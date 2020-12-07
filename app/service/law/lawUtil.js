@@ -71,12 +71,54 @@ class LawUtilService extends Service {
   }
 
   /**
-   * @description 获取案件具体信息
-   * @return {object} 返回信息
+   * @description status对照表
+   * @param {string} status status值
+   * @return {string} 返回status对应的中文值
    * @memberof LawUtilService
    */
-  async getLawInfo(){
+  async getLawStatus(status) {
+    const map = {
+      "in_office": "在办",
+      "end_office": '归档'
+    }
 
+    return map[status];
+  }
+
+  /**
+   * @description type对照表
+   * @param {string} type type值
+   * @return {string} 返回type对应的中文值
+   * @memberof LawUtilService
+   */
+  async getLawType(type) {
+    const map = {
+      "civil": "民事",
+      "criminal": '刑事',
+      "administrative": '行政',
+      "non_lawsuit": '非诉讼业务'
+    }
+
+    return map[type];
+  }
+
+  /**
+   * @description type对照表
+   * @param {string} audit type值
+   * @return {string} 返回type对应的中文值
+   * @memberof LawUtilService
+   */
+  async getLawAudit(audit) {
+    const map = {
+      "invest": "侦查",
+      "prosecute": '起诉',
+      "first_instance": '一审',
+      "second_instance": '二审',
+      "review": '再审',
+      "arbitrament": '仲裁'
+    }
+
+    return map[audit];
   }
 }
 

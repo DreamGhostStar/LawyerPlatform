@@ -1,4 +1,5 @@
 'use strict';
+// 代理词
 
 module.exports = app => {
   const { INTEGER, TEXT, STRING } = app.Sequelize;

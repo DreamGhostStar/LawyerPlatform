@@ -20,7 +20,11 @@ module.exports = app => {
       type: INTEGER,
       allowNull: false,
     },
-    base_info: { // 基本信息
+    base_info: { // 案由
+      type: STRING,
+      allowNull: false,
+    },
+    detail_info: { // 详情
       type: TEXT,
       allowNull: false,
     },

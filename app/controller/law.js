@@ -20,7 +20,7 @@ class LawController extends Controller {
 
     // 验证请求参数是否正确
     if ((!status && !isAll) || !page) {
-      return ctx.retrunInfo(-1, '', '请求参数错误');
+      ctx.body = ctx.retrunInfo(-1, '', '请求参数错误');
     }
 
     const res = await service.law.lawList.getLawList(isAll, status, page);
@@ -44,8 +44,15 @@ class LawController extends Controller {
   // 获取案件具体信息
   async getLawInfo() {
     const { ctx, service } = this;
-    const res = await service.law.lawUtil.getLawInfo();
-    ctx.body = res;
+    const query = ctx.query;
+    const caseID = query.caseID;
+    if (ctx.isNull(caseID)) {
+      ctx.status = 400;
+      ctx.body = ctx.retrunInfo(-1, '', '请求参数错误');
+    } else {
+      const res = await service.law.lawInfo.getLawInfo(caseID);
+      ctx.body = res;
+    }
   }
 }
 
