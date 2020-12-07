@@ -22,6 +22,7 @@ module.exports = app => {
   router.post('/api/user/alterPassword', controller.user.modifyPassword);
   router.post('/api/user/reserveAvatarUrl', controller.user.modifyAvatar);
   router.post('/api/user/exit', controller.user.exit);
+  router.get('/api/user/getCardInfo', controller.user.getCardInfo);
 
   // 金额相关
   router.get('/api/user/salaryList', controller.salary.salaryList);

@@ -65,6 +65,17 @@ class UserController extends Controller {
     const res = await service.reserveUrl.modifyAvatarUrl();
     ctx.body = res;
   }
+
+  // 修改头像
+  async getCardInfo() {
+    const { ctx, service } = this;
+    const jwtData = await service.jwt.getJWtData();
+    if (!jwtData) {
+      ctx.body = ctx.retrunInfo(-1, '', 'token错误');
+    }
+    const res = await service.user.card.getInfo(jwtData.userID);
+    ctx.body = res;
+  }
 }
 
 module.exports = UserController;

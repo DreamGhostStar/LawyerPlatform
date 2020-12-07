@@ -9,7 +9,7 @@ class LoginService extends Service {
     const verifyCode = ctx.session.noteVerifyCode;
 
     if (phoneNumber === verifyCode.phoneNumber && verify_code === verifyCode.verifyCode) {
-      const userData = await service.user.getUserDataByPhone(phoneNumber);
+      const userData = await service.user.userUtil.getUserDataByPhone(phoneNumber);
 
       // 生成 token 的方式
       const token = await service.jwt.getToken({
@@ -27,7 +27,7 @@ class LoginService extends Service {
   async inPassword(query) {
     const { ctx, service } = this;
     const { phoneNumber, password } = query;
-    const userData = await service.user.getUserDataByPhone(phoneNumber);
+    const userData = await service.user.userUtil.getUserDataByPhone(phoneNumber);
 
     if (userData.password !== password) {
       return ctx.retrunInfo(1, '', '用户名或密码错误');
