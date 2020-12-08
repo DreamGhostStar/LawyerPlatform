@@ -76,6 +76,17 @@ class UserController extends Controller {
     const res = await service.user.card.getInfo(jwtData.userID);
     ctx.body = res;
   }
+
+  // 获取通知消息列表
+  async getMessageList() {
+    const { ctx, service } = this;
+    const jwtData = await service.jwt.getJWtData();
+    if (!jwtData) {
+      ctx.body = ctx.retrunInfo(-1, '', 'token错误');
+    }
+    const res = await service.message.getList.getMessageList(jwtData.userID);
+    ctx.body = res;
+  }
 }
 
 module.exports = UserController;
