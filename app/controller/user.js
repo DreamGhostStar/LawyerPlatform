@@ -101,6 +101,34 @@ class UserController extends Controller {
       ctx.body = res;
     }
   }
+
+  // 修改消息的状态
+  async alterMessageStatus() {
+    const { ctx, service } = this;
+    const query = ctx.request.body
+    const { informID, isWatched } = query;
+    if (ctx.isNull(informID) || ctx.isNull(isWatched)) {
+      ctx.status = 400;
+      ctx.body = ctx.retrunInfo(-1, '', '参数错误')
+    } else {
+      const res = await service.message.alterStatus.alterStatus(informID, isWatched);
+      ctx.body = res;
+    }
+  }
+
+  // 修改消息的状态
+  async removeMessage() {
+    const { ctx, service } = this;
+    const query = ctx.request.body
+    const { informID } = query;
+    if (ctx.isNull(informID)) {
+      ctx.status = 400;
+      ctx.body = ctx.retrunInfo(-1, '', '参数错误')
+    } else {
+      const res = await service.message.removeMessage.removeMessage(informID);
+      ctx.body = res;
+    }
+  }
 }
 
 module.exports = UserController;
