@@ -49,6 +49,10 @@ module.exports = app => {
       type: STRING(32),
       allowNull: true,
     },
+    lawyer_scan_image: {
+      type: STRING(32),
+      allowNull: true,
+    },
     lawyer_office_id: { // 所属律师事务所ID
       type: INTEGER,
       allowNull: true,

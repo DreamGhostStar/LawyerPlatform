@@ -33,7 +33,7 @@ class RedisService extends Service {
     const { service } = this;
     let userListInRedis = await service.cache.get('user'); // 调用缓存
     if (!userListInRedis) {
-      userListInRedis = await service.user.getUsersInDataBase();
+      userListInRedis = await service.user.userUtil.getUsersInDataBase();
       await service.cache.set('user', userListInRedis);
     }
 
@@ -46,7 +46,7 @@ class RedisService extends Service {
    */
   async updateUserInRedis() {
     const { service } = this;
-    const userListInRedis = await service.user.getUsersInDataBase();
+    const userListInRedis = await service.user.userUtil.getUsersInDataBase();
     await service.cache.set('user', userListInRedis);
   }
 

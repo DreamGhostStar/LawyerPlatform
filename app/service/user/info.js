@@ -49,9 +49,7 @@ class InfoService extends Service {
       sex: userInfo.sex,
       age: userInfo.age,
       phoneNumber: userInfo.phone_number,
-      lawyer_number: userInfo.lawyer_number, // 律师证号
-      lawyer_office_address: userInfo.lawyer_office.lawyer_office_address, // 律师所地址
-      lawyer_office_name: userInfo.lawyer_office.lawyer_office_name,
+      lawyer_scan_Image: userInfo.lawyer_scan_image,
       driver_scan_Image: userInfo.driver_scan_image, // 驾驶证扫描件
     };
 
