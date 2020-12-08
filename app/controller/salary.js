@@ -3,6 +3,7 @@
 const Controller = require('egg').Controller;
 
 class SalaryController extends Controller {
+  // 获取收入列表
   async salaryList() {
     const { ctx, service } = this;
     const res = await service.salary.getSalaryList();

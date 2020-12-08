@@ -5,7 +5,7 @@ const Service = require('egg').Service;
 class SalaryService extends Service {
   /**
    * @description 查询当前用户的收入列表
-   * @return {Array} 收入数组
+   * @return {object[]} 收入数组
    * @memberof SalaryService
    */
   async getSalaryList() {
@@ -21,7 +21,6 @@ class SalaryService extends Service {
     if (!isAll && typeof year === 'undefined') {
       return ctx.retrunInfo(-1, '', '缺少year参数');
     }
-    let salaryList = [];
 
     const typeContrast = { // 用户类型字典
       host: '主办人',
@@ -30,48 +29,62 @@ class SalaryService extends Service {
 
     const userHostList = await ctx.model.User.User.findOne({
       include: [
-        {
-          model: ctx.model.Law.Law,
-          attributes: [ 'id', 'money', 'host_assist_scale' ],
-        },
-      ],
+      {
+        model: ctx.model.Law.Law,
+        attributes: ['id', 'money', 'host_assist_scale'],
+      }, ],
       where: {
         id: jwtData.userID,
       },
-      attributes: [ 'id' ],
+      attributes: ['id'],
     });
 
+    const salaryMap = new Map();
     userHostList.laws.forEach(law => {
+      const item = {
+        case_id: law.id,
+        identity: typeContrast[law.user_salary.user_type],
+        generalSalary: law.money,
+        salary: law.user_salary.value,
+        ratio: law.user_salary.scale,
+      };
       if (isAll) {
-        salaryList.push({
-          case_id: law.id,
-          identity: typeContrast[law.user_salary.user_type],
-          generalSalary: law.money,
-          salary: law.user_salary.value,
-          ratio: law.user_salary.scale,
-        });
+        if (salaryMap.has(law.user_salary.year)) {
+          salaryMap.set(law.user_salary.year, [...salaryMap.get(law.user_salary.year), item])
+        } else {
+          salaryMap.set(law.user_salary.year, [item])
+        }
       } else {
         if (year === law.user_salary.year) {
-          salaryList.push({
-            case_id: law.id,
-            identity: typeContrast[law.user_salary.user_type],
-            generalSalary: law.money,
-            salary: law.user_salary.value,
-            ratio: law.user_salary.scale,
-          });
+          if (salaryMap.has(law.user_salary.year)) {
+            salaryMap.set(law.user_salary.year, [...salaryMap.get(law.user_salary.year), item])
+          } else {
+            salaryMap.set(law.user_salary.year, [item])
+          }
         }
       }
     });
 
-    salaryList = await this.sortSalaryList(salaryList);
+    const res = [];
+    for (let key of salaryMap.keys()) {
+      let sum = 0; // 每年的总收入
+      for (let i = 0; i < salaryMap.get(key).length; i++) {
+        sum += parseFloat(salaryMap.get(key)[i].salary)
+      }
+      res.push({
+        year: key,
+        year_salary: sum,
+        case_list: await service.salary.sortSalaryList(salaryMap.get(key))
+      })
+    }
 
-    return ctx.retrunInfo(0, salaryList, '');
+    return ctx.retrunInfo(0, res, '');
   }
 
   /**
    * @description 将收入数组进行排序
-   * @param {Array} salaryList 收入数组
-   * @return {Array} 排序后的收入数组
+   * @param {object[]} salaryList 收入数组
+   * @return {object[]} 排序后的收入数组
    * @memberof SalaryService
    */
   async sortSalaryList(salaryList) {
