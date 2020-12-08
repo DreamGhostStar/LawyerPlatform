@@ -24,6 +24,7 @@ module.exports = app => {
   router.post('/api/user/exit', controller.user.exit);
   router.get('/api/user/getCardInfo', controller.user.getCardInfo);
   router.get('/api/user/getInformList', controller.user.getMessageList);
+  router.get('/api/user/getInformDetail', controller.user.getMessageDetail);
 
   // 金额相关
   router.get('/api/user/salaryList', controller.salary.salaryList);

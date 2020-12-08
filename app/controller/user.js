@@ -87,6 +87,20 @@ class UserController extends Controller {
     const res = await service.message.getList.getMessageList(jwtData.userID);
     ctx.body = res;
   }
+
+  // 获取通知消息详情
+  async getMessageDetail() {
+    const { ctx, service } = this;
+    const query = ctx.query
+    const informID = query.informID;
+    if (ctx.isNull(informID)) {
+      ctx.status = 400;
+      ctx.body = ctx.retrunInfo(-1, '', '参数错误')
+    } else {
+      const res = await service.message.getDetail.getMessageDetail(informID);
+      ctx.body = res;
+    }
+  }
 }
 
 module.exports = UserController;
