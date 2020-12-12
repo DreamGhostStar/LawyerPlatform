@@ -136,6 +136,20 @@ class UserController extends Controller {
     const res = await service.user.getUnit.getUnit();
     ctx.body = res;
   }
+
+  // 获取联系人列表
+  async getPhone() {
+    const { ctx, service } = this;
+    const query = ctx.query
+    const { unit_id } = query;
+    if (ctx.isNull(unit_id)) {
+      ctx.status = 400;
+      ctx.body = ctx.retrunInfo(-1, '', '参数错误')
+    } else {
+      const res = await service.user.getPhone.getPhoneList(unit_id);
+      ctx.body = res;
+    }
+  }
 }
 
 module.exports = UserController;
