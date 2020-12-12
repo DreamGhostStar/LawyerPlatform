@@ -129,6 +129,13 @@ class UserController extends Controller {
       ctx.body = res;
     }
   }
+
+  // 获取单位
+  async getUnit() {
+    const { ctx, service } = this;
+    const res = await service.user.getUnit.getUnit();
+    ctx.body = res;
+  }
 }
 
 module.exports = UserController;

@@ -27,6 +27,7 @@ module.exports = app => {
   router.get('/api/user/getInformDetail', controller.user.getMessageDetail);
   router.post('/api/user/fixInformState', controller.user.alterMessageStatus);
   router.delete('/api/user/deleteInform', controller.user.removeMessage);
+  router.get('/api/user/getUnitList', controller.user.getUnit);
 
   // 金额相关
   router.get('/api/user/salaryList', controller.salary.salaryList);
