@@ -46,6 +46,7 @@ module.exports = app => {
   router.get('/api/case/searchCase', controller.law.getLawInfo);
   router.put('/api/case', lawIdVerify, controller.law.alterLaw);
   router.put('/api/admin/case', lawIdVerify, controller.law.addLaw);
+  router.put('/api/case/askForFinish', controller.law.finishLaw);
 
   // 日志相关
   router.post('/api/log/new', controller.log.create);
@@ -59,4 +60,6 @@ module.exports = app => {
   router.get('/api/schedule/getList', controller.schedule.getScheduleList);
   router.post('/api/schedule/modify', scheduleIdVerify, controller.schedule.modify);
   router.post('/api/schedule/delete', scheduleIdVerify, controller.schedule.delete);
+
+  router.get('/api/test', controller.home.test);
 };

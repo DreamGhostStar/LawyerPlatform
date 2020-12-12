@@ -21,7 +21,6 @@ const config = new qiniu.conf.Config();
 config.zone = qiniu.zone.Zone_z0;
 
 class UploadFileService extends Service {
-
   /**
    * @description 上传文件（图片）到七牛云
    * @return {object} 返回信息

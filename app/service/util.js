@@ -1,6 +1,8 @@
 'use strict';
 
 const Service = require('egg').Service;
+const mammoth = require("mammoth");
+const path = require('path')
 
 class UtilService extends Service {
   /**
@@ -46,6 +48,17 @@ class UtilService extends Service {
 
   async numbersCloseEnoughToEqual(n1, n2) {
     return Math.abs(n1 - n2) < Number.EPSILON;
+  }
+
+  // 获取word文本
+  async test(){
+    mammoth.convertToHtml({ path: path.join(__dirname, "../public/word/中文文件名.docx") })
+      .then(function (result) {
+        // var html = result.value; // The generated HTML
+        // var messages = result.messages; // Any messages, such as warnings during conversion
+        console.log(result.value)
+      })
+      .done();
   }
 }
 

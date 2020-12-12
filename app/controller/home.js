@@ -38,6 +38,13 @@ class HomeController extends Controller {
     const res = await service.uploadFile.uploadFiles();
     ctx.body = res;
   }
+
+  // 测试接口
+  async test() {
+    const { ctx, service } = this;
+    const res = await service.util.test();
+    ctx.body = res;
+  }
 }
 
 module.exports = HomeController;

@@ -40,6 +40,10 @@ module.exports = app => {
       type: INTEGER,
       allowNull: true,
     },
+    result_request_id: { // 归档请求ID
+      type: INTEGER,
+      allowNull: true,
+    },
     audit_user_id: {
       type: INTEGER,
       allowNull: true,
@@ -107,6 +111,9 @@ module.exports = app => {
 
     // 一对一，案件有一个案件状态
     app.model.Law.Law.belongsTo(app.model.Law.LawAudit, { foreignKey: 'trial_level_id' });
+
+    // 一对一，案件有一个归档请求
+    app.model.Law.Law.belongsTo(app.model.Law.ResultRequest, { foreignKey: 'result_request_id' });
   };
 
   return Law;

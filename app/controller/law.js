@@ -68,6 +68,20 @@ class LawController extends Controller {
       ctx.body = res;
     }
   }
+
+  // 申请结案
+  async finishLaw() {
+    const { ctx, service } = this;
+    const query = ctx.request.body;
+    const { caseID, agency_word, finish_word, reling_request } = query
+    if (ctx.isNull(caseID) || ctx.isNull(finish_word) || ctx.isNull(reling_request)) {
+      ctx.status = 400;
+      ctx.body = ctx.retrunInfo(-1, '', '请求参数错误');
+    } else {
+      const res = await service.law.finshLaw.finishLaw(caseID, agency_word, finish_word, reling_request);
+      ctx.body = res;
+    }
+  }
 }
 
 module.exports = LawController;
