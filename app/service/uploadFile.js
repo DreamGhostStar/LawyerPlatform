@@ -44,11 +44,12 @@ class UploadFileService extends Service {
           putExtra,
           (respErr, respBody, respInfo) => {
             if (respErr) {
-              reject(new Error('上传失败'));
+              reject(new Error(respErr.message));
             }
             if (respInfo.statusCode === 200) {
               resolve(imageUrl + respBody.key);
             } else {
+              ctx.status = respInfo.statusCode
               reject(new Error('上传失败'));
             }
 
