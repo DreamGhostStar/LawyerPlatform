@@ -47,7 +47,7 @@ class UploadFileService extends Service {
               reject(new Error(respErr.message));
             }
             if (respInfo.statusCode === 200) {
-              resolve(imageUrl + respBody.key);
+              resolve(imageUrl + '/' + respBody.key);
             } else {
               ctx.status = respInfo.statusCode
               reject(new Error('上传失败'));
