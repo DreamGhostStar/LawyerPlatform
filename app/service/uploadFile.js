@@ -50,7 +50,8 @@ class UploadFileService extends Service {
               resolve(imageUrl + '/' + respBody.key);
             } else {
               ctx.status = respInfo.statusCode
-              reject(new Error(`${respInfo.message}，上传失败`));
+              ctx.logger.error(new Error(respInfo)) // 打印日志
+              reject(new Error(`上传失败`));
             }
 
             fs.unlinkSync(localFilePath); // 上传之后删除本地文件
