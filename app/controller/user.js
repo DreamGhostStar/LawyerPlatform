@@ -150,6 +150,26 @@ class UserController extends Controller {
       ctx.body = res;
     }
   }
+
+  // 修改用户信息
+  async alterUserInfo() {
+    const { ctx, service } = this;
+    const query = ctx.request.body
+    const { userID, name, phoneNumber, lawyer_number, weixin_number } = query;
+    if (ctx.isNull(name, phoneNumber, lawyer_number, weixin_number, userID)) {
+      ctx.status = 400;
+      ctx.body = ctx.retrunInfo(-1, '', '参数错误')
+    } else {
+      const res = await service.user.alterInfo.alterUserInfo(
+        userID,
+        name,
+        phoneNumber,
+        lawyer_number,
+        weixin_number
+      );
+      ctx.body = res;
+    }
+  }
 }
 
 module.exports = UserController;

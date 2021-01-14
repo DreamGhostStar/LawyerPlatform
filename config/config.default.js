@@ -16,7 +16,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1589345138749_9496';
 
   // add your middleware config here
-  config.middleware = ['jwtErr'];
+  config.middleware = ['jwtErr', 'adminVerify'];
 
   config.jwtErr = {
     ignore(ctx) {
@@ -27,6 +27,17 @@ module.exports = appInfo => {
       const reg = /^\/api(\/login|\/public\/verificationCode)/;
 
       return reg.test(url);
+    },
+    secret: '123456', // 自定义 token 的加密条件字符串
+  };
+
+  config.adminVerify = {
+    ignore(ctx) {
+      const url = ctx.request.url;
+      const reg = /^\/api\/admin/;
+
+      // true未避开，false为检测
+      return !reg.test(url);
     },
     secret: '123456', // 自定义 token 的加密条件字符串
   };

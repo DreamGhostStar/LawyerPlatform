@@ -44,6 +44,39 @@ class UserUtilService extends Service {
     
     return userData;
   }
+
+  /**
+   * @description 查看是否是管理员登录
+   * @param {number} userID 用户ID
+   * @return {object} 是否是管理员
+   * @memberof UserUtilService
+   */
+  async isAdmin(userID) {
+    const { service } = this;
+    const userListInRedis = await service.redis.getUserInRedis();
+
+    for (let index = 0; index < userListInRedis.length; index++) {
+      const userItem = userListInRedis[index];
+      if (userItem.id === userID) {
+        if(userItem.jurisdiction.id === 2){
+          return {
+            res: true,
+            message: "管理员身份"
+          }
+        }
+
+        return {
+          res: false,
+          message: "该用户不是管理员"
+        }
+      }
+    }
+    
+    return {
+      res: false,
+      message: "未找到该用户"
+    };
+  }
 }
 
 module.exports = UserUtilService;

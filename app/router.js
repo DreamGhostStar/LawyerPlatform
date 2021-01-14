@@ -14,7 +14,7 @@ module.exports = app => {
 
   // 登录相关
   router.post('/api/login/password', imageVerifyCode, verifyPhoneNumber, controller.user.loginInPassword);
-  router.post('/api/login/note', noteVerifyCode, verifyPhoneNumber, verifyPhoneNumber, controller.user.loginInNote);
+  router.post('/api/login/note', noteVerifyCode, verifyPhoneNumber, controller.user.loginInNote);
 
   // 用户相关
   router.get('/api/user/getInfo', controller.user.getUserInfo);
@@ -62,6 +62,9 @@ module.exports = app => {
   router.get('/api/schedule/getList', controller.schedule.getScheduleList);
   router.post('/api/schedule/modify', scheduleIdVerify, controller.schedule.modify);
   router.post('/api/schedule/delete', scheduleIdVerify, controller.schedule.delete);
+
+  // 管理员相关
+  router.put('/api/admin/user', controller.user.alterUserInfo);
 
   router.get('/api/test', controller.home.test);
 };
