@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = options => {
-  return async function jwtErr(ctx, next) {
+  return async function adminVerify(ctx, next) {
     const token = ctx.request.header.authorization.replace('Bearer ', '');
     if (token) {
       try {

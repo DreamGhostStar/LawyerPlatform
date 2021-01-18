@@ -170,6 +170,42 @@ class UserController extends Controller {
       ctx.body = res;
     }
   }
+
+  // 生成账号
+  async addUser() {
+    const { ctx, service } = this;
+    const query = ctx.request.body
+    const {
+      identify,
+      lawyerNumber,
+      identifyNumber,
+      name,
+      avatar,
+      qualificationsNumber,
+      phone,
+      startTime,
+      age,
+      sex
+    } = query;
+    if (ctx.isNull({ ...query })) {
+      ctx.status = 400;
+      ctx.body = ctx.retrunInfo(-1, '', '参数错误')
+    } else {
+      const res = await service.user.addUser.addUser(
+        identify,
+        lawyerNumber,
+        identifyNumber,
+        name,
+        avatar,
+        qualificationsNumber,
+        phone,
+        startTime,
+        age,
+        sex
+      );
+      ctx.body = res;
+    }
+  }
 }
 
 module.exports = UserController;

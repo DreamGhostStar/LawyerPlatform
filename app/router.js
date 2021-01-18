@@ -11,6 +11,10 @@ module.exports = app => {
   const lawIdVerify = middleware.lawIdVerify(); // 验证案件ID是否传输正确的中间件
   const logIdVerify = middleware.logIdVerify(); // 验证日志ID是否传输正确的中间件
   const scheduleIdVerify = middleware.scheduleIdVerify(); // 验证日志ID是否传输正确的中间件
+  const addPhoneVerify = middleware.addPhoneVerify(); // 增加时验证电话是否存在中间件
+  const addIdentifyVerify = middleware.addIdentifyVerify(); // 增加时验证身份证号是否存在中间件
+  const addLawyerNumberVerify = middleware.addLawyerNumberVerify(); // 增加时验证律师证号是否存在中间件
+  const addQualificationsNumber = middleware.addQualificationsNumber(); // 增加时验证律师资格证号是否存在中间件
 
   // 登录相关
   router.post('/api/login/password', imageVerifyCode, verifyPhoneNumber, controller.user.loginInPassword);
@@ -64,7 +68,15 @@ module.exports = app => {
   router.post('/api/schedule/delete', scheduleIdVerify, controller.schedule.delete);
 
   // 管理员相关
-  router.put('/api/admin/user', controller.user.alterUserInfo);
+  router.put('/api/admin/user', controller.user.alterUserInfo); // 修改用户信息
+  router.post(
+    '/api/admin/user',
+    addLawyerNumberVerify,
+    addPhoneVerify,
+    addIdentifyVerify,
+    addQualificationsNumber,
+    controller.user.addUser
+  ); // 生成账号
 
   router.get('/api/test', controller.home.test);
 };

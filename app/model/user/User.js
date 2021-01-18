@@ -32,6 +32,7 @@ module.exports = app => {
     phone_number: {
       type: STRING(32),
       allowNull: true,
+      unique: true
     },
     name: { // 真实姓名
       type: STRING(32),
@@ -60,8 +61,22 @@ module.exports = app => {
     update_time: {
       type: STRING(32),
       allowNull: true,
+      defaultValue: new Date().getTime()
     },
     create_time: {
+      type: STRING(32),
+      allowNull: false,
+      defaultValue: new Date().getTime()
+    },
+    identify_number: {
+      type: STRING(32),
+      allowNull: false,
+    },
+    law_number: {
+      type: STRING(32),
+      allowNull: false,
+    },
+    start_time: {
       type: STRING(32),
       allowNull: false,
     },
@@ -71,7 +86,7 @@ module.exports = app => {
     freezeTableName: true,
   });
 
-  User.associate = function() {
+  User.associate = function () {
     // 一个用户包含一个权限，一个权限包含多个用户（一对多）
     app.model.User.User.belongsTo(app.model.User.Jurisdiction, { foreignKey: 'jurisdiction_id' });
 
