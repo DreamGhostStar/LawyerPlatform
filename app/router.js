@@ -79,6 +79,7 @@ module.exports = app => {
   ); // 生成账号
   router.put('/api/admin/user/identify', controller.user.alterUserIdentity); // 修改用户身份
   router.get('/api/admin/user/tip', controller.user.getUserInDatabase); // 查找数据库中合适用户
+  router.get('/api/admin/userList', controller.user.getUserList); // 获取用户列表
 
   router.get('/api/test', controller.home.test);
 };

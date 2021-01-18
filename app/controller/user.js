@@ -238,6 +238,13 @@ class UserController extends Controller {
       ctx.body = res;
     }
   }
+
+  // 获取用户列表
+  async getUserList() {
+    const { ctx, service } = this;
+    const res = await service.user.info.getUserList();
+    ctx.body = res;
+  }
 }
 
 module.exports = UserController;

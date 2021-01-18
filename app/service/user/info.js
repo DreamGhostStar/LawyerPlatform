@@ -78,6 +78,35 @@ class InfoService extends Service {
     })
     return ctx.retrunInfo(0, res, '');
   }
+
+  /**
+   * @description 获取用户列表
+   * @return {object} 返回信息
+   * @memberof UserService
+   */
+  async getUserList() {
+    const { ctx, service } = this;
+    const jwtData = await service.jwt.getJWtData()
+    const userID = jwtData.userID;
+    const map = {
+      'administrator': "管理员",
+      'common_lawyer': "律师"
+    }
+    const userListInRedis = await service.redis.getUserInRedis();
+    const res = userListInRedis.map((userItem)=>{
+      return {
+        id: userItem.id,
+        isMy: userItem.id === userID,
+        avatar: userItem.avatar,
+        name: userItem.name,
+        identify: {
+          id: userItem.jurisdiction.id,
+          value: map[userItem.jurisdiction.value]
+        },
+      }
+    })
+    return ctx.retrunInfo(0, res, '');
+  }
 }
 
 module.exports = InfoService;
