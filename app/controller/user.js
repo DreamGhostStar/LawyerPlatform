@@ -245,6 +245,20 @@ class UserController extends Controller {
     const res = await service.user.info.getUserList();
     ctx.body = res;
   }
+
+  // 管理员获取用户详细信息
+  async adminGetUserDetail() {
+    const { ctx, service } = this;
+    const query = ctx.query
+    const { userID } = query;
+    if (ctx.isNull(userID)) {
+      ctx.status = 400;
+      ctx.body = ctx.retrunInfo(-1, '', '参数错误')
+    } else {
+      const res = await service.user.info.adminGetUserDetail(parseInt(userID));
+      ctx.body = res;
+    }
+  }
 }
 
 module.exports = UserController;
