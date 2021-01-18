@@ -55,6 +55,29 @@ class InfoService extends Service {
 
     return ctx.retrunInfo(0, resUserInfo, '');
   }
+
+  /**
+   * @description 获取数据库中合适用户
+   * @param {string} value 输入的值
+   * @return {object} 返回信息
+   * @memberof UserService
+   */
+  async getUserInDatabase(value) {
+    const { ctx } = this;
+    let res = []
+    const selectUserList = await ctx.model.User.User.findAll({
+      where: {
+        name: { $like: `%${value}%` }
+      }
+    });
+    res = selectUserList.map((userItem)=>{
+      return {
+        id: userItem.id,
+        value: userItem.name
+      }
+    })
+    return ctx.retrunInfo(0, res, '');
+  }
 }
 
 module.exports = InfoService;

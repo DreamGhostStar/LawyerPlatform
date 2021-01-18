@@ -224,6 +224,20 @@ class UserController extends Controller {
       ctx.body = res;
     }
   }
+
+  // 查找数据库中相关用户
+  async getUserInDatabase() {
+    const { ctx, service } = this;
+    const query = ctx.query
+    const { value } = query;
+    if (ctx.isNull(value)) {
+      ctx.status = 400;
+      ctx.body = ctx.retrunInfo(-1, '', '参数错误')
+    } else {
+      const res = await service.user.info.getUserInDatabase(value);
+      ctx.body = res;
+    }
+  }
 }
 
 module.exports = UserController;
