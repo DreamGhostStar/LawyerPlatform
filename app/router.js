@@ -77,6 +77,7 @@ module.exports = app => {
     addQualificationsNumber,
     controller.user.addUser
   ); // 生成账号
+  router.put('/api/admin/user/identify', controller.user.alterUserIdentity); // 修改用户身份
 
   router.get('/api/test', controller.home.test);
 };

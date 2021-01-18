@@ -156,7 +156,7 @@ class UserController extends Controller {
     const { ctx, service } = this;
     const query = ctx.request.body
     const { userID, name, phoneNumber, lawyer_number, weixin_number } = query;
-    if (ctx.isNull(name, phoneNumber, lawyer_number, weixin_number, userID)) {
+    if (ctx.isNull(userID, name, phoneNumber, lawyer_number, weixin_number)) {
       ctx.status = 400;
       ctx.body = ctx.retrunInfo(-1, '', '参数错误')
     } else {
@@ -187,7 +187,8 @@ class UserController extends Controller {
       age,
       sex
     } = query;
-    if (ctx.isNull({ ...query })) {
+    if (ctx.isNull(identify, lawyerNumber, identifyNumber,
+        name, avatar, qualificationsNumber, startTime, age, sex)) {
       ctx.status = 400;
       ctx.body = ctx.retrunInfo(-1, '', '参数错误')
     } else {
@@ -202,6 +203,23 @@ class UserController extends Controller {
         startTime,
         age,
         sex
+      );
+      ctx.body = res;
+    }
+  }
+
+  // 修改用户身份
+  async alterUserIdentity() {
+    const { ctx, service } = this;
+    const query = ctx.request.body
+    const { userID, identifyID } = query;
+    if (ctx.isNull(userID, identifyID)) {
+      ctx.status = 400;
+      ctx.body = ctx.retrunInfo(-1, '', '参数错误')
+    } else {
+      const res = await service.user.alterInfo.alterUserIdentity(
+        userID,
+        identifyID
       );
       ctx.body = res;
     }
