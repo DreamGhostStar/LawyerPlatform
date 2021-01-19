@@ -68,6 +68,7 @@ module.exports = app => {
   router.post('/api/schedule/delete', scheduleIdVerify, controller.schedule.delete);
 
   // 管理员相关
+  // 用户相关
   router.put('/api/admin/user', controller.user.alterUserInfo); // 修改用户信息
   router.post(
     '/api/admin/user',
@@ -81,6 +82,7 @@ module.exports = app => {
   router.get('/api/admin/user/tip', controller.user.getUserInDatabase); // 查找数据库中合适用户
   router.get('/api/admin/userList', controller.user.getUserList); // 获取用户列表
   router.get('/api/admin/user', controller.user.adminGetUserDetail); // 管理员获取用户详细信息
+  router.put('/api/admin/user/password', controller.user.resetPassword); // 重置用户密码
 
   router.get('/api/test', controller.home.test);
 };

@@ -259,6 +259,20 @@ class UserController extends Controller {
       ctx.body = res;
     }
   }
+
+  // 管理员获取用户详细信息
+  async resetPassword() {
+    const { ctx, service } = this;
+    const query = ctx.request.body
+    const { userID, password } = query;
+    if (ctx.isNull(userID, password)) {
+      ctx.status = 400;
+      ctx.body = ctx.retrunInfo(-1, '', '参数错误')
+    } else {
+      const res = await service.user.alterInfo.resetPassword(parseInt(userID), password);
+      ctx.body = res;
+    }
+  }
 }
 
 module.exports = UserController;
