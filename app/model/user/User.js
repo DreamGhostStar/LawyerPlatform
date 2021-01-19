@@ -94,7 +94,7 @@ module.exports = app => {
     app.model.User.User.belongsTo(app.model.User.LawyerOffice, { foreignKey: 'lawyer_office_id' });
 
     // 一个用户有多个金额（一对多）
-    // app.model.User.User.hasMany(app.model.User.UserSalary, { foreignKey: 'user_id' });
+    app.model.User.User.hasMany(app.model.User.UserSalary, { foreignKey: 'user_id' });
     app.model.User.User.belongsToMany(app.model.Law.Law, {
       through: app.model.User.UserSalary,
       foreignKey: 'user_id',

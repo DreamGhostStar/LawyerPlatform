@@ -84,5 +84,8 @@ module.exports = app => {
   router.get('/api/admin/user', controller.user.adminGetUserDetail); // 管理员获取用户详细信息
   router.put('/api/admin/user/password', controller.user.resetPassword); // 重置用户密码
 
+  // 收入相关
+  router.get('/api/admin/salary/user', controller.salary.getUserInfo); // 收入页面获取用户信息
+
   router.get('/api/test', controller.home.test);
 };

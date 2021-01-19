@@ -2,7 +2,7 @@
 
 const Service = require('egg').Service;
 
-class SalaryService extends Service {
+class GetSalaryListService extends Service {
   /**
    * @description 查询当前用户的收入列表
    * @return {object[]} 收入数组
@@ -74,7 +74,7 @@ class SalaryService extends Service {
       res.push({
         year: key,
         year_salary: sum,
-        case_list: await service.salary.sortSalaryList(salaryMap.get(key))
+        case_list: await service.salary.getSalaryList.sortSalaryList(salaryMap.get(key))
       })
     }
 
@@ -103,4 +103,4 @@ class SalaryService extends Service {
   }
 }
 
-module.exports = SalaryService;
+module.exports = GetSalaryListService;
