@@ -86,6 +86,7 @@ module.exports = app => {
 
   // 收入相关
   router.get('/api/admin/salary/user', controller.salary.getUserInfo); // 收入页面获取用户信息
+  router.get('/api/admin/salary/list', controller.salary.getUserSalaryList); // 收入页面获取用户信息
 
   router.get('/api/test', controller.home.test);
 };

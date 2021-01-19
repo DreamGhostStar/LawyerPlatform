@@ -15,8 +15,16 @@ class SalaryController extends Controller {
     const { ctx, service } = this;
     const query = ctx.query;
     const { userID } = query
-    console.log(userID)
     const res = await service.salary.getUserInfo.getUserInfo(parseInt(userID));
+    ctx.body = res;
+  }
+
+  // 获取用户收入列表
+  async getUserSalaryList() {
+    const { ctx, service } = this;
+    const query = ctx.query;
+    const { userID } = query
+    const res = await service.salary.getUserSalaryList.getUserSalaryList(parseInt(userID));
     ctx.body = res;
   }
 }
