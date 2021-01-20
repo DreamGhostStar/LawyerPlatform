@@ -93,5 +93,11 @@ module.exports = app => {
   router.get('/api/admin/case', controller.law.adminGetLawInfo); // 管理员获取案件具体信息
   router.get('/api/admin/case/list', controller.law.adminGetLawList); // 管理员获取案件列表
 
+  // 日常电话相关
+  router.post('/api/admin/unit', controller.phone.add); // 增加日常电话或单位
+  router.delete('/api/admin/unit', controller.phone.remove); // 删除日常电话或单位
+  router.put('/api/admin/unit', controller.phone.alter); // 修改日常电话或单位
+  router.get('/api/admin/unit', controller.phone.get); // 获取日常电话或单位
+
   router.get('/api/test', controller.home.test);
 };
