@@ -34,6 +34,39 @@ class LawController extends Controller {
     ctx.body = res;
   }
 
+  // 管理员修改案件
+  async adminAlterLaw() {
+    const { ctx, service } = this;
+    const query = ctx.request.body;
+    const {
+      id,
+      caseNumber,
+      accuser,
+      defendant,
+      caseTrial,
+      caseType,
+      caseReason,
+      detail,
+      agency,
+      host,
+      assiant,
+      name,
+      create_time,
+      status_id,
+      money
+    } = query
+    if (ctx.isNull(id, caseNumber, accuser, defendant, caseTrial, caseType, caseReason, detail,
+        agency, status_id, host, assiant, name, create_time, money)) {
+      ctx.status = 400;
+      ctx.body = ctx.retrunInfo(-1, '', '传递参数错误')
+    } else {
+      const res = await service.law.adminAlterLaw.adminAlterLaw(id, caseNumber, accuser, defendant, 
+        caseTrial, caseType, caseReason, detail, agency, status_id, host, assiant, name, 
+        create_time, money);
+      ctx.body = res;
+    }
+  }
+
   // 增加案件
   async addLaw() {
     const { ctx, service } = this;
