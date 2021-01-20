@@ -37,8 +37,31 @@ class LawController extends Controller {
   // 增加案件
   async addLaw() {
     const { ctx, service } = this;
-    const res = await service.law.addLaw.addLaw();
-    ctx.body = res;
+    const query = ctx.request.body;
+    const {
+      caseNumber,
+      accuser,
+      defendant,
+      caseTrial,
+      caseType,
+      caseReason,
+      detail,
+      agency,
+      host,
+      assiant,
+      name,
+      create_time,
+      money
+    } = query
+    if (ctx.isNull(caseNumber, accuser, defendant, caseTrial, caseType, caseReason, detail,
+        agency, host, assiant, name, create_time, money)) {
+      ctx.status = 400;
+      ctx.body = ctx.retrunInfo(-1, '', '传递参数错误')
+    } else {
+      const res = await service.law.addLaw.addLaw(caseNumber, accuser, defendant, caseTrial,
+        caseType, caseReason, detail, agency, host, assiant, name, create_time, money);
+      ctx.body = res;
+    }
   }
 
   // 获取案件具体信息

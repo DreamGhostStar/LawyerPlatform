@@ -129,7 +129,7 @@ class FinshLawService extends Service {
           fs.writeFileSync(pathName, data, 'binary')
           mammoth.convertToHtml({ path: pathName })
             .then(function (result) {
-              fs.unlinkSync(pathName)
+              fs.unlinkSync(pathName) // 删除文件
               resolve(result.value) // 返回HTML格式的文本
             })
             .done();

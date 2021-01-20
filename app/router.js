@@ -51,7 +51,6 @@ module.exports = app => {
   router.get('/api/case', controller.law.getLawInfo);
   router.get('/api/case/searchCase', controller.law.getLawInfo);
   router.put('/api/case', lawIdVerify, controller.law.alterLaw);
-  router.put('/api/admin/case', lawIdVerify, controller.law.addLaw);
   router.put('/api/case/askForFinish', controller.law.finishLaw);
 
   // 日志相关
@@ -87,6 +86,9 @@ module.exports = app => {
   // 收入相关
   router.get('/api/admin/salary/user', controller.salary.getUserInfo); // 收入页面获取用户信息
   router.get('/api/admin/salary/list', controller.salary.getUserSalaryList); // 收入页面获取用户信息
+
+  // 案件相关
+  router.post('/api/admin/case', controller.law.addLaw); // 新建案件
 
   router.get('/api/test', controller.home.test);
 };
