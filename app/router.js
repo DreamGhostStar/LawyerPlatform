@@ -90,6 +90,8 @@ module.exports = app => {
   // 案件相关
   router.post('/api/admin/case', controller.law.addLaw); // 新建案件
   router.put('/api/admin/case', controller.law.adminAlterLaw); // 修改案件
+  router.get('/api/admin/case', controller.law.adminGetLawInfo); // 管理员获取案件具体信息
+  router.get('/api/admin/case/list', controller.law.adminGetLawList); // 管理员获取案件列表
 
   router.get('/api/test', controller.home.test);
 };

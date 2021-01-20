@@ -13,6 +13,10 @@ class RedisService extends Service {
     await this.ctx.service.cache.set('laws', lawListInRedis);
   }
 
+  /**
+   * @description 获取缓存中的案件列表数据
+   * @memberof LawService
+   */
   async getLawsInRedis() {
     const { service } = this;
     let lawListInRedis = await service.cache.get('laws'); // 调用缓存

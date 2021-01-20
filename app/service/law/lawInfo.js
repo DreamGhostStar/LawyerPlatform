@@ -1,6 +1,7 @@
 'use strict';
 
 const Service = require('egg').Service;
+const path = require('path')
 
 class LawInfoService extends Service {
   /**
@@ -24,14 +25,13 @@ class LawInfoService extends Service {
       },
       {
         model: ctx.model.User.User,
-      }, 
+      },
       {
         model: ctx.model.Law.LawType,
       },
       {
         model: ctx.model.Law.LawAudit,
-      },
-    ],
+      }, ],
       where: {
         id: caseId,
       },
@@ -65,8 +65,61 @@ class LawInfoService extends Service {
       type: await service.law.lawUtil.getLawType(lawInfo.law_type.value),
       audit: await service.law.lawUtil.getLawAudit(lawInfo.law_audit.value),
       scale: parseFloat(lawInfo.host_assist_scale),
-      agency_word: lawInfo.agency_word === null?null: lawInfo.agency_word.url,
-      final_report: lawInfo.final_report === null?null: lawInfo.final_report.url,
+      agency_word: lawInfo.agency_word === null ? null : lawInfo.agency_word.url,
+      final_report: lawInfo.final_report === null ? null : lawInfo.final_report.url,
+    }, '')
+  }
+
+  /**
+   * @description 管理员获取案件具体信息
+   * @param {number} id 案件ID
+   * @return {object} 返回信息
+   * @memberof LawInfoService
+   */
+  async adminGetLawInfo(id) {
+    const { ctx, service } = this
+    const laws = await service.redis.getLawsInRedis();
+    let law = null;
+    laws.map(lawItem => {
+      if (lawItem.id === id) {
+        law = lawItem
+      }
+    })
+
+    if(!law){
+      return ctx.retrunInfo(-1, '', '不存在该案件')
+    }
+    const hostUserInfo = await ctx.model.User.User.findByPk(law.host_user_id)
+    const assistList = [];
+    for (let i = 0; i < law.users.length; i++) {
+      const lawAssist = law.users[i];
+      const assistUserInfo = await ctx.model.User.User.findByPk(lawAssist.law_assistant.assist_id)
+      assistList.push({
+        id: lawAssist.law_assistant.id,
+        username: lawAssist.law_assistant.scale,
+        scale: assistUserInfo.name
+      })
+    }
+
+    return ctx.retrunInfo(0, {
+      caseNumber: law.number,
+      accuser: law.accuser,
+      defendant: law.defendant,
+      caseTrial: law.law_audit.value,
+      caseType: law.law_type.value,
+      caseReason: law.base_info,
+      detail: law.detail,
+      agency: {
+        url: law.agency_word.url,
+        filename: path.basename(law.agency_word.url),
+        uploadTime: law.agency_word.create_time
+      },
+      host: {
+        id: hostUserInfo.id,
+        username: hostUserInfo.name,
+        scale: law.host_assist_scale,
+      },
+      assiant: assistList
     }, '')
   }
 }

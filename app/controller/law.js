@@ -138,6 +138,28 @@ class LawController extends Controller {
       ctx.body = res;
     }
   }
+
+  // 管理员获取案件具体信息
+  async adminGetLawInfo() {
+    const { ctx, service } = this;
+    const query = ctx.query;
+    const { id } = query
+    if (ctx.isNull(id)) {
+      ctx.status = 400;
+      ctx.body = ctx.retrunInfo(-1, '', '请求参数错误');
+    } else {
+      const res = await service.law.lawInfo.adminGetLawInfo(parseInt(id));
+      ctx.body = res;
+    }
+  }
+
+  // 管理员获取案件列表
+  async adminGetLawList() {
+    const { ctx, service } = this;
+    const query = ctx.query;
+    const res = await service.law.lawList.adminGetLawList();
+    ctx.body = res;
+  }
 }
 
 module.exports = LawController;
