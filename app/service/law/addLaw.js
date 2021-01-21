@@ -50,6 +50,9 @@ class AddLawService extends Service {
       }, {
         transaction,
       })
+      if(!agencyRes){
+        throw new Error('代理词未插入成功')
+      }
       const caseRes = await ctx.model.Law.Law.create({
         number: caseNumber,
         accuser,
@@ -78,7 +81,7 @@ class AddLawService extends Service {
           transaction
         })
       }
-      const logResult = await service.log.create('案件被创建', null, null, false, id, transaction);
+      const logResult = await service.log.create('案件被创建', null, null, false, caseRes.id, transaction);
       if (logResult.code !== 0) {
         throw new Error(logResult.message);
       }
