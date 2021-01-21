@@ -9,18 +9,26 @@ class GetPhoneService extends Service {
    * @memberof GetPhoneService
    */
   async getUnitAndPhone(id) {
-    const { ctx, service } = this
-    const unitList = await ctx.model.Office.Unit.findAll({
-      where: {
-        id
+    const { ctx } = this
+    const unitList = await ctx.model.Office.Unit.findAll()
+    // 单位需经过处理
+    const resUnit = [];
+    for (let i = 0; i < unitList.length; i++) {
+      const unitItem = unitList[i];
+      if(unitItem.unit_id === id){
+        resUnit.push(unitItem)
       }
-    })
-    const phoneList = await ctx.model.Office.DailyPhone.findAll({
-      where: {
-        unit_id: id
+    }
+    const phoneList = await ctx.model.Office.DailyPhone.findAll()
+    // phone需经过处理
+    const resPhone = [];
+    for (let i = 0; i < phoneList.length; i++) {
+      const phoneItem = phoneList[i];
+      if(phoneItem.unit_id === id){
+        resPhone.push(phoneItem)
       }
-    })
-    const resUnitList = unitList.map(unitItem => {
+    }
+    const resUnitList = resUnit.map(unitItem => {
       return {
         type: 'unit',
         id: unitItem.id,
@@ -28,7 +36,7 @@ class GetPhoneService extends Service {
         address: unitItem.address || ''
       }
     })
-    const resPhoneList = phoneList.map(unitItem => {
+    const resPhoneList = resPhone.map(unitItem => {
       return {
         type: 'phone',
         id: unitItem.id,

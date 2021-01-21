@@ -18,7 +18,7 @@ module.exports = app => {
     },
     unit_id: {
       type: INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
   }, {
     timestamps: false, // 去除createAt updateAt

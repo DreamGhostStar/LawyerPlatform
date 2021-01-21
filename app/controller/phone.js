@@ -68,13 +68,10 @@ class PhoneController extends Controller {
     const { ctx, service } = this;
     const query = ctx.query;
     const { unitID } = query
-    if (ctx.isNull(unitID)) {
-      ctx.status = 400;
-      ctx.body = ctx.retrunInfo(-1, '', '请求参数错误');
-    } else {
-      const res = await service.phone.getPhone.getUnitAndPhone(unitID)
-      ctx.body = res;
-    }
+    const res = await service.phone.getPhone.getUnitAndPhone(
+      ctx.isNull(unitID) ? null : parseInt(unitID)
+    )
+    ctx.body = res;
   }
 }
 
