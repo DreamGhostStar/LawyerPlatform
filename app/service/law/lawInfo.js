@@ -103,6 +103,8 @@ class LawInfoService extends Service {
 
     return ctx.retrunInfo(0, {
       caseNumber: law.number,
+      name: law.name,
+      money: law.money,
       accuser: law.accuser,
       defendant: law.defendant,
       caseTrial: law.law_audit.value,
