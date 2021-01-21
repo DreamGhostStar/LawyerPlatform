@@ -82,7 +82,6 @@ class RequestService extends Service {
       if (!law) {
         throw new Error('未找到该案件')
       }
-      // TODO:将其传入消息中心去
       if (isAgree) {
         await law.update({
           audit_user_id: userID,
@@ -90,6 +89,14 @@ class RequestService extends Service {
           transaction
         })
       }
+      await ctx.model.User.Message.create({
+        form_user_id: userID,
+        to_user_id: law.host_user_id,
+        law_id: law.id,
+        remark: message,
+        is_watched: false,
+        is_agree: isAgree
+      })
       await transaction.commit();
       await service.redis.updateLawsInRedis();
       return ctx.retrunInfo(0, '', '请求成功');
