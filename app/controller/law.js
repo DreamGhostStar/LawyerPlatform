@@ -156,7 +156,6 @@ class LawController extends Controller {
   // 管理员获取案件列表
   async adminGetLawList() {
     const { ctx, service } = this;
-    const query = ctx.query;
     const res = await service.law.lawList.adminGetLawList();
     ctx.body = res;
   }

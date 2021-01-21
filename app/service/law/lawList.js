@@ -44,21 +44,25 @@ class LawListService extends Service {
   async adminGetLawList() {
     const { ctx, service } = this;
     const lawRedisList = await service.redis.getLawsInRedis();
+    const userRedisList = await service.redis.getUserInRedis();
 
     const lawList = []
     for (let i = 0; i < lawRedisList.length; i++) {
       const lawItem = lawRedisList[i];
-      const hostInfo = await ctx.model.User.User.findOne({
-        where: {
-          id: lawItem.host_user_id
+      let hostName = '';
+      for (let j = 0; j < userRedisList.length; j++) {
+        const userItem = userRedisList[j];
+        if (userItem.id === lawItem.host_user_id) {
+          hostName = userItem.name
+          break;
         }
-      })
+      }
       lawList.push({
         id: lawItem.id,
         name: lawItem.name,
         type: await service.law.lawUtil.getLawType(lawItem.law_type.value),
         trial: await service.law.lawUtil.getLawAudit(lawItem.law_audit.value),
-        host: hostInfo.name
+        host: hostName
       })
     }
     return ctx.retrunInfo(0, lawList, '');
