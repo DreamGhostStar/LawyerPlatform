@@ -112,6 +112,7 @@ class LawInfoService extends Service {
       caseReason: law.base_info,
       detail: law.detail_info,
       create_time: law.create_time,
+      status_id: law.status_id,
       agency: law.agency_word === null ? null : {
         url: law.agency_word.url,
         filename: path.basename(law.agency_word.url),
