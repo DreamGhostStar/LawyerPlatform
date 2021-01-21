@@ -58,10 +58,9 @@ class LogService extends Service {
     const { ctx, service } = this;
     const logListInDataBase = await ctx.model.Log.Log.findAll({
       include: [
-        {
-          model: ctx.model.Log.LogAlterTime,
-        },
-      ],
+      {
+        model: ctx.model.Log.LogAlterTime,
+      }, ],
     });
     const res = [];
     const logBlackList = await service.cache.get('logBlackList') || [];
@@ -208,6 +207,39 @@ class LogService extends Service {
         res.push(temp);
       }
     });
+
+    return ctx.retrunInfo(0, res, '');
+  }
+
+  /**
+   * @description 管理员获取日志列表
+   * @param {number} userID
+   * @param {number} year
+   * @param {number} month
+   * @param {number} day
+   * @return {object} 返回信息
+   * @memberof LogService
+   */
+  async adminGetLogList(userID, year, month, day) {
+    const { ctx } = this;
+    const logList = await ctx.model.Log.Log.findAll({
+      where: {
+        create_user_id: userID,
+        year,
+        month,
+        date: day
+      }
+    })
+    const res = logList.map(logItem => {
+      return {
+        log_id: logItem.id,
+        title: logItem.title,
+        content: logItem.content,
+        create_time: logItem.create_time,
+        is_alter: logItem.is_alter,
+        select_time: logItem.select_time,
+      }
+    })
 
     return ctx.retrunInfo(0, res, '');
   }

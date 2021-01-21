@@ -99,5 +99,13 @@ module.exports = app => {
   router.put('/api/admin/unit', controller.phone.alter); // 修改日常电话或单位
   router.get('/api/admin/unit', controller.phone.get); // 获取日常电话或单位
 
+  // 日志列表
+  router.get('/api/admin/log', controller.log.adminGetLog); // 获取日志
+
+  // 归档请求
+  router.get('/api/admin/request', controller.request.requestWord); // 获取归档word文件
+  router.get('/api/admin/request/list', controller.request.requestWordList); // 获取归档请求列表
+  router.post('/api/admin/request', controller.request.agreeRequest); // 处理是否同意归档
+
   router.get('/api/test', controller.home.test);
 };

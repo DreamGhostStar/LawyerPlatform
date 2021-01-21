@@ -37,6 +37,22 @@ class LogController extends Controller {
     const res = await service.log.getLogsByLawID();
     ctx.body = res;
   }
+
+  // 管理员获取日志列表
+  async adminGetLog() {
+    const { ctx, service } = this;
+    const query = ctx.query;
+    const { userID, year, month, day } = query
+    if (ctx.isNull(userID, year, month, day)) {
+      ctx.status = 400;
+      ctx.body = ctx.retrunInfo(-1, '', '传递参数错误')
+    } else {
+      const res = await service.log.adminGetLogList(
+        parseInt(userID), parseInt(year), parseInt(month), parseInt(day)
+      );
+      ctx.body = res;
+    }
+  }
 }
 
 module.exports = LogController;
