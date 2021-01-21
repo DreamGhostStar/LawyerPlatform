@@ -86,7 +86,7 @@ class LawInfoService extends Service {
       }
     })
 
-    if(!law){
+    if (!law) {
       return ctx.retrunInfo(-1, '', '不存在该案件')
     }
     const hostUserInfo = await ctx.model.User.User.findByPk(law.host_user_id)
@@ -110,8 +110,9 @@ class LawInfoService extends Service {
       caseTrial: law.law_audit.value,
       caseType: law.law_type.value,
       caseReason: law.base_info,
-      detail: law.detail,
-      agency: {
+      detail: law.detail_info,
+      create_time: law.create_time,
+      agency: law.agency_word === null ? null : {
         url: law.agency_word.url,
         filename: path.basename(law.agency_word.url),
         uploadTime: law.agency_word.create_time
