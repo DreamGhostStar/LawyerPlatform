@@ -12,10 +12,6 @@ module.exports = app => {
       type: STRING(128),
       allowNull: true,
     },
-    html_str: {
-      type: TEXT,
-      allowNull: true,
-    },
     value: {
       type: STRING(1024),
       allowNull: true,

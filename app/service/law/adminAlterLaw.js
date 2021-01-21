@@ -61,11 +61,8 @@ class AdminAlterLawService extends Service {
       let agencyRes = null;
       if (law.agency_word.url !== agency) {
         // 如果url存在差别，则插入新的代理词
-        const agencyFileName = path.basename(agency)
-        const agencyHtml = await service.law.finshLaw.downLoadFile(agency, agencyFileName)
         agencyRes = await ctx.model.Law.AgencyWord.create({
-          url: agency,
-          content: agencyHtml
+          url: agency
         }, {
           transaction,
         })

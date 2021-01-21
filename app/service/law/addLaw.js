@@ -42,11 +42,8 @@ class AddLawService extends Service {
         administrative: 3,
         non_lawsuit: 4
       }
-      const agencyFileName = path.basename(agency)
-      const agencyHtml = await service.law.finshLaw.downLoadFile(agency, agencyFileName)
       const agencyRes = await ctx.model.Law.AgencyWord.create({
         url: agency,
-        content: agencyHtml
       }, {
         transaction,
       })

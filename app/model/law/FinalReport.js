@@ -1,16 +1,12 @@
 'use strict';
 
 module.exports = app => {
-  const { INTEGER, TEXT, STRING } = app.Sequelize;
+  const { INTEGER, STRING } = app.Sequelize;
   const FinalReport = app.model.define('final_report', {
     id: {
       type: INTEGER,
       primaryKey: true,
       autoIncrement: true,
-    },
-    content: {
-      type: TEXT,
-      allowNull: false,
     },
     url: { // 协办人用户ID
       type: STRING(128),

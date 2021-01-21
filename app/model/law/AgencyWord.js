@@ -2,16 +2,12 @@
 // 代理词
 
 module.exports = app => {
-  const { INTEGER, TEXT, STRING } = app.Sequelize;
+  const { INTEGER, STRING } = app.Sequelize;
   const AgencyWord = app.model.define('agency_word', {
     id: {
       type: INTEGER,
       primaryKey: true,
       autoIncrement: true,
-    },
-    content: {
-      type: TEXT,
-      allowNull: false,
     },
     url: { // 协办人用户ID
       type: STRING(128),

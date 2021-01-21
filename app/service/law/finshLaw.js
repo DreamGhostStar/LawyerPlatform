@@ -27,11 +27,8 @@ class FinshLawService extends Service {
       let lawInfo; // 案件详情
       // 插入结案文书表
       if (finish_word.isUrl) {
-        const finish_wordFileName = path.basename(finish_word.value) // 结案文书文件名
-        const finish_wordHtml = await this.downLoadFile(finish_word.value, finish_wordFileName)
         finishRequest = await ctx.model.Law.FinalReport.create({
-          url: finish_word.value,
-          content: finish_wordHtml
+          url: finish_word.value
         }, {
           transaction
         })
@@ -45,11 +42,8 @@ class FinshLawService extends Service {
 
       // 插入归档请求表
       if (reling_request.isUrl) {
-        const reling_requestFileName = path.basename(reling_request.value) // 归档请求文件名
-        const reling_requestHtml = await this.downLoadFile(reling_request.value, reling_requestFileName)
         resultRequestRes = await ctx.model.Law.ResultRequest.create({
           word_url: reling_request.value,
-          html_str: reling_requestHtml
         }, {
           transaction
         })
@@ -64,11 +58,8 @@ class FinshLawService extends Service {
       if (agency_word) {
         // 插入请求词表
         if (agency_word.isUrl) {
-          const agency_wordFileName = path.basename(agency_word.value) // 归档请求文件名
-          const agency_wordHtml = await this.downLoadFile(agency_word.value, agency_wordFileName)
           agencyWordRes = await ctx.model.Law.AgencyWord.create({
-            url: agency_word.value,
-            content: agency_wordHtml
+            url: agency_word.value
           }, {
             transaction
           })
