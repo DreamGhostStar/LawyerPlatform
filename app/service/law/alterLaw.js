@@ -145,11 +145,11 @@ class AlterLawService extends Service {
         throw new Error(logResult.message);
       }
 
+      await transaction.commit();
       // 更新缓存中的案件、日志、用户数据
       await service.redis.updateLawsInRedis();
       await service.redis.updateLogsInRedis();
       await service.redis.updateUserInRedis();
-      await transaction.commit();
       return ctx.retrunInfo(0, '', '修改成功');
     } catch (error) {
       await transaction.rollback();

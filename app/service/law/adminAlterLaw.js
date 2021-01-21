@@ -112,10 +112,10 @@ class AdminAlterLawService extends Service {
       if (logResult.code !== 0) {
         throw new Error(logResult.message);
       }
+      await transaction.commit();
       await service.redis.updateLawsInRedis();
       await service.redis.updateLogsInRedis();
       await service.redis.updateUserInRedis();
-      await transaction.commit();
       return ctx.retrunInfo(0, '', '修改案件成功');
     } catch (error) {
       await transaction.rollback();
