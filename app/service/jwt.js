@@ -25,10 +25,10 @@ class JwtService extends Service {
    * @memberof JwtService
    */
   async getToken(storeData, options) {
-    const { app } = this;
+    const { app, ctx } = this;
     const token = app.jwt.sign(storeData, app.config.jwt.secret, options);
 
-    if (storeData.userID) {
+    if (!ctx.isNull(storeData.userID)) {
       await this.updateJWTWhiteList(storeData.userID);
     }
 
@@ -71,24 +71,25 @@ class JwtService extends Service {
 
     if (!whiteList || whiteList.length === 0) {
       await service.cache.set('jwtWhiteList', [
-        {
-          userID,
-          createTime: nowDate,
-        },
-      ]);
+      {
+        userID,
+        createTime: nowDate,
+      }, ]);
 
       return;
     }
 
     const newWhiteList = [];
     let isInsert = false;
+    console.log(userID)
     for (let index = 0; index < whiteList.length; index++) {
       const jwtData = whiteList[index];
       if (jwtData.userID === userID) {
         jwtData.createTime = nowDate;
         isInsert = true;
       }
-      if ((nowDate - jwtData.createTime) < 60 * 60 * 24 * 1000) {
+      // 如果创建时间大于7天
+      if ((nowDate - jwtData.createTime) < 60 * 60 * 24 * 1000 * 7) {
         if (jwtData.userID > userID && !isInsert) {
           newWhiteList.push({
             userID,
@@ -98,6 +99,12 @@ class JwtService extends Service {
         }
         newWhiteList.push(jwtData);
       }
+    }
+    if(!isInsert){
+      newWhiteList.push({
+        userID,
+        createTime: nowDate,
+      });
     }
 
     await service.cache.set('jwtWhiteList', newWhiteList);
