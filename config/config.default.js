@@ -16,7 +16,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1589345138749_9496';
 
   // add your middleware config here
-  config.middleware = ['jwtErr', 'adminVerify'];
+  config.middleware = ['jwtErr', 'adminVerify', 'httpLog'];
 
   config.jwtErr = {
     ignore(ctx) {

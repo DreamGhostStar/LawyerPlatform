@@ -5,6 +5,7 @@
  */
 module.exports = app => {
   const { router, controller, middleware } = app;
+  const loginLog = middleware.loginLog(); // 登录/退出登录日志
   const verifyPhoneNumber = middleware.verifyPhoneNumber(); // 验证手机号的中间件
   const imageVerifyCode = middleware.imageVerifyCode(); // 验证图片验证码正确性的中间件
   const noteVerifyCode = middleware.noteVerifyCode(); // 验证短信验证码正确性的中间件
@@ -17,8 +18,20 @@ module.exports = app => {
   const addQualificationsNumber = middleware.addQualificationsNumber(); // 增加时验证律师资格证号是否存在中间件
 
   // 登录相关
-  router.post('/api/login/password', imageVerifyCode, verifyPhoneNumber, controller.user.loginInPassword);
-  router.post('/api/login/note', noteVerifyCode, verifyPhoneNumber, controller.user.loginInNote);
+  router.post(
+    '/api/login/password',
+    loginLog,
+    imageVerifyCode,
+    verifyPhoneNumber,
+    controller.user.loginInPassword
+  );
+  router.post(
+    '/api/login/note',
+    loginLog,
+    noteVerifyCode,
+    verifyPhoneNumber,
+    controller.user.loginInNote
+  );
 
   // 用户相关
   router.get('/api/user/getInfo', controller.user.getUserInfo);
