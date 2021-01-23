@@ -11,7 +11,10 @@ module.exports = options => {
       method: req.method,
       url: req.url,
       data: req.body,
-      response: res,
+      response: {
+        code: res.code,
+        message: res.message
+      },
       timeLength: Date.now() - nowDate
     }
 
