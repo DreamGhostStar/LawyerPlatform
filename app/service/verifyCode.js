@@ -17,7 +17,13 @@ class VerifyCodeService extends Service {
       background: '#f00',
     });
 
-    let res = ctx.retrunInfo(0, captcha.data, '请求成功');
+    let res = {
+      code: 0,
+      data: captcha.data,
+      message: '请求成功',
+      text: captcha.text
+    }
+    console.log(captcha.text)
 
     if (!captcha.data) {
       res = ctx.retrunInfo(403, '', '请求验证图片错误');
@@ -26,7 +32,6 @@ class VerifyCodeService extends Service {
     ctx.session.maxAge = 1000 * 60 * 5; // 5分钟
     ctx.session.renew = false; // 设置在连续访问的时候不刷新剩余时间
     ctx.session.imageVerifyCode = captcha.text;
-    console.log(captcha.text)
     return res;
   }
 

@@ -23,7 +23,7 @@ module.exports = () => {
       return;
     }
 
-    if (verifyCode !== sessionVerifyCode) {
+    if (verifyCode.toLowerCase() !== sessionVerifyCode.toLowerCase()) {
       ctx.body = {
         code: -1,
         data: '',

@@ -1532,3 +1532,50 @@ hostname: DESKTOP-89NQFV3
 2021-01-23 20:45:06,981 INFO 2384 [egg-sequelize](47ms) Executed (default): SELECT 1+1 AS result
 2021-01-23 20:49:54,888 INFO 12204 [egg-sequelize](42ms) Executed (default): SELECT 1+1 AS result
 2021-01-23 21:25:37,556 INFO 22460 [egg-sequelize](40ms) Executed (default): SELECT 1+1 AS result
+2021-01-24 13:01:49,420 INFO 2632 [egg-sequelize](40ms) Executed (default): SELECT 1+1 AS result
+2021-01-24 13:45:41,246 INFO 10664 [egg-sequelize](37ms) Executed (default): SELECT 1+1 AS result
+2021-01-24 13:45:43,227 INFO 12968 [egg-sequelize](38ms) Executed (default): SELECT 1+1 AS result
+2021-01-24 13:47:20,099 INFO 13420 [egg-sequelize](40ms) Executed (default): SELECT 1+1 AS result
+2021-01-24 13:48:05,066 INFO 16040 [egg-sequelize](44ms) Executed (default): SELECT 1+1 AS result
+2021-01-24 13:48:11,147 ERROR 16040 [-/127.0.0.1/-/11ms GET /api/public/verificationCode/image] nodejs.ReferenceError: str is not defined
+    at VerifyCodeService.generateImage (E:\project\lawyer_platform\app\service\verifyCode.js:21:29)
+    at HomeController.getImageVeriyCode (E:\project\lawyer_platform\app\controller\home.js:9:42)
+    at Object.callFn (E:\project\lawyer_platform\node_modules\egg-core\lib\utils\index.js:44:21)
+    at Object.classControllerMiddleware (E:\project\lawyer_platform\node_modules\egg-core\lib\loader\mixin\controller.js:87:20)
+    at Object.callFn (E:\project\lawyer_platform\node_modules\@eggjs\router\lib\utils.js:12:21)
+    at wrappedController (E:\project\lawyer_platform\node_modules\@eggjs\router\lib\egg_router.js:322:18)
+    at dispatch (E:\project\lawyer_platform\node_modules\koa-compose\index.js:44:32)
+    at next (E:\project\lawyer_platform\node_modules\koa-compose\index.js:45:18)
+    at E:\project\lawyer_platform\node_modules\@eggjs\router\lib\router.js:190:18
+    at dispatch (E:\project\lawyer_platform\node_modules\koa-compose\index.js:44:32)
+    at E:\project\lawyer_platform\node_modules\koa-compose\index.js:36:12
+    at dispatch (E:\project\lawyer_platform\node_modules\@eggjs\router\lib\router.js:195:33)
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at E:\project\lawyer_platform\app\middleware\httpLog.js:8:11
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at fn (E:\project\lawyer_platform\node_modules\egg-core\lib\loader\mixin\middleware.js:111:29)
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at fn (E:\project\lawyer_platform\node_modules\egg-core\lib\loader\mixin\middleware.js:111:29)
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at E:\project\lawyer_platform\node_modules\egg-development\app\middleware\egg_loader_trace.js:9:56
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at i18n (E:\project\lawyer_platform\node_modules\egg-i18n\app\middleware\i18n.js:13:12)
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at dta (E:\project\lawyer_platform\node_modules\egg-security\lib\middlewares\dta.js:12:12)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at xframe (E:\project\lawyer_platform\node_modules\egg-security\lib\middlewares\xframe.js:7:11)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+
+pid: 16040
+hostname: DESKTOP-89NQFV3
+
+2021-01-24 13:48:27,971 INFO 6920 [egg-sequelize](44ms) Executed (default): SELECT 1+1 AS result
+2021-01-24 13:53:44,899 INFO 18580 [egg-sequelize](39ms) Executed (default): SELECT 1+1 AS result
+2021-01-24 13:59:07,542 INFO 14252 [egg-sequelize](42ms) Executed (default): SELECT 1+1 AS result
+2021-01-24 14:01:20,372 INFO 10204 [egg-sequelize](36ms) Executed (default): SELECT 1+1 AS result
+2021-01-24 14:02:12,877 INFO 20964 [egg-sequelize](41ms) Executed (default): SELECT 1+1 AS result
+2021-01-24 14:02:19,653 INFO 20108 [egg-sequelize](40ms) Executed (default): SELECT 1+1 AS result
+2021-01-24 14:02:40,632 INFO 8868 [egg-sequelize](41ms) Executed (default): SELECT 1+1 AS result
+2021-01-24 14:03:48,667 INFO 10504 [egg-sequelize](41ms) Executed (default): SELECT 1+1 AS result
+2021-01-24 14:04:02,994 INFO 7828 [egg-sequelize](44ms) Executed (default): SELECT 1+1 AS result

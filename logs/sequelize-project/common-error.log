@@ -577,3 +577,45 @@ name: "ClusterClientNoResponseError"
 pid: 21188
 hostname: DESKTOP-89NQFV3
 
+2021-01-24 13:48:11,118 ERROR 16040 [-/127.0.0.1/-/11ms GET /api/public/verificationCode/image] nodejs.ReferenceError: str is not defined
+    at VerifyCodeService.generateImage (E:\project\lawyer_platform\app\service\verifyCode.js:21:29)
+    at HomeController.getImageVeriyCode (E:\project\lawyer_platform\app\controller\home.js:9:42)
+    at Object.callFn (E:\project\lawyer_platform\node_modules\egg-core\lib\utils\index.js:44:21)
+    at Object.classControllerMiddleware (E:\project\lawyer_platform\node_modules\egg-core\lib\loader\mixin\controller.js:87:20)
+    at Object.callFn (E:\project\lawyer_platform\node_modules\@eggjs\router\lib\utils.js:12:21)
+    at wrappedController (E:\project\lawyer_platform\node_modules\@eggjs\router\lib\egg_router.js:322:18)
+    at dispatch (E:\project\lawyer_platform\node_modules\koa-compose\index.js:44:32)
+    at next (E:\project\lawyer_platform\node_modules\koa-compose\index.js:45:18)
+    at E:\project\lawyer_platform\node_modules\@eggjs\router\lib\router.js:190:18
+    at dispatch (E:\project\lawyer_platform\node_modules\koa-compose\index.js:44:32)
+    at E:\project\lawyer_platform\node_modules\koa-compose\index.js:36:12
+    at dispatch (E:\project\lawyer_platform\node_modules\@eggjs\router\lib\router.js:195:33)
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at E:\project\lawyer_platform\app\middleware\httpLog.js:8:11
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at fn (E:\project\lawyer_platform\node_modules\egg-core\lib\loader\mixin\middleware.js:111:29)
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at fn (E:\project\lawyer_platform\node_modules\egg-core\lib\loader\mixin\middleware.js:111:29)
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at E:\project\lawyer_platform\node_modules\egg-development\app\middleware\egg_loader_trace.js:9:56
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at i18n (E:\project\lawyer_platform\node_modules\egg-i18n\app\middleware\i18n.js:13:12)
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at dta (E:\project\lawyer_platform\node_modules\egg-security\lib\middlewares\dta.js:12:12)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at xframe (E:\project\lawyer_platform\node_modules\egg-security\lib\middlewares\xframe.js:7:11)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+
+pid: 16040
+hostname: DESKTOP-89NQFV3
+
+2021-01-24 13:48:11,287 ERROR 16040 nodejs.TypeError: The "chunk" argument must be of type string or an instance of Buffer. Received an instance of ReferenceError
+    at ServerResponse.end (_http_outgoing.js:752:13)
+    at Object.app.context.onerror (E:\project\lawyer_platform\node_modules\koa-onerror\index.js:92:14)
+    at onerror (E:\project\lawyer_platform\node_modules\koa\lib\application.js:165:32)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+code: "ERR_INVALID_ARG_TYPE"
+pid: 16040
+hostname: DESKTOP-89NQFV3
+
