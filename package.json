@@ -44,10 +44,8 @@
     "debug": "egg-bin debug",
     "test": "cross-env CI=true",
     "test-local": "egg-bin test",
-    "cov": "egg-bin cov",
-    "lint": "eslint .",
     "apidoc": "apidoc -i app/controller/ -o apidoc/",
-    "ci": "npm run lint && npm run cov",
+    "ci": "npm run test",
     "autod": "autod",
     "prepublishOnly": "yarn test"
   },

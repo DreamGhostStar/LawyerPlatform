@@ -1952,3 +1952,4 @@ hostname: DESKTOP-89NQFV3
 2021-01-25 21:57:18,505 INFO 10480 [egg-watcher:application] watcher start success
 2021-01-25 21:57:18,539 INFO 10480 [egg-redis] client connect success
 2021-01-25 21:57:18,624 INFO 10480 [egg-redis] instance[0] status OK, client ready
+2021-01-25 21:57:19,043 INFO 10480 [egg:core] dump config after ready, 6ms
