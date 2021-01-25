@@ -3,10 +3,14 @@
 const Controller = require('egg').Controller;
 
 class HomeController extends Controller {
-  // 获取图片验证码
+  /**
+ * @api {GET} /api/public/verificationCode/image 获取图片验证码
+ * @apiParam {string} platform 前后台区分
+ */
   async getImageVeriyCode() {
     const { ctx, service } = this;
-    const res = await service.verifyCode.generateImage();
+    const platform = ctx.query.platform
+    const res = await service.verifyCode.generateImage(parseInt(platform));
     ctx.body = res;
   }
 
@@ -39,10 +43,13 @@ class HomeController extends Controller {
     ctx.body = res;
   }
 
-  // 测试接口
+  /**
+ * @api {GET} /api/test 测试接口
+ * @apiParam {String} user 文章名
+ */
   async test() {
-    const { ctx, service } = this;
-    const res = await service.util.test();
+    const { ctx } = this;
+    const res = '测试'
     ctx.body = res;
   }
 }

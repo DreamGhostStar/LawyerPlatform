@@ -1,5 +1,5 @@
 {
-  "name": "sequelize-project",
+  "name": "lawyer-platform",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -14,6 +14,7 @@
     "egg-cors": "^2.2.3",
     "egg-jwt": "^3.1.7",
     "egg-redis": "^2.4.0",
+    "egg-router-auth": "^1.0.3",
     "egg-scripts": "^2.11.0",
     "egg-sequelize": "^5.2.1",
     "egg-socket.io": "^4.1.6",
@@ -45,6 +46,7 @@
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
     "lint": "eslint .",
+    "apidoc": "apidoc -i app/controller/ -o apidoc/",
     "ci": "npm run lint && npm run cov",
     "autod": "autod",
     "prepublishOnly": "yarn test"

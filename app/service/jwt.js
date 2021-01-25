@@ -66,6 +66,7 @@ class JwtService extends Service {
    */
   async updateJWTWhiteList(userID) {
     const { service } = this;
+    
     const whiteList = await service.cache.get('jwtWhiteList');
     const nowDate = new Date().getTime();
 

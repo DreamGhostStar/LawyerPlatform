@@ -7,7 +7,7 @@ const qs = require('querystring');
 
 class VerifyCodeService extends Service {
   // 生成图片验证码
-  async generateImage() {
+  async generateImage(platform) {
     const { ctx } = this;
     const captcha = svgCaptcha.create({
       size: 6,
@@ -16,15 +16,18 @@ class VerifyCodeService extends Service {
       height: 40,
       background: '#f00',
     });
-
-    let res = {
-      code: 0,
-      data: captcha.data,
-      message: '请求成功',
-      text: captcha.text
+    let res;
+    if (platform === 1) {
+      res = ctx.retrunInfo(0,
+        captcha.data.replace(/(\swidth=\"100%\")|(\sheight=\"100%\")/g, ''), '请求成功')
     }
-    console.log(captcha.text)
+    if (platform === 2) {
+      res = ctx.retrunInfo(0, captcha.data, '请求成功')
+    }
 
+    if (!platform) {
+      res = ctx.retrunInfo(-1, '', '请求参数错误')
+    }
     if (!captcha.data) {
       res = ctx.retrunInfo(403, '', '请求验证图片错误');
     }
@@ -93,7 +96,7 @@ class VerifyCodeService extends Service {
     return new Promise(resolve => {
       const req = https.request(options, res => {
         res.setEncoding('utf8');
-        res.on('data', function(chunk) {
+        res.on('data', function (chunk) {
           resolve(JSON.parse(chunk));
         });
       });

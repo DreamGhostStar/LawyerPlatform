@@ -46,6 +46,10 @@ module.exports = appInfo => {
     secret: '123456', // 自定义 token 的加密条件字符串
   };
 
+  config.auth = {
+    jwtExclude: ['/api/login', '/api/public/verificationCode']
+  }
+
   // 安全设置，当post请求为/api开头的话，就运行请求，否则就必须经过csrf验证
   config.security = {
     csrf: {
