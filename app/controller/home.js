@@ -5,7 +5,7 @@ const Controller = require('egg').Controller;
 class HomeController extends Controller {
   /**
  * @api {GET} /api/public/verificationCode/image 获取图片验证码
- * @apiParam {string} platform 前后台区分
+ * @apiParam {number} platform 前后台区分
  */
   async getImageVeriyCode() {
     const { ctx, service } = this;
@@ -45,7 +45,7 @@ class HomeController extends Controller {
 
   /**
  * @api {GET} /api/test 测试接口
- * @apiParam {String} user 文章名
+ * @apiParam {boolean} xxx 文章名
  */
   async test() {
     const { ctx } = this;

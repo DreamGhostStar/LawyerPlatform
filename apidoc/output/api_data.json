@@ -1,4 +1,4 @@
-define({ "api": [
+[
   {
     "type": "GET",
     "url": "/api/public/verificationCode/image",
@@ -8,7 +8,7 @@ define({ "api": [
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "string",
+            "type": "number",
             "optional": false,
             "field": "platform",
             "description": "<p>前后台区分</p>"
@@ -31,9 +31,9 @@ define({ "api": [
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "boolean",
             "optional": false,
-            "field": "user",
+            "field": "xxx",
             "description": "<p>文章名</p>"
           }
         ]
@@ -45,4 +45,4 @@ define({ "api": [
     "groupTitle": "E:\\project\\lawyer_platform\\app\\controller\\home.js",
     "name": "GetApiTest"
   }
-] });
+]

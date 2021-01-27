@@ -61,8 +61,8 @@ module.exports = app => {
 
   // 案件相关
   router.get('/api/case/getList', controller.law.getLawList);
-  router.get('/api/case', controller.law.getLawInfo);
-  router.get('/api/case/searchCase', controller.law.getLawInfo);
+  router.get('/api/case', controller.law.getLawInfo); // 获取案件具体信息
+  router.get('/api/case/searchCase', controller.law.searchLawInfo);
   router.put('/api/case', lawIdVerify, controller.law.alterLaw);
   router.put('/api/case/askForFinish', controller.law.finishLaw);
 

@@ -58,6 +58,8 @@ class VerifyCodeService extends Service {
       phoneNumber,
     };
     ctx.session.noteVerifyCode = obj;
+    console.log('----发送短信验证码----')
+    console.log(ctx.session.noteVerifyCode)
     return ctx.retrunInfo(0, '', '发送成功');
     // }
     // return {

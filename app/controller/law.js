@@ -112,7 +112,7 @@ class LawController extends Controller {
   }
 
   // 搜索案件
-  async getLawInfo() {
+  async searchLawInfo() {
     const { ctx, service } = this;
     const query = ctx.query;
     const title = query.title;

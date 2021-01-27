@@ -7,6 +7,8 @@ class LoginService extends Service {
   async inNote(phoneNumber, verify_code) {
     const { ctx, service } = this;
     const verifyCode = ctx.session.noteVerifyCode;
+    console.log('------接口-------')
+    console.log(verifyCode)
 
     if (phoneNumber === verifyCode.phoneNumber && verify_code === verifyCode.verifyCode) {
       const userData = await service.user.userUtil.getUserDataByPhone(phoneNumber);
