@@ -11,8 +11,8 @@ class GetSalaryListService extends Service {
   async getSalaryList() {
     const { service, ctx } = this;
     const jwtData = await service.jwt.getJWtData();
-    const isAll = await service.util.transfromStringToBool(ctx.request.query.isAll);
-    const year = parseInt(ctx.request.query.year);
+    const isAll = await service.util.transfromStringToBool(ctx.query.isAll);
+    const year = parseInt(ctx.query.year);
 
     if (typeof isAll === 'undefined') { // 如果未传isAll参数，则请求参数错误
       return ctx.retrunInfo(-1, '', '请求参数错误');

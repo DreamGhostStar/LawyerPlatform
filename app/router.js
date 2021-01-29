@@ -120,5 +120,5 @@ module.exports = app => {
   router.get('/api/admin/request/list', controller.request.requestWordList); // 获取归档请求列表
   router.post('/api/admin/request', controller.request.agreeRequest); // 处理是否同意归档
 
-  router.get('/api/test', controller.home.test);
+  router.put('/api/test', controller.home.test);
 };

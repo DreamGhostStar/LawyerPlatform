@@ -10,7 +10,12 @@ class LawController extends Controller {
     ctx.body = res;
   }
 
-  // 获取案件列表信息
+  /**
+ * @api {GET} /api/case/getList 获取案件列表信息
+ * @apiParam {boolean} isAll 是否选择全部
+ * @apiParam {string} [status] 案件处理状态 
+ * @apiParam {number} page 页数 
+ */
   async getLawList() {
     const { ctx, service } = this;
     const query = ctx.query;

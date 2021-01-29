@@ -16,21 +16,29 @@ class LawListService extends Service {
     const lawRedisList = await service.redis.getLawsInRedis();
 
     const lawList = [];
-    lawRedisList.forEach(law => {
-      const temp = {};
-      temp.law_id = law.id;
-      temp.name = law.name;
-      temp.state = law.law_status.value;
-      temp.base_info = law.base_info;
-      temp.type = law.law_type.value;
-      temp.agency_word = law.agency_word ? law.agency_word.url : null;
-      temp.finish_file = law.finish_file ? law.finish_file.url : null;
+    for (let i = 0; i < lawRedisList.length; i++) {
+      const law = lawRedisList[i];
+      const hostInfo = await ctx.model.User.User.findOne({
+        where: {
+          id: law.host_user_id
+        }
+      })
+      const temp = {
+        law_id: law.id,
+        name: law.name,
+        type: await service.law.lawUtil.getLawType(law.law_type.value),
+        audit: await service.law.lawUtil.getLawAudit(law.law_audit.value),
+        host: {
+          name: hostInfo.name,
+          phone: hostInfo.phone_number
+        }
+      };
       if (isAll) {
         lawList.push(temp);
       } else if (law.law_status.value === status) {
         lawList.push(temp);
       }
-    });
+    }
     // 分页处理
     const res = lawList.slice((page - 1) * 20, page * 20)
     return ctx.retrunInfo(0, res, '');

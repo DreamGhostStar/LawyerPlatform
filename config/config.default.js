@@ -47,7 +47,9 @@ module.exports = appInfo => {
   };
 
   config.auth = {
-    jwtExclude: ['/api/login', '/api/public/verificationCode']
+    jwtExclude: ['/api/login', '/api/public/verificationCode'],
+    output: 'apidoc/output',
+    template: 'apidoc/template'
   }
 
   // 安全设置，当post请求为/api开头的话，就运行请求，否则就必须经过csrf验证

@@ -44,8 +44,9 @@ class HomeController extends Controller {
   }
 
   /**
- * @api {GET} /api/test 测试接口
- * @apiParam {boolean} xxx 文章名
+ * @api {PUT} /api/test 测试接口
+ * @apiParam {object} user 用户
+ * @apiParam {number} user.name 用户名
  */
   async test() {
     const { ctx } = this;
