@@ -406,3 +406,70 @@ hostname: DESKTOP-89NQFV3
 2021-01-29 17:10:32,580 INFO 4644 [egg-sequelize](93ms) Executed (ff593a03-a9e4-4263-ad5b-b945590a6382): INSERT INTO `user_update_time` (`id`,`update_time`,`user_id`,`decoration`) VALUES (DEFAULT,?,?,?);
 2021-01-29 17:10:32,658 INFO 4644 [egg-sequelize](76ms) Executed (ff593a03-a9e4-4263-ad5b-b945590a6382): COMMIT;
 2021-01-29 17:10:32,722 INFO 4644 [egg-sequelize](60ms) Executed (default): SELECT `user`.`id`, `user`.`jurisdiction_id`, `user`.`age`, `user`.`sex`, `user`.`password`, `user`.`weixin_number`, `user`.`phone_number`, `user`.`name`, `user`.`lawyer_number`, `user`.`avatar`, `user`.`driver_scan_image`, `user`.`lawyer_scan_image`, `user`.`lawyer_office_id`, `user`.`update_time`, `user`.`create_time`, `user`.`identify_number`, `user`.`law_number`, `user`.`start_time`, `jurisdiction`.`id` AS `jurisdiction.id`, `jurisdiction`.`value` AS `jurisdiction.value`, `lawyer_office`.`id` AS `lawyer_office.id`, `lawyer_office`.`lawyer_office_address` AS `lawyer_office.lawyer_office_address`, `lawyer_office`.`lawyer_office_name` AS `lawyer_office.lawyer_office_name`, `lawyer_office`.`lawyer_office_scale` AS `lawyer_office.lawyer_office_scale` FROM `user` AS `user` LEFT OUTER JOIN `jurisdiction` AS `jurisdiction` ON `user`.`jurisdiction_id` = `jurisdiction`.`id` LEFT OUTER JOIN `lawyer_office` AS `lawyer_office` ON `user`.`lawyer_office_id` = `lawyer_office`.`id`;
+2021-01-29 17:11:33,163 INFO 14416 [egg-sequelize](41ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:16:02,263 INFO 7704 [egg-sequelize](40ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:16:07,827 INFO 5496 [egg-sequelize](45ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:16:25,553 INFO 2628 [egg-sequelize](45ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:16:35,778 ERROR 2628 [-/127.0.0.1/-/4ms GET /api/user/getUnitList] nodejs.TypeError: Cannot read property 'fields' of undefined
+    at E:\project\lawyer_platform\node_modules\egg-router-auth\app\middleware\verifyParams.js:64:44
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at E:\project\lawyer_platform\node_modules\egg-router-auth\app\middleware\verifyAuth.js:27:13
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at E:\project\lawyer_platform\node_modules\egg-development\app\middleware\egg_loader_trace.js:9:56
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at i18n (E:\project\lawyer_platform\node_modules\egg-i18n\app\middleware\i18n.js:13:12)
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at dta (E:\project\lawyer_platform\node_modules\egg-security\lib\middlewares\dta.js:12:12)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at xframe (E:\project\lawyer_platform\node_modules\egg-security\lib\middlewares\xframe.js:7:11)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at xssProtection (E:\project\lawyer_platform\node_modules\egg-security\lib\middlewares\xssProtection.js:7:11)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at nosniff (E:\project\lawyer_platform\node_modules\egg-security\lib\middlewares\nosniff.js:8:11)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at noopen (E:\project\lawyer_platform\node_modules\egg-security\lib\middlewares\noopen.js:8:11)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at notAllow (E:\project\lawyer_platform\node_modules\egg-security\lib\middlewares\methodnoallow.js:21:12)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at csrf (E:\project\lawyer_platform\node_modules\egg-security\lib\middlewares\csrf.js:10:14)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:34:12
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at session (E:\project\lawyer_platform\node_modules\koa-session\index.js:41:13)
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at overrideMethod (E:\project\lawyer_platform\node_modules\koa-override\index.js:13:70)
+
+pid: 2628
+hostname: DESKTOP-89NQFV3
+
+2021-01-29 17:20:05,095 INFO 12768 [egg-sequelize](43ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:20:06,672 INFO 11992 [egg-sequelize](39ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:20:34,098 INFO 11992 [egg-sequelize](43ms) Executed (default): SELECT `user`.`id`, `user`.`jurisdiction_id`, `user`.`age`, `user`.`sex`, `user`.`password`, `user`.`weixin_number`, `user`.`phone_number`, `user`.`name`, `user`.`lawyer_number`, `user`.`avatar`, `user`.`driver_scan_image`, `user`.`lawyer_scan_image`, `user`.`lawyer_office_id`, `user`.`update_time`, `user`.`create_time`, `user`.`identify_number`, `user`.`law_number`, `user`.`start_time`, `lawyer_office`.`id` AS `lawyer_office.id`, `lawyer_office`.`lawyer_office_address` AS `lawyer_office.lawyer_office_address`, `lawyer_office`.`lawyer_office_name` AS `lawyer_office.lawyer_office_name`, `lawyer_office`.`lawyer_office_scale` AS `lawyer_office.lawyer_office_scale` FROM `user` AS `user` LEFT OUTER JOIN `lawyer_office` AS `lawyer_office` ON `user`.`lawyer_office_id` = `lawyer_office`.`id` WHERE `user`.`id` = 1;
+2021-01-29 17:20:34,158 INFO 11992 [egg-sequelize](41ms) Executed (default): SELECT `id`, `lawyer_office_id`, `unit_id`, `name`, `address` FROM `unit` AS `unit`;
+2021-01-29 17:51:00,004 INFO 1228 [egg-sequelize](42ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:51:01,982 INFO 11452 [egg-sequelize](40ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:51:08,793 INFO 11452 [egg-sequelize](42ms) Executed (default): SELECT `user`.`id`, `user`.`jurisdiction_id`, `user`.`age`, `user`.`sex`, `user`.`password`, `user`.`weixin_number`, `user`.`phone_number`, `user`.`name`, `user`.`lawyer_number`, `user`.`avatar`, `user`.`driver_scan_image`, `user`.`lawyer_scan_image`, `user`.`lawyer_office_id`, `user`.`update_time`, `user`.`create_time`, `user`.`identify_number`, `user`.`law_number`, `user`.`start_time`, `lawyer_office`.`id` AS `lawyer_office.id`, `lawyer_office`.`lawyer_office_address` AS `lawyer_office.lawyer_office_address`, `lawyer_office`.`lawyer_office_name` AS `lawyer_office.lawyer_office_name`, `lawyer_office`.`lawyer_office_scale` AS `lawyer_office.lawyer_office_scale` FROM `user` AS `user` LEFT OUTER JOIN `lawyer_office` AS `lawyer_office` ON `user`.`lawyer_office_id` = `lawyer_office`.`id` WHERE `user`.`id` = 1;
+2021-01-29 17:51:08,856 INFO 11452 [egg-sequelize](42ms) Executed (default): SELECT `id`, `lawyer_office_id`, `unit_id`, `name`, `address` FROM `unit` AS `unit`;
+2021-01-29 17:51:53,177 INFO 1968 [egg-sequelize](41ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:53:31,456 INFO 11348 [egg-sequelize](41ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:53:33,454 INFO 10816 [egg-sequelize](45ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:53:38,953 INFO 2808 [egg-sequelize](46ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:53:57,384 INFO 9252 [egg-sequelize](42ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:54:25,215 INFO 9720 [egg-sequelize](37ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:54:51,368 INFO 12964 [egg-sequelize](41ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:54:53,276 INFO 14624 [egg-sequelize](40ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:55:42,384 INFO 3400 [egg-sequelize](40ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:55:48,672 INFO 1968 [egg-sequelize](41ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:55:58,759 INFO 5140 [egg-sequelize](43ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:56:01,286 INFO 11992 [egg-sequelize](43ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:56:34,065 INFO 11992 [egg-sequelize](47ms) Executed (default): SELECT `id`, `name`, `phone_number`, `unit_id` FROM `daily_phone` AS `daily_phone` WHERE `daily_phone`.`unit_id` = '1';
+2021-01-29 17:58:40,315 INFO 14348 [egg-sequelize](45ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:58:45,561 INFO 16256 [egg-sequelize](38ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:58:49,321 INFO 8196 [egg-sequelize](40ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:59:19,782 INFO 13740 [egg-sequelize](38ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:59:45,474 INFO 16036 [egg-sequelize](42ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 17:59:54,477 INFO 11104 [egg-sequelize](40ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 18:00:24,971 INFO 10716 [egg-sequelize](40ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 18:07:00,593 INFO 9676 [egg-sequelize](42ms) Executed (default): SELECT 1+1 AS result
+2021-01-29 18:07:02,693 INFO 3976 [egg-sequelize](40ms) Executed (default): SELECT 1+1 AS result

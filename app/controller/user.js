@@ -66,7 +66,9 @@ class UserController extends Controller {
     ctx.body = res;
   }
 
-  // 修改头像
+  /**
+   * @api {GET} /api/user/getCardInfo 获取用户电子名片信息
+   */
   async getCardInfo() {
     const { ctx, service } = this;
     const jwtData = await service.jwt.getJWtData();
@@ -130,25 +132,25 @@ class UserController extends Controller {
     }
   }
 
-  // 获取单位
+  /**
+   * @api {GET} /api/user/getUnitList 获取单位
+   */
   async getUnit() {
     const { ctx, service } = this;
     const res = await service.user.getUnit.getUnit();
     ctx.body = res;
   }
 
-  // 获取联系人列表
+  /**
+   * @api {GET} /api/user/getPhoneNumber 获取电话
+   * @apiParam {number} unit_id 单位ID
+   */
   async getPhone() {
     const { ctx, service } = this;
     const query = ctx.query
     const { unit_id } = query;
-    if (ctx.isNull(unit_id)) {
-      ctx.status = 400;
-      ctx.body = ctx.retrunInfo(-1, '', '参数错误')
-    } else {
-      const res = await service.user.getPhone.getPhoneList(unit_id);
-      ctx.body = res;
-    }
+    const res = await service.user.getPhone.getPhoneList(unit_id);
+    ctx.body = res;
   }
 
   /**

@@ -120,6 +120,49 @@ define({ "api": [
     "name": "GetApiUserSalarylist"
   },
   {
+    "type": "GET",
+    "url": "/api/user/getCardInfo",
+    "title": "获取用户电子名片信息",
+    "version": "0.0.0",
+    "filename": "app/controller/user.js",
+    "group": "E:\\project\\lawyer_platform\\app\\controller\\user.js",
+    "groupTitle": "E:\\project\\lawyer_platform\\app\\controller\\user.js",
+    "name": "GetApiUserGetcardinfo"
+  },
+  {
+    "type": "GET",
+    "url": "/api/user/getPhoneNumber",
+    "title": "获取电话",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "unit_id",
+            "description": "<p>单位ID</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/controller/user.js",
+    "group": "E:\\project\\lawyer_platform\\app\\controller\\user.js",
+    "groupTitle": "E:\\project\\lawyer_platform\\app\\controller\\user.js",
+    "name": "GetApiUserGetphonenumber"
+  },
+  {
+    "type": "GET",
+    "url": "/api/user/getUnitList",
+    "title": "获取单位",
+    "version": "0.0.0",
+    "filename": "app/controller/user.js",
+    "group": "E:\\project\\lawyer_platform\\app\\controller\\user.js",
+    "groupTitle": "E:\\project\\lawyer_platform\\app\\controller\\user.js",
+    "name": "GetApiUserGetunitlist"
+  },
+  {
     "type": "POST",
     "url": "/api/user/alterInfo",
     "title": "修改用户信息",

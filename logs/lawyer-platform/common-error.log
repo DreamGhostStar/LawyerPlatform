@@ -352,3 +352,45 @@ name: "ECONNRESETError"
 pid: 6256
 hostname: DESKTOP-89NQFV3
 
+2021-01-29 17:16:35,770 ERROR 2628 [-/127.0.0.1/-/4ms GET /api/user/getUnitList] nodejs.TypeError: Cannot read property 'fields' of undefined
+    at E:\project\lawyer_platform\node_modules\egg-router-auth\app\middleware\verifyParams.js:64:44
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at E:\project\lawyer_platform\node_modules\egg-router-auth\app\middleware\verifyAuth.js:27:13
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at E:\project\lawyer_platform\node_modules\egg-development\app\middleware\egg_loader_trace.js:9:56
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at i18n (E:\project\lawyer_platform\node_modules\egg-i18n\app\middleware\i18n.js:13:12)
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at dta (E:\project\lawyer_platform\node_modules\egg-security\lib\middlewares\dta.js:12:12)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at xframe (E:\project\lawyer_platform\node_modules\egg-security\lib\middlewares\xframe.js:7:11)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at xssProtection (E:\project\lawyer_platform\node_modules\egg-security\lib\middlewares\xssProtection.js:7:11)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at nosniff (E:\project\lawyer_platform\node_modules\egg-security\lib\middlewares\nosniff.js:8:11)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at noopen (E:\project\lawyer_platform\node_modules\egg-security\lib\middlewares\noopen.js:8:11)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at notAllow (E:\project\lawyer_platform\node_modules\egg-security\lib\middlewares\methodnoallow.js:21:12)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at csrf (E:\project\lawyer_platform\node_modules\egg-security\lib\middlewares\csrf.js:10:14)
+    at dispatch (E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:42:32)
+    at E:\project\lawyer_platform\node_modules\egg-security\node_modules\koa-compose\index.js:34:12
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at session (E:\project\lawyer_platform\node_modules\koa-session\index.js:41:13)
+    at dispatch (E:\project\lawyer_platform\node_modules\koa\node_modules\koa-compose\index.js:42:32)
+    at overrideMethod (E:\project\lawyer_platform\node_modules\koa-override\index.js:13:70)
+
+pid: 2628
+hostname: DESKTOP-89NQFV3
+
+2021-01-29 17:16:35,805 ERROR 2628 nodejs.TypeError: The "chunk" argument must be of type string or an instance of Buffer. Received an instance of TypeError
+    at ServerResponse.end (_http_outgoing.js:752:13)
+    at Object.app.context.onerror (E:\project\lawyer_platform\node_modules\koa-onerror\index.js:92:14)
+    at onerror (E:\project\lawyer_platform\node_modules\koa\lib\application.js:165:32)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+code: "ERR_INVALID_ARG_TYPE"
+pid: 2628
+hostname: DESKTOP-89NQFV3
+

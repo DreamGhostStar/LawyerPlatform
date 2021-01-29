@@ -11,11 +11,6 @@ class GetPhoneService extends Service {
    */
   async getPhoneList(unitID) {
     const { ctx } = this
-    const unitInfo = await ctx.model.Office.Unit.findOne({
-      where: {
-        id: unitID
-      }
-    })
     const phoneList = await ctx.model.Office.DailyPhone.findAll({
       where: {
         unit_id: unitID
@@ -28,10 +23,7 @@ class GetPhoneService extends Service {
       }
     })
 
-    return ctx.retrunInfo(0, {
-      name: unitInfo.name,
-      lawyer_list: resPhoneList
-    })
+    return ctx.retrunInfo(0, resPhoneList, '获取成功')
   }
 }
 
