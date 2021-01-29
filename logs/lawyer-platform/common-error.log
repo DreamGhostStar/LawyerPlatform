@@ -337,3 +337,18 @@ code: "ERR_INVALID_ARG_TYPE"
 pid: 12560
 hostname: DESKTOP-89NQFV3
 
+2021-01-29 16:29:29,286 ERROR 6256 [egg-redis] client error: Error: read ECONNRESET
+    at TCP.onStreamRead (internal/stream_base_commons.js:205:27) {
+  errno: 'ECONNRESET',
+  code: 'ECONNRESET',
+  syscall: 'read'
+}
+2021-01-29 16:29:29,289 ERROR 6256 nodejs.ECONNRESETError: read ECONNRESET
+    at TCP.onStreamRead (internal/stream_base_commons.js:205:27)
+errno: "ECONNRESET"
+code: "ECONNRESET"
+syscall: "read"
+name: "ECONNRESETError"
+pid: 6256
+hostname: DESKTOP-89NQFV3
+

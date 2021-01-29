@@ -151,8 +151,30 @@ class UserController extends Controller {
     }
   }
 
-  // 修改用户信息
-  async alterUserInfo() {
+  /**
+   * @api {POST} /api/user/alterInfo 修改用户信息
+   * @apiParam {string} name 姓名
+   * @apiParam {string} sex 性别
+   * @apiParam {number} phoneNumber 电话
+   * @apiParam {string} [lawyer_scan_Image] 律师证扫描件url
+   * @apiParam {string} [driver_scan_Image] 驾驶证扫描件url
+   */
+  async alterInfo() {
+    const { ctx, service } = this;
+    const query = ctx.request.body
+    const { name, sex, phoneNumber, lawyer_scan_Image, driver_scan_Image } = query;
+    const res = await service.user.alterInfo.alterUserInfo(
+      name,
+      sex,
+      phoneNumber,
+      lawyer_scan_Image,
+      driver_scan_Image
+    );
+    ctx.body = res;
+  }
+
+  // 管理员修改用户信息
+  async adminAlterUserInfo() {
     const { ctx, service } = this;
     const query = ctx.request.body
     const { userID, name, phoneNumber, lawyer_number, weixin_number } = query;
@@ -160,7 +182,7 @@ class UserController extends Controller {
       ctx.status = 400;
       ctx.body = ctx.retrunInfo(-1, '', '参数错误')
     } else {
-      const res = await service.user.alterInfo.alterUserInfo(
+      const res = await service.user.alterInfo.adminAlterUserInfo(
         userID,
         name,
         phoneNumber,

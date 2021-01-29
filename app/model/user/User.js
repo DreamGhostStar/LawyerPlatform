@@ -47,11 +47,11 @@ module.exports = app => {
       allowNull: true,
     },
     driver_scan_image: { // 驾驶证扫描件
-      type: STRING(32),
+      type: STRING(128),
       allowNull: true,
     },
     lawyer_scan_image: {
-      type: STRING(32),
+      type: STRING(128),
       allowNull: true,
     },
     lawyer_office_id: { // 所属律师事务所ID

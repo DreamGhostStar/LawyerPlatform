@@ -88,5 +88,86 @@
     "group": "E:\\project\\lawyer_platform\\app\\controller\\law.js",
     "groupTitle": "E:\\project\\lawyer_platform\\app\\controller\\law.js",
     "name": "GetApiCaseGetlist"
+  },
+  {
+    "type": "GET",
+    "url": "/api/user/salaryList",
+    "title": "获取收入列表",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "boolean",
+            "optional": false,
+            "field": "isAll",
+            "description": "<p>是否选择全部</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": true,
+            "field": "year",
+            "description": "<p>年份</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/controller/salary.js",
+    "group": "E:\\project\\lawyer_platform\\app\\controller\\salary.js",
+    "groupTitle": "E:\\project\\lawyer_platform\\app\\controller\\salary.js",
+    "name": "GetApiUserSalarylist"
+  },
+  {
+    "type": "POST",
+    "url": "/api/user/alterInfo",
+    "title": "修改用户信息",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "name",
+            "description": "<p>姓名</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "sex",
+            "description": "<p>性别</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "phoneNumber",
+            "description": "<p>电话</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": true,
+            "field": "lawyer_scan_Image",
+            "description": "<p>律师证扫描件url</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": true,
+            "field": "driver_scan_Image",
+            "description": "<p>驾驶证扫描件url</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/controller/user.js",
+    "group": "E:\\project\\lawyer_platform\\app\\controller\\user.js",
+    "groupTitle": "E:\\project\\lawyer_platform\\app\\controller\\user.js",
+    "name": "PostApiUserAlterinfo"
   }
 ]

@@ -3,7 +3,11 @@
 const Controller = require('egg').Controller;
 
 class SalaryController extends Controller {
-  // 获取收入列表
+  /**
+ * @api {GET} /api/user/salaryList 获取收入列表
+ * @apiParam {boolean} isAll 是否选择全部
+ * @apiParam {number} [year] 年份
+ */
   async salaryList() {
     const { ctx, service } = this;
     const res = await service.salary.getSalaryList.getSalaryList();

@@ -3,8 +3,6 @@
 module.exports = () => {
   return async function noteVerifyCode(ctx, next) {
     const sessionVerifyCode = ctx.session.noteVerifyCode;
-    console.log('-------短信登录-----')
-    console.log(ctx.session.noteVerifyCode)
 
     if (!sessionVerifyCode) {
       ctx.body = {

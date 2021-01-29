@@ -35,8 +35,9 @@ module.exports = app => {
 
   // 用户相关
   router.get('/api/user/getInfo', controller.user.getUserInfo);
+  router.post('/api/user/alterInfo', controller.user.alterInfo);
   router.get('/api/user/getBasicInfo', controller.user.getBaseUserInfo);
-  router.post('/api/user/alterPassword', controller.user.modifyPassword);
+  router.post('/api/user/alterPassword', controller.user.modifyPassword); // 修改密码
   router.post('/api/user/reserveAvatarUrl', controller.user.modifyAvatar);
   router.post('/api/user/exit', controller.user.exit);
   router.get('/api/user/getCardInfo', controller.user.getCardInfo);
@@ -48,7 +49,7 @@ module.exports = app => {
   router.get('/api/user/getPhoneNumber', controller.user.getPhone);
 
   // 金额相关
-  router.get('/api/user/salaryList', controller.salary.salaryList);
+  router.get('/api/user/salaryList', controller.salary.salaryList); // 获取收入列表
 
   // 验证码相关
   router.get('/api/public/verificationCode/image', controller.home.getImageVeriyCode);
@@ -60,7 +61,7 @@ module.exports = app => {
   router.get('/api/public/download', lawIdVerify, controller.law.downloadWordUrl);
 
   // 案件相关
-  router.get('/api/case/getList', controller.law.getLawList);
+  router.get('/api/case/getList', controller.law.getLawList); // 获取案件列表信息
   router.get('/api/case', controller.law.getLawInfo); // 获取案件具体信息
   router.get('/api/case/searchCase', controller.law.searchLawInfo);
   router.put('/api/case', lawIdVerify, controller.law.alterLaw);
@@ -81,7 +82,7 @@ module.exports = app => {
 
   // 管理员相关
   // 用户相关
-  router.put('/api/admin/user', controller.user.alterUserInfo); // 修改用户信息
+  router.put('/api/admin/user', controller.user.adminAlterUserInfo); // 修改用户信息
   router.post(
     '/api/admin/user',
     addLawyerNumberVerify,
