@@ -32,10 +32,10 @@ class GetUnitService extends Service {
       }
     })
 
-    return ctx.retrunInfo(0, {
+    return ctx.retrunInfo(0, [{
       name: userInfo.lawyer_office.lawyer_office_name,
       unit: resList
-    }, '获取成功')
+    }], '获取成功')
   }
 }
 

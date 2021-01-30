@@ -38,8 +38,8 @@ module.exports = app => {
   router.post('/api/user/alterInfo', controller.user.alterInfo);
   router.get('/api/user/getBasicInfo', controller.user.getBaseUserInfo);
   router.post('/api/user/alterPassword', controller.user.modifyPassword); // 修改密码
-  router.post('/api/user/reserveAvatarUrl', controller.user.modifyAvatar);
-  router.post('/api/user/exit', controller.user.exit);
+  router.post('/api/user/reserveAvatarUrl', controller.user.modifyAvatar); // 修改头像
+  router.post('/api/user/exit', controller.user.exit); // 退出登录
   router.get('/api/user/getCardInfo', controller.user.getCardInfo);
   router.get('/api/user/getInformList', controller.user.getMessageList);
   router.get('/api/user/getInformDetail', controller.user.getMessageDetail);
