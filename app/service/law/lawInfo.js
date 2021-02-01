@@ -40,12 +40,7 @@ class LawInfoService extends Service {
     const hostUserInfo = await ctx.model.User.User.findByPk(lawInfo.host_user_id)
 
     const guest_list = lawInfo.users.map(user => {
-      return {
-        guest_id: user.id,
-        guest_name: user.name,
-        guest_phone: user.phone_number,
-        guest_lawyer_number: user.lawyer_number,
-      }
+      return user.name
     })
 
     return ctx.retrunInfo(0, {
@@ -53,12 +48,7 @@ class LawInfoService extends Service {
       status: await service.law.lawUtil.getLawStatus(lawInfo.law_status.value),
       plaintiff: lawInfo.accuser,
       defendant: lawInfo.defendant,
-      host: {
-        id: hostUserInfo.id,
-        name: hostUserInfo.name,
-        phone: hostUserInfo.phone_number,
-        lawyer_number: hostUserInfo.lawyer_number,
-      },
+      host: hostUserInfo.name,
       guest_list: guest_list,
       base_info: lawInfo.base_info,
       detail_info: lawInfo.detail_info,

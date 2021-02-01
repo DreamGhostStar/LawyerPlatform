@@ -4040,3 +4040,106 @@ hostname: DESKTOP-89NQFV3
 2021-02-01 11:54:30,123 INFO 12316 [egg:core] dump config after load, 7ms
 2021-02-01 11:54:30,150 INFO 12316 [egg-watcher:application] watcher start success
 2021-02-01 11:54:30,212 INFO 12316 [egg-redis] client connect success
+2021-02-01 11:54:30,343 INFO 12316 [egg-redis] instance[0] status OK, client ready
+2021-02-01 11:54:31,160 INFO 12316 [egg:core] dump config after ready, 28ms
+2021-02-01 12:22:26,738 INFO 1168 [egg:logger] init all loggers with options: {"dir":"E:\\project\\lawyer_platform\\logs\\lawyer-platform","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"lawyer-platform-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2021-02-01 12:22:26,822 INFO 1168 [egg-multipart] stream mode enable
+2021-02-01 12:22:27,972 INFO 1168 [egg-redis] server connecting redis://:***@106.14.174.206:6379/0
+2021-02-01 12:22:35,134 INFO 1168 [egg-static] starting static serve /public/ -> E:\project\lawyer_platform\app\public
+2021-02-01 12:22:35,149 INFO 1168 [egg-security] use csrf middleware
+2021-02-01 12:22:35,152 INFO 1168 [egg-security] use methodnoallow middleware
+2021-02-01 12:22:35,154 INFO 1168 [egg-security] use noopen middleware
+2021-02-01 12:22:35,156 INFO 1168 [egg-security] use nosniff middleware
+2021-02-01 12:22:35,158 INFO 1168 [egg-security] use xssProtection middleware
+2021-02-01 12:22:35,160 INFO 1168 [egg-security] use xframe middleware
+2021-02-01 12:22:35,162 INFO 1168 [egg-security] use dta middleware
+2021-02-01 12:22:35,162 INFO 1168 [egg-security] compose 7 middlewares into one security middleware
+2021-02-01 12:22:35,203 INFO 1168 [egg:core] dump config after load, 10ms
+2021-02-01 12:22:35,250 INFO 1168 [egg-watcher:application] watcher start success
+2021-02-01 12:22:35,302 INFO 1168 [egg-redis] client connect success
+2021-02-01 12:22:35,463 INFO 1168 [egg-redis] instance[0] status OK, client ready
+2021-02-01 12:22:36,287 INFO 1168 [egg:core] dump config after ready, 38ms
+2021-02-01 12:22:51,063 INFO 4428 [egg:logger] init all loggers with options: {"dir":"E:\\project\\lawyer_platform\\logs\\lawyer-platform","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"lawyer-platform-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2021-02-01 12:22:51,126 INFO 4428 [egg-multipart] stream mode enable
+2021-02-01 12:22:51,537 INFO 4428 [egg-redis] server connecting redis://:***@106.14.174.206:6379/0
+2021-02-01 12:22:52,116 INFO 4428 [egg-static] starting static serve /public/ -> E:\project\lawyer_platform\app\public
+2021-02-01 12:22:52,122 INFO 4428 [egg-security] use csrf middleware
+2021-02-01 12:22:52,123 INFO 4428 [egg-security] use methodnoallow middleware
+2021-02-01 12:22:52,124 INFO 4428 [egg-security] use noopen middleware
+2021-02-01 12:22:52,125 INFO 4428 [egg-security] use nosniff middleware
+2021-02-01 12:22:52,126 INFO 4428 [egg-security] use xssProtection middleware
+2021-02-01 12:22:52,127 INFO 4428 [egg-security] use xframe middleware
+2021-02-01 12:22:52,128 INFO 4428 [egg-security] use dta middleware
+2021-02-01 12:22:52,128 INFO 4428 [egg-security] compose 7 middlewares into one security middleware
+2021-02-01 12:22:52,164 INFO 4428 [egg:core] dump config after load, 12ms
+2021-02-01 12:22:52,220 INFO 4428 [egg-watcher:application] watcher start success
+2021-02-01 12:22:52,293 INFO 4428 [egg-redis] client connect success
+2021-02-01 12:22:52,510 INFO 4428 [egg-redis] instance[0] status OK, client ready
+2021-02-01 12:22:53,535 INFO 4428 [egg:core] dump config after ready, 30ms
+2021-02-01 12:23:04,815 INFO 12448 [egg:logger] init all loggers with options: {"dir":"E:\\project\\lawyer_platform\\logs\\lawyer-platform","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"lawyer-platform-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2021-02-01 12:23:04,851 INFO 12448 [egg-multipart] stream mode enable
+2021-02-01 12:23:05,052 INFO 12448 [egg-redis] server connecting redis://:***@106.14.174.206:6379/0
+2021-02-01 12:23:05,418 INFO 12448 [egg-static] starting static serve /public/ -> E:\project\lawyer_platform\app\public
+2021-02-01 12:23:05,421 INFO 12448 [egg-security] use csrf middleware
+2021-02-01 12:23:05,422 INFO 12448 [egg-security] use methodnoallow middleware
+2021-02-01 12:23:05,423 INFO 12448 [egg-security] use noopen middleware
+2021-02-01 12:23:05,423 INFO 12448 [egg-security] use nosniff middleware
+2021-02-01 12:23:05,424 INFO 12448 [egg-security] use xssProtection middleware
+2021-02-01 12:23:05,424 INFO 12448 [egg-security] use xframe middleware
+2021-02-01 12:23:05,425 INFO 12448 [egg-security] use dta middleware
+2021-02-01 12:23:05,425 INFO 12448 [egg-security] compose 7 middlewares into one security middleware
+2021-02-01 12:23:05,444 INFO 12448 [egg:core] dump config after load, 7ms
+2021-02-01 12:23:05,479 INFO 12448 [egg-watcher:application] watcher start success
+2021-02-01 12:23:05,546 INFO 12448 [egg-redis] client connect success
+2021-02-01 12:23:05,727 INFO 12448 [egg-redis] instance[0] status OK, client ready
+2021-02-01 12:23:06,604 INFO 12448 [egg:core] dump config after ready, 30ms
+2021-02-01 12:28:16,957 INFO 16152 [egg:logger] init all loggers with options: {"dir":"E:\\project\\lawyer_platform\\logs\\lawyer-platform","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"lawyer-platform-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2021-02-01 12:28:17,006 INFO 16152 [egg-multipart] stream mode enable
+2021-02-01 12:28:17,219 INFO 16152 [egg-redis] server connecting redis://:***@106.14.174.206:6379/0
+2021-02-01 12:28:17,559 INFO 16152 [egg-static] starting static serve /public/ -> E:\project\lawyer_platform\app\public
+2021-02-01 12:28:17,562 INFO 16152 [egg-security] use csrf middleware
+2021-02-01 12:28:17,563 INFO 16152 [egg-security] use methodnoallow middleware
+2021-02-01 12:28:17,564 INFO 16152 [egg-security] use noopen middleware
+2021-02-01 12:28:17,564 INFO 16152 [egg-security] use nosniff middleware
+2021-02-01 12:28:17,565 INFO 16152 [egg-security] use xssProtection middleware
+2021-02-01 12:28:17,565 INFO 16152 [egg-security] use xframe middleware
+2021-02-01 12:28:17,566 INFO 16152 [egg-security] use dta middleware
+2021-02-01 12:28:17,566 INFO 16152 [egg-security] compose 7 middlewares into one security middleware
+2021-02-01 12:28:17,584 INFO 16152 [egg:core] dump config after load, 6ms
+2021-02-01 12:28:17,612 INFO 16152 [egg-watcher:application] watcher start success
+2021-02-01 12:28:18,013 INFO 16152 [egg-redis] client connect success
+2021-02-01 12:28:18,176 INFO 16152 [egg-redis] instance[0] status OK, client ready
+2021-02-01 12:28:19,077 INFO 16152 [egg:core] dump config after ready, 89ms
+2021-02-01 12:29:51,159 INFO 12080 [egg:logger] init all loggers with options: {"dir":"E:\\project\\lawyer_platform\\logs\\lawyer-platform","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"lawyer-platform-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2021-02-01 12:29:51,212 INFO 12080 [egg-multipart] stream mode enable
+2021-02-01 12:29:51,479 INFO 12080 [egg-redis] server connecting redis://:***@106.14.174.206:6379/0
+2021-02-01 12:29:51,821 INFO 12080 [egg-static] starting static serve /public/ -> E:\project\lawyer_platform\app\public
+2021-02-01 12:29:51,825 INFO 12080 [egg-security] use csrf middleware
+2021-02-01 12:29:51,825 INFO 12080 [egg-security] use methodnoallow middleware
+2021-02-01 12:29:51,826 INFO 12080 [egg-security] use noopen middleware
+2021-02-01 12:29:51,826 INFO 12080 [egg-security] use nosniff middleware
+2021-02-01 12:29:51,827 INFO 12080 [egg-security] use xssProtection middleware
+2021-02-01 12:29:51,828 INFO 12080 [egg-security] use xframe middleware
+2021-02-01 12:29:51,828 INFO 12080 [egg-security] use dta middleware
+2021-02-01 12:29:51,828 INFO 12080 [egg-security] compose 7 middlewares into one security middleware
+2021-02-01 12:29:51,849 INFO 12080 [egg:core] dump config after load, 8ms
+2021-02-01 12:29:51,875 INFO 12080 [egg-watcher:application] watcher start success
+2021-02-01 12:29:52,020 INFO 12080 [egg-redis] client connect success
+2021-02-01 12:29:52,176 INFO 12080 [egg-redis] instance[0] status OK, client ready
+2021-02-01 12:29:53,010 INFO 12080 [egg:core] dump config after ready, 62ms
+2021-02-01 12:31:00,960 INFO 2416 [egg:logger] init all loggers with options: {"dir":"E:\\project\\lawyer_platform\\logs\\lawyer-platform","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"lawyer-platform-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2021-02-01 12:31:01,007 INFO 2416 [egg-multipart] stream mode enable
+2021-02-01 12:31:01,185 INFO 2416 [egg-redis] server connecting redis://:***@106.14.174.206:6379/0
+2021-02-01 12:31:01,518 INFO 2416 [egg-static] starting static serve /public/ -> E:\project\lawyer_platform\app\public
+2021-02-01 12:31:01,522 INFO 2416 [egg-security] use csrf middleware
+2021-02-01 12:31:01,523 INFO 2416 [egg-security] use methodnoallow middleware
+2021-02-01 12:31:01,524 INFO 2416 [egg-security] use noopen middleware
+2021-02-01 12:31:01,525 INFO 2416 [egg-security] use nosniff middleware
+2021-02-01 12:31:01,525 INFO 2416 [egg-security] use xssProtection middleware
+2021-02-01 12:31:01,526 INFO 2416 [egg-security] use xframe middleware
+2021-02-01 12:31:01,526 INFO 2416 [egg-security] use dta middleware
+2021-02-01 12:31:01,526 INFO 2416 [egg-security] compose 7 middlewares into one security middleware
+2021-02-01 12:31:01,550 INFO 2416 [egg:core] dump config after load, 9ms
+2021-02-01 12:31:01,581 INFO 2416 [egg-watcher:application] watcher start success
+2021-02-01 12:31:01,654 INFO 2416 [egg-redis] client connect success
+2021-02-01 12:31:01,816 INFO 2416 [egg-redis] instance[0] status OK, client ready
