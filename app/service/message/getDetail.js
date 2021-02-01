@@ -11,6 +11,8 @@ class GetDetailService extends Service {
    */
   async getMessageDetail(informID) {
     const { ctx, service } = this
+    const jwtData = await service.jwt.getJWtData();
+    const userID = jwtData.userID
     // 获取消息详情
     const messageDetail = await ctx.model.User.Message.findOne({
       include: [
@@ -22,9 +24,13 @@ class GetDetailService extends Service {
       }, 
     ],
       where: {
-        id: informID
+        id: informID,
+        to_user_id: userID
       }
     })
+    if(!messageDetail){
+      return ctx.retrunInfo(-1, '', '未找到此消息')
+    }
     // 获取数据库中所有用户
     const userList = await service.user.userUtil.getUsersInDataBase();
     let hostName; // 主办人姓名

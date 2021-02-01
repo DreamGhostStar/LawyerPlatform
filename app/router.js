@@ -41,8 +41,8 @@ module.exports = app => {
   router.post('/api/user/reserveAvatarUrl', controller.user.modifyAvatar); // 修改头像
   router.post('/api/user/exit', controller.user.exit); // 退出登录
   router.get('/api/user/getCardInfo', controller.user.getCardInfo);
-  router.get('/api/user/getInformList', controller.user.getMessageList);
-  router.get('/api/user/getInformDetail', controller.user.getMessageDetail);
+  router.get('/api/user/getInformList', controller.user.getMessageList); // 获取消息列表
+  router.get('/api/user/getInformDetail', controller.user.getMessageDetail); // 获取消息详情
   router.post('/api/user/fixInformState', controller.user.alterMessageStatus);
   router.delete('/api/user/deleteInform', controller.user.removeMessage);
   router.get('/api/user/getUnitList', controller.user.getUnit);

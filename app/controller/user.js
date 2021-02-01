@@ -90,18 +90,17 @@ class UserController extends Controller {
     ctx.body = res;
   }
 
-  // 获取通知消息详情
+  // 
+  /**
+   * @api {GET} /api/user/getInformDetail 获取通知消息详情
+   * @apiParam {number} informID 通知ID
+   */
   async getMessageDetail() {
     const { ctx, service } = this;
     const query = ctx.query
     const informID = query.informID;
-    if (ctx.isNull(informID)) {
-      ctx.status = 400;
-      ctx.body = ctx.retrunInfo(-1, '', '参数错误')
-    } else {
-      const res = await service.message.getDetail.getMessageDetail(informID);
-      ctx.body = res;
-    }
+    const res = await service.message.getDetail.getMessageDetail(informID);
+    ctx.body = res;
   }
 
   // 修改消息的状态
