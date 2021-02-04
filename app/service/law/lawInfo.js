@@ -43,6 +43,20 @@ class LawInfoService extends Service {
       return user.name
     })
 
+    // 代理词HTML获取
+    let agencyWordHtml = null
+    const agencyWordUrl = lawInfo.agency_word === null ? null : lawInfo.agency_word.url
+    if (agencyWordUrl) {
+      agencyWordHtml = await service.law.finshLaw.downLoadFile(agencyWordUrl)
+    }
+    
+    // 结案文书HTML获取
+    let finalReportHtml = null
+    const finalReportUrl = lawInfo.final_report === null ? null : lawInfo.final_report.url
+    if (finalReportUrl) {
+      finalReportHtml = await service.law.finshLaw.downLoadFile(finalReportUrl)
+    }
+
     return ctx.retrunInfo(0, {
       name: lawInfo.name,
       status: await service.law.lawUtil.getLawStatus(lawInfo.law_status.value),
@@ -55,8 +69,8 @@ class LawInfoService extends Service {
       type: await service.law.lawUtil.getLawType(lawInfo.law_type.value),
       audit: await service.law.lawUtil.getLawAudit(lawInfo.law_audit.value),
       scale: parseFloat(lawInfo.host_assist_scale),
-      agency_word: lawInfo.agency_word === null ? null : lawInfo.agency_word.url,
-      final_report: lawInfo.final_report === null ? null : lawInfo.final_report.url,
+      agency_word: ctx.isNull(agencyWordHtml) ? null : agencyWordHtml,
+      final_report: ctx.isNull(finalReportHtml) ? null : finalReportHtml,
     }, '')
   }
 

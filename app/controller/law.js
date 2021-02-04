@@ -102,18 +102,16 @@ class LawController extends Controller {
     }
   }
 
-  // 获取案件具体信息
+  /**
+ * @api {GET} /api/case 获取案件具体信息
+ * @apiParam {number} caseID 案件ID
+ */
   async getLawInfo() {
     const { ctx, service } = this;
     const query = ctx.query;
     const caseID = query.caseID;
-    if (ctx.isNull(caseID)) {
-      ctx.status = 400;
-      ctx.body = ctx.retrunInfo(-1, '', '请求参数错误');
-    } else {
-      const res = await service.law.lawInfo.getLawInfo(caseID);
-      ctx.body = res;
-    }
+    const res = await service.law.lawInfo.getLawInfo(caseID);
+    ctx.body = res;
   }
 
   // 搜索案件

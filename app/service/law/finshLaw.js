@@ -101,13 +101,13 @@ class FinshLawService extends Service {
   }
 
   /**
-   * @description 下载指定url的word文档，并且将其插入到
+   * @description 下载指定url的word文档，并且将其转换为HTML
    * @param {string} url
-   * @param {string} filename
    * @return {string} 返回html文本
    * @memberof RemoveMessageService
    */
-  async downLoadFile(url, filename) {
+  async downLoadFile(url) {
+    const filename = path.basename(url)
     return new Promise(resolve => {
       const pathName = path.join(__dirname, `../../public/word/${filename}`)
       http.get(url, (res) => {

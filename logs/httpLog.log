@@ -134,3 +134,7 @@
 2021-02-01 12:28:21 [http] {"method":"GET","url":"/api/case?caseID=3","data":{},"response":{},"timeLength":716}
 2021-02-01 12:29:57 [http] {"method":"GET","url":"/api/case?caseID=3","data":{},"response":{},"timeLength":846}
 2021-02-01 12:31:06 [http] {"method":"GET","url":"/api/case?caseID=3","data":{},"response":{"code":0,"message":""},"timeLength":696}
+2021-02-04 17:18:13 [http] {"method":"GET","url":"/api/case?caseID=3","data":{},"response":{"code":0,"message":""},"timeLength":331}
+2021-02-04 17:18:46 [http] {"method":"GET","url":"/api/case?caseID=3","data":{},"response":{"code":0,"message":""},"timeLength":160}
+2021-02-04 17:19:55 [http] {"method":"GET","url":"/api/case?caseID=3","data":{},"response":{"code":0,"message":""},"timeLength":964}
+2021-02-04 17:21:05 [http] {"method":"GET","url":"/api/case?caseID=3","data":{},"response":{"code":0,"message":""},"timeLength":411}
