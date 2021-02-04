@@ -54,6 +54,29 @@
   },
   {
     "type": "GET",
+    "url": "/api/case",
+    "title": "获取案件具体信息",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "caseID",
+            "description": "<p>案件ID</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/controller/law.js",
+    "group": "E:\\project\\lawyer_platform\\app\\controller\\law.js",
+    "groupTitle": "E:\\project\\lawyer_platform\\app\\controller\\law.js",
+    "name": "GetApiCase"
+  },
+  {
+    "type": "GET",
     "url": "/api/case/getList",
     "title": "获取案件列表信息",
     "parameter": {
@@ -131,6 +154,29 @@
   },
   {
     "type": "GET",
+    "url": "/api/user/getInformDetail",
+    "title": "获取通知消息详情",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "informID",
+            "description": "<p>通知ID</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/controller/user.js",
+    "group": "E:\\project\\lawyer_platform\\app\\controller\\user.js",
+    "groupTitle": "E:\\project\\lawyer_platform\\app\\controller\\user.js",
+    "name": "GetApiUserGetinformdetail"
+  },
+  {
+    "type": "GET",
     "url": "/api/user/getPhoneNumber",
     "title": "获取电话",
     "parameter": {
@@ -161,6 +207,16 @@
     "group": "E:\\project\\lawyer_platform\\app\\controller\\user.js",
     "groupTitle": "E:\\project\\lawyer_platform\\app\\controller\\user.js",
     "name": "GetApiUserGetunitlist"
+  },
+  {
+    "type": "GET",
+    "url": "/api/user/getUserList",
+    "title": "获取用户列表",
+    "version": "0.0.0",
+    "filename": "app/controller/user.js",
+    "group": "E:\\project\\lawyer_platform\\app\\controller\\user.js",
+    "groupTitle": "E:\\project\\lawyer_platform\\app\\controller\\user.js",
+    "name": "GetApiUserGetuserlist"
   },
   {
     "type": "POST",

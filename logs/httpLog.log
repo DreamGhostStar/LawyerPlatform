@@ -138,3 +138,4 @@
 2021-02-04 17:18:46 [http] {"method":"GET","url":"/api/case?caseID=3","data":{},"response":{"code":0,"message":""},"timeLength":160}
 2021-02-04 17:19:55 [http] {"method":"GET","url":"/api/case?caseID=3","data":{},"response":{"code":0,"message":""},"timeLength":964}
 2021-02-04 17:21:05 [http] {"method":"GET","url":"/api/case?caseID=3","data":{},"response":{"code":0,"message":""},"timeLength":411}
+2021-02-04 22:48:07 [http] {"method":"GET","url":"/api/user/getUserList","data":{},"response":{"code":0,"message":""},"timeLength":43}

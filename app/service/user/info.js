@@ -80,11 +80,11 @@ class InfoService extends Service {
   }
 
   /**
-   * @description 获取用户列表
+   * @description 管理员获取用户列表
    * @return {object} 返回信息
    * @memberof UserService
    */
-  async getUserList() {
+  async adminGetUserList() {
     const { ctx, service } = this;
     const jwtData = await service.jwt.getJWtData()
     const userID = jwtData.userID;
@@ -129,6 +129,23 @@ class InfoService extends Service {
       }
     })
     return ctx.retrunInfo(0, userInfo, '');
+  }
+
+  /**
+   * @description 获取用户列表
+   * @return {object} 返回信息
+   * @memberof UserService
+   */
+  async getUserDetail() {
+    const { ctx, service } = this;
+    const userListInRedis = await service.redis.getUserInRedis();
+    const res = userListInRedis.map(userItem=>{
+      return {
+        name: userItem.name,
+        id: userItem.id
+      }
+    })
+    return ctx.retrunInfo(0, res, '');
   }
 }
 

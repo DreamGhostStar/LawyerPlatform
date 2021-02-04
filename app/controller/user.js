@@ -262,10 +262,10 @@ class UserController extends Controller {
     }
   }
 
-  // 获取用户列表
-  async getUserList() {
+  // 管理员获取用户列表
+  async adminGetUserList() {
     const { ctx, service } = this;
-    const res = await service.user.info.getUserList();
+    const res = await service.user.info.adminGetUserList();
     ctx.body = res;
   }
 
@@ -295,6 +295,15 @@ class UserController extends Controller {
       const res = await service.user.alterInfo.resetPassword(parseInt(userID), password);
       ctx.body = res;
     }
+  }
+
+  /**
+   * @api {GET} /api/user/getUserList 获取用户列表
+   */
+  async getUserList() {
+    const { ctx, service } = this;
+    const res = await service.user.info.getUserDetail();
+    ctx.body = res;
   }
 }
 

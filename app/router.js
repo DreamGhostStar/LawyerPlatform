@@ -47,6 +47,7 @@ module.exports = app => {
   router.delete('/api/user/deleteInform', controller.user.removeMessage);
   router.get('/api/user/getUnitList', controller.user.getUnit);
   router.get('/api/user/getPhoneNumber', controller.user.getPhone);
+  router.get('/api/user/getUserList', controller.user.getUserList); // 获取用户列表
 
   // 金额相关
   router.get('/api/user/salaryList', controller.salary.salaryList); // 获取收入列表
@@ -93,7 +94,7 @@ module.exports = app => {
   ); // 生成账号
   router.put('/api/admin/user/identify', controller.user.alterUserIdentity); // 修改用户身份
   router.get('/api/admin/user/tip', controller.user.getUserInDatabase); // 查找数据库中合适用户
-  router.get('/api/admin/userList', controller.user.getUserList); // 获取用户列表
+  router.get('/api/admin/userList', controller.user.adminGetUserList); // 获取用户列表
   router.get('/api/admin/user', controller.user.adminGetUserDetail); // 管理员获取用户详细信息
   router.put('/api/admin/user/password', controller.user.resetPassword); // 重置用户密码
 
