@@ -67,6 +67,7 @@ module.exports = app => {
   router.get('/api/case/searchCase', controller.law.searchLawInfo);
   router.put('/api/case', lawIdVerify, controller.law.alterLaw);
   router.put('/api/case/askForFinish', controller.law.finishLaw);
+  router.get('/api/case/getScaleList', controller.law.getScaleList); // 获取协办比例
 
   // 日志相关
   router.post('/api/log/new', controller.log.create);

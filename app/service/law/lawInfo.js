@@ -100,8 +100,8 @@ class LawInfoService extends Service {
       const assistUserInfo = await ctx.model.User.User.findByPk(lawAssist.law_assistant.assist_id)
       assistList.push({
         id: lawAssist.law_assistant.id,
-        username: lawAssist.law_assistant.scale,
-        scale: assistUserInfo.name
+        username: assistUserInfo.name,
+        scale: lawAssist.law_assistant.scale
       })
     }
 
@@ -129,6 +129,39 @@ class LawInfoService extends Service {
       },
       assiant: assistList
     }, '')
+  }
+  
+  /**
+   * @description 获取协办比例
+   * @param {number} id 案件ID
+   * @return {object} 返回信息
+   * @memberof LawInfoService
+   */
+  async getScaleList(id) {
+    const { ctx, service } = this
+    const laws = await service.redis.getLawsInRedis();
+    let law = null;
+    laws.map(lawItem => {
+      if (lawItem.id === id) {
+        law = lawItem
+      }
+    })
+
+    if (!law) {
+      return ctx.retrunInfo(-1, '', '不存在该案件')
+    }
+    const scaleList = [];
+    for (let i = 0; i < law.users.length; i++) {
+      const assistItem = law.users[i];
+      const assistInfo = await ctx.model.User.User.findByPk(assistItem.law_assistant.assist_id)
+      scaleList.push({
+        id: assistItem.law_assistant.assist_id,
+        name: assistInfo.name,
+        scale: parseFloat(assistItem.law_assistant.scale)
+      })
+    }
+
+    return ctx.retrunInfo(0, scaleList, '')
   }
 }
 

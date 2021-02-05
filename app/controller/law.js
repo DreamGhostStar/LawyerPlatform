@@ -11,11 +11,11 @@ class LawController extends Controller {
   }
 
   /**
- * @api {GET} /api/case/getList 获取案件列表信息
- * @apiParam {boolean} isAll 是否选择全部
- * @apiParam {string} [status] 案件处理状态 
- * @apiParam {number} page 页数 
- */
+   * @api {GET} /api/case/getList 获取案件列表信息
+   * @apiParam {boolean} isAll 是否选择全部
+   * @apiParam {string} [status] 案件处理状态 
+   * @apiParam {number} page 页数 
+   */
   async getLawList() {
     const { ctx, service } = this;
     const query = ctx.query;
@@ -65,8 +65,8 @@ class LawController extends Controller {
       ctx.status = 400;
       ctx.body = ctx.retrunInfo(-1, '', '传递参数错误')
     } else {
-      const res = await service.law.adminAlterLaw.adminAlterLaw(id, caseNumber, accuser, defendant, 
-        caseTrial, caseType, caseReason, detail, agency, status_id, host, assiant, name, 
+      const res = await service.law.adminAlterLaw.adminAlterLaw(id, caseNumber, accuser, defendant,
+        caseTrial, caseType, caseReason, detail, agency, status_id, host, assiant, name,
         create_time, money);
       ctx.body = res;
     }
@@ -103,9 +103,9 @@ class LawController extends Controller {
   }
 
   /**
- * @api {GET} /api/case 获取案件具体信息
- * @apiParam {number} caseID 案件ID
- */
+   * @api {GET} /api/case 获取案件具体信息
+   * @apiParam {number} caseID 案件ID
+   */
   async getLawInfo() {
     const { ctx, service } = this;
     const query = ctx.query;
@@ -160,6 +160,18 @@ class LawController extends Controller {
   async adminGetLawList() {
     const { ctx, service } = this;
     const res = await service.law.lawList.adminGetLawList();
+    ctx.body = res;
+  }
+
+  /**
+   * @api {GET} /api/case/getScaleList 获取协办比例
+   * @apiParam {number} caseID 案件ID
+   */
+  async getScaleList() {
+    const { ctx, service } = this;
+    const query = ctx.query;
+    const caseID = query.caseID;
+    const res = await service.law.lawInfo.getScaleList(parseInt(caseID));
     ctx.body = res;
   }
 }

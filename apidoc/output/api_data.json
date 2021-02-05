@@ -114,6 +114,29 @@
   },
   {
     "type": "GET",
+    "url": "/api/case/getScaleList",
+    "title": "获取协办比例",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "number",
+            "optional": false,
+            "field": "caseID",
+            "description": "<p>案件ID</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "app/controller/law.js",
+    "group": "E:\\project\\lawyer_platform\\app\\controller\\law.js",
+    "groupTitle": "E:\\project\\lawyer_platform\\app\\controller\\law.js",
+    "name": "GetApiCaseGetscalelist"
+  },
+  {
+    "type": "GET",
     "url": "/api/user/salaryList",
     "title": "获取收入列表",
     "parameter": {

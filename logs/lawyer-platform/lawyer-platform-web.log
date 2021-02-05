@@ -584,3 +584,33 @@ hostname: DESKTOP-89NQFV3
 2021-02-05 12:27:00,676 INFO 9652 [egg-sequelize](38ms) Executed (default): SELECT `law`.`id`, `law`.`number`, `law`.`name`, `law`.`status_id`, `law`.`base_info`, `law`.`detail_info`, `law`.`type_id`, `law`.`agency_word_id`, `law`.`final_report_id`, `law`.`result_request_id`, `law`.`audit_user_id`, `law`.`create_time`, `law`.`end_time`, `law`.`accuser`, `law`.`defendant`, `law`.`trial_level_id`, `law`.`host_user_id`, `law`.`host_assist_scale`, `law`.`money`, `law`.`remove_time`, `result_request`.`id` AS `result_request.id`, `result_request`.`word_url` AS `result_request.word_url`, `result_request`.`value` AS `result_request.value` FROM `law` AS `law` LEFT OUTER JOIN `result_request` AS `result_request` ON `law`.`result_request_id` = `result_request`.`id` WHERE `law`.`result_request_id` = 12 LIMIT 1;
 2021-02-05 12:27:11,821 INFO 8712 [egg-sequelize](39ms) Executed (default): SELECT 1+1 AS result
 2021-02-05 12:27:12,664 INFO 8712 [egg-sequelize](41ms) Executed (default): SELECT `law`.`id`, `law`.`number`, `law`.`name`, `law`.`status_id`, `law`.`base_info`, `law`.`detail_info`, `law`.`type_id`, `law`.`agency_word_id`, `law`.`final_report_id`, `law`.`result_request_id`, `law`.`audit_user_id`, `law`.`create_time`, `law`.`end_time`, `law`.`accuser`, `law`.`defendant`, `law`.`trial_level_id`, `law`.`host_user_id`, `law`.`host_assist_scale`, `law`.`money`, `law`.`remove_time`, `result_request`.`id` AS `result_request.id`, `result_request`.`word_url` AS `result_request.word_url`, `result_request`.`value` AS `result_request.value` FROM `law` AS `law` LEFT OUTER JOIN `result_request` AS `result_request` ON `law`.`result_request_id` = `result_request`.`id` WHERE `law`.`result_request_id` = 12 LIMIT 1;
+2021-02-05 12:53:33,302 INFO 14476 [egg-sequelize](38ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 12:53:41,178 INFO 12128 [egg-sequelize](43ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 12:53:52,102 INFO 15192 [egg-sequelize](44ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 12:54:03,615 INFO 6076 [egg-sequelize](42ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 12:54:10,405 INFO 9768 [egg-sequelize](41ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 12:54:20,246 INFO 9952 [egg-sequelize](41ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 12:54:29,345 INFO 19320 [egg-sequelize](42ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 12:54:36,168 INFO 12128 [egg-sequelize](42ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 12:54:49,423 INFO 11276 [egg-sequelize](44ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 12:54:51,897 INFO 20340 [egg-sequelize](43ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 12:55:43,028 INFO 9644 [egg-sequelize](46ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 12:59:17,661 INFO 15420 [egg-sequelize](43ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 13:00:06,474 INFO 12252 [egg-sequelize](45ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 13:01:06,115 INFO 16036 [egg-sequelize](40ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 13:03:44,299 INFO 10680 [egg-sequelize](41ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 13:03:47,109 INFO 15856 [egg-sequelize](43ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 13:04:05,207 INFO 16060 [egg-sequelize](39ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 13:08:22,488 INFO 9804 [egg-sequelize](40ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 13:08:23,514 INFO 9804 [egg-sequelize](40ms) Executed (default): SELECT `id`, `jurisdiction_id`, `age`, `sex`, `password`, `weixin_number`, `phone_number`, `name`, `lawyer_number`, `avatar`, `driver_scan_image`, `lawyer_scan_image`, `lawyer_office_id`, `update_time`, `create_time`, `identify_number`, `law_number`, `start_time` FROM `user` AS `user` WHERE `user`.`id` = 20;
+2021-02-05 13:08:43,178 INFO 10436 [egg-sequelize](45ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 13:08:43,568 INFO 10436 [egg-sequelize](46ms) Executed (default): SELECT `id`, `jurisdiction_id`, `age`, `sex`, `password`, `weixin_number`, `phone_number`, `name`, `lawyer_number`, `avatar`, `driver_scan_image`, `lawyer_scan_image`, `lawyer_office_id`, `update_time`, `create_time`, `identify_number`, `law_number`, `start_time` FROM `user` AS `user` WHERE `user`.`id` = 20;
+2021-02-05 13:09:22,430 INFO 10156 [egg-sequelize](41ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 13:09:24,501 INFO 10156 [egg-sequelize](42ms) Executed (default): SELECT `id`, `jurisdiction_id`, `age`, `sex`, `password`, `weixin_number`, `phone_number`, `name`, `lawyer_number`, `avatar`, `driver_scan_image`, `lawyer_scan_image`, `lawyer_office_id`, `update_time`, `create_time`, `identify_number`, `law_number`, `start_time` FROM `user` AS `user` WHERE `user`.`id` = 20;
+2021-02-05 13:10:19,358 INFO 12560 [egg-sequelize](39ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 13:10:22,675 INFO 12560 [egg-sequelize](41ms) Executed (default): SELECT `id`, `jurisdiction_id`, `age`, `sex`, `password`, `weixin_number`, `phone_number`, `name`, `lawyer_number`, `avatar`, `driver_scan_image`, `lawyer_scan_image`, `lawyer_office_id`, `update_time`, `create_time`, `identify_number`, `law_number`, `start_time` FROM `user` AS `user` WHERE `user`.`id` = 1;
+2021-02-05 13:10:22,833 INFO 12560 [egg-sequelize](40ms) Executed (default): SELECT `id`, `jurisdiction_id`, `age`, `sex`, `password`, `weixin_number`, `phone_number`, `name`, `lawyer_number`, `avatar`, `driver_scan_image`, `lawyer_scan_image`, `lawyer_office_id`, `update_time`, `create_time`, `identify_number`, `law_number`, `start_time` FROM `user` AS `user` WHERE `user`.`id` = 2;
+2021-02-05 13:10:35,660 INFO 14988 [egg-sequelize](44ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 13:10:42,257 INFO 18296 [egg-sequelize](43ms) Executed (default): SELECT 1+1 AS result
+2021-02-05 13:10:44,150 INFO 18296 [egg-sequelize](45ms) Executed (default): SELECT `id`, `jurisdiction_id`, `age`, `sex`, `password`, `weixin_number`, `phone_number`, `name`, `lawyer_number`, `avatar`, `driver_scan_image`, `lawyer_scan_image`, `lawyer_office_id`, `update_time`, `create_time`, `identify_number`, `law_number`, `start_time` FROM `user` AS `user` WHERE `user`.`id` = 1;
+2021-02-05 13:10:44,198 INFO 18296 [egg-sequelize](43ms) Executed (default): SELECT `id`, `jurisdiction_id`, `age`, `sex`, `password`, `weixin_number`, `phone_number`, `name`, `lawyer_number`, `avatar`, `driver_scan_image`, `lawyer_scan_image`, `lawyer_office_id`, `update_time`, `create_time`, `identify_number`, `law_number`, `start_time` FROM `user` AS `user` WHERE `user`.`id` = 2;
