@@ -17,7 +17,7 @@ class FinshLawService extends Service {
    * @memberof RemoveMessageService
    */
   async finishLaw(caseID, agency_word, finish_word, reling_request) {
-    const { ctx } = this
+    const { ctx, service } = this
     let transaction;
     try {
       transaction = await ctx.model.transaction();
@@ -93,6 +93,7 @@ class FinshLawService extends Service {
       })
 
       await transaction.commit();
+      await service.redis.updateLawsInRedis();
       return ctx.retrunInfo(0, '', '申请成功');
     } catch (err) {
       await transaction.rollback();

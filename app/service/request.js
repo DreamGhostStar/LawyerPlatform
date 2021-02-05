@@ -22,6 +22,9 @@ class RequestService extends Service {
       }
     })
 
+    if (!lawInfo.result_request.word_url) {
+      return ctx.retrunInfo(-1, '', '提交的归档请求为空')
+    }
     const extName = path.extname(lawInfo.result_request.word_url)
     return ctx.retrunInfo(0, {
       caseID: lawInfo.id,

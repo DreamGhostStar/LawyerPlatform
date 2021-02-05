@@ -22,6 +22,9 @@ class LawUtilService extends Service {
         model: ctx.model.Law.LawType,
       },
       {
+        model: ctx.model.Law.ResultRequest,
+      },
+      {
         model: ctx.model.Law.LawStatus,
       },
       {

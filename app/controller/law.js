@@ -133,7 +133,7 @@ class LawController extends Controller {
     const { ctx, service } = this;
     const query = ctx.request.body;
     const { caseID, agency_word, finish_word, reling_request } = query
-    if (ctx.isNull(caseID) || ctx.isNull(finish_word) || ctx.isNull(reling_request)) {
+    if (ctx.isNull(caseID, finish_word, reling_request)) {
       ctx.status = 400;
       ctx.body = ctx.retrunInfo(-1, '', '请求参数错误');
     } else {
