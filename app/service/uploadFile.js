@@ -27,7 +27,8 @@ class UploadFileService extends Service {
    * @memberof UploadFileService
    */
   async uploadFiles() {
-    const { ctx } = this;
+    const { ctx, service } = this;
+    const url = ctx.request.url
     const stream = await ctx.getFileStream();
     const filename = md5(stream.filename) + path.extname(stream.filename).toLocaleLowerCase();
     const localFilePath = path.join(__dirname, '../public/uploads', filename);
@@ -50,7 +51,7 @@ class UploadFileService extends Service {
               resolve(imageUrl + '/' + respBody.key);
             } else {
               ctx.status = respInfo.statusCode
-              ctx.logger.error(new Error(respInfo)) // 打印日志
+              service.systemLog.add(JSON.stringify(respInfo), url) // 打印日志
               reject(new Error(`上传失败`));
             }
 
