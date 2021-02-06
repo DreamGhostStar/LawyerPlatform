@@ -31,12 +31,12 @@ class RequestService extends Service {
     // 获取结案文书url或输入的文本内容
     const value = lawInfo.result_request.word_url || lawInfo.result_request.value
 
-    const extName = path.extname(lawInfo.result_request.word_url)
+    const extName = isUrl ? path.extname(lawInfo.result_request.word_url) : undefined
     return ctx.retrunInfo(0, {
       caseID: lawInfo.id,
       isUrl,
       value,
-      type: extName.substring(1, extName.length)
+      type: extName && extName.substring(1, extName.length)
     }, '获取成功')
   }
 
