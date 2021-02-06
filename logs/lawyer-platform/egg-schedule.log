@@ -1,0 +1,12 @@
+2021-02-06 14:03:43,519 INFO 4400 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-multipart\app\schedule\clean_tmpdir.js
+2021-02-06 14:03:43,519 INFO 4400 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\clean_log.js
+2021-02-06 14:03:43,519 INFO 4400 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\rotate_by_file.js
+2021-02-06 14:03:41,363 INFO 5600 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-multipart\app\schedule\clean_tmpdir.js
+2021-02-06 14:03:41,363 INFO 5600 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\clean_log.js
+2021-02-06 14:03:41,363 INFO 5600 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\rotate_by_file.js
+2021-02-06 14:03:49,837 INFO 11092 [Timer] E:\project\lawyer_platform\node_modules\egg-multipart\app\schedule\clean_tmpdir.js next time will execute after 51970167ms at 2021-02-07 04:30:00.003
+2021-02-06 14:03:49,837 INFO 11092 [Timer] E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\clean_log.js next time will execute after 35770163ms at 2021-02-07 00:00:00.000
+2021-02-06 14:03:49,837 INFO 11092 [Timer] E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\rotate_by_file.js next time will execute after 35771163ms at 2021-02-07 00:00:01.000
+2021-02-06 14:03:51,428 INFO 3284 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-multipart\app\schedule\clean_tmpdir.js
+2021-02-06 14:03:51,428 INFO 3284 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\clean_log.js
+2021-02-06 14:03:51,428 INFO 3284 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\rotate_by_file.js

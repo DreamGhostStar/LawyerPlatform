@@ -147,3 +147,4 @@
 2021-02-05 13:10:22 [http] {"method":"GET","url":"/api/case/getScaleList?caseID=3","data":{},"response":{"code":0,"message":""},"timeLength":430}
 2021-02-05 13:10:44 [http] {"method":"GET","url":"/api/case/getScaleList?caseID=3","data":{},"response":{"code":0,"message":""},"timeLength":149}
 2021-02-06 12:37:45 [http] {"method":"POST","url":"/api/public/upload","data":{},"response":{"code":0,"message":"上传成功"},"timeLength":179}
+2021-02-06 14:03:59 [http] {"method":"POST","url":"/api/user/alterInfo","data":{"name":"梦幽辰","sex":"男","phoneNumber":"18185058651","lawyer_scan_Image":"http://lawyer.youchen-blog.cn/fbe4bf56c9c62a5cfea4da0275c29845.jpg"},"response":{"code":0,"message":"修改用户信息成功"},"timeLength":638}

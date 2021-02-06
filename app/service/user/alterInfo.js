@@ -58,8 +58,8 @@ class AlterInfoService extends Service {
         name,
         sex,
         phone_number: phoneNumber,
-        lawyer_scan_Image,
-        driver_scan_Image
+        lawyer_scan_image: lawyer_scan_Image,
+        driver_scan_image: driver_scan_Image
       }, {
         transaction,
       });
