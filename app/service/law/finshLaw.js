@@ -34,7 +34,7 @@ class FinshLawService extends Service {
         })
       } else {
         finishRequest = await ctx.model.Law.FinalReport.create({
-          content: finish_word.value
+          value: finish_word.value
         }, {
           transaction
         })
@@ -49,7 +49,7 @@ class FinshLawService extends Service {
         })
       } else {
         resultRequestRes = await ctx.model.Law.ResultRequest.create({
-          content: reling_request.value
+          value: reling_request.value
         }, {
           transaction
         })
@@ -65,7 +65,7 @@ class FinshLawService extends Service {
           })
         } else {
           agencyWordRes = await ctx.model.Law.AgencyWord.create({
-            content: agency_word.value
+            value: agency_word.value
           }, {
             transaction
           })

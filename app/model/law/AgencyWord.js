@@ -2,7 +2,7 @@
 // 代理词
 
 module.exports = app => {
-  const { INTEGER, STRING } = app.Sequelize;
+  const { INTEGER, STRING, TEXT } = app.Sequelize;
   const AgencyWord = app.model.define('agency_word', {
     id: {
       type: INTEGER,
@@ -13,11 +13,10 @@ module.exports = app => {
       type: STRING(128),
       allowNull: true,
     },
-    create_time: {
-      type: STRING(32),
-      allowNull: false,
-      defaultValue: new Date().getTime(),
-    },
+    value: {
+      type: TEXT,
+      allowNull: true,
+    }
   }, {
     timestamps: false, // 去除createAt updateAt
     freezeTableName: true, // 使用自定义表名

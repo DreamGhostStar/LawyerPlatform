@@ -22,13 +22,20 @@ class RequestService extends Service {
       }
     })
 
-    if (!lawInfo.result_request.word_url) {
+    if (!lawInfo.result_request.word_url && !lawInfo.result_request.value) {
       return ctx.retrunInfo(-1, '', '提交的归档请求为空')
     }
+
+    // 判断是否是http路径
+    const isUrl = lawInfo.result_request.word_url !== null
+    // 获取结案文书url或输入的文本内容
+    const value = lawInfo.result_request.word_url || lawInfo.result_request.value
+
     const extName = path.extname(lawInfo.result_request.word_url)
     return ctx.retrunInfo(0, {
       caseID: lawInfo.id,
-      url: lawInfo.result_request.word_url,
+      isUrl,
+      value,
       type: extName.substring(1, extName.length)
     }, '获取成功')
   }
@@ -88,6 +95,7 @@ class RequestService extends Service {
       if (isAgree) {
         await law.update({
           audit_user_id: userID,
+          status_id: 2
         }, {
           transaction
         })

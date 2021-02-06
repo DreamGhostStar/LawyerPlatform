@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = app => {
-  const { INTEGER, STRING } = app.Sequelize;
+  const { INTEGER, STRING, TEXT } = app.Sequelize;
   const FinalReport = app.model.define('final_report', {
     id: {
       type: INTEGER,
@@ -12,11 +12,10 @@ module.exports = app => {
       type: STRING(128),
       allowNull: true,
     },
-    create_time: {
-      type: STRING(32),
-      allowNull: false,
-      defaultValue: new Date().getTime(),
-    },
+    value: { // 输入的文本框内容
+      type: TEXT,
+      allowNull: true,
+    }
   }, {
     timestamps: false, // 去除createAt updateAt
     freezeTableName: true, // 使用自定义表名
