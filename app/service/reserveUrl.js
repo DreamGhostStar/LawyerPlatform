@@ -150,7 +150,7 @@ class LawService extends Service {
       user.update({
         avatar,
       });
-      await service.redis.updateLawsInRedis();
+      await service.redis.updateUserInRedis();
       return ctx.retrunInfo(0, '', '修改成功');
     } catch (error) {
       return ctx.retrunInfo(-1, '', error.message);
