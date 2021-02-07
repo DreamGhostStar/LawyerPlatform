@@ -43,7 +43,7 @@ class UploadFileService extends Service {
           filename,
           localFilePath,
           putExtra,
-          (respErr, respBody, respInfo) => {
+          async (respErr, respBody, respInfo) => {
             if (respErr) {
               reject(new Error(respErr.message));
             }
@@ -51,7 +51,7 @@ class UploadFileService extends Service {
               resolve(imageUrl + '/' + respBody.key);
             } else {
               ctx.status = respInfo.statusCode
-              service.systemLog.add(JSON.stringify(respInfo), url) // 打印日志
+              await service.systemLog.add(JSON.stringify(respInfo), url) // 打印日志
               reject(new Error(`上传失败`));
             }
 
