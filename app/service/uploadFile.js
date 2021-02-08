@@ -16,7 +16,6 @@ const options = {
   scope: bucket,
 };
 const putPolicy = new qiniu.rs.PutPolicy(options);
-const uploadToken = putPolicy.uploadToken(mac);
 const config = new qiniu.conf.Config();
 config.zone = qiniu.zone.Zone_z0;
 
@@ -33,6 +32,7 @@ class UploadFileService extends Service {
     const filename = md5(stream.filename) + path.extname(stream.filename).toLocaleLowerCase();
     const localFilePath = path.join(__dirname, '../public/uploads', filename);
     const writeStream = fs.createWriteStream(localFilePath);
+    const uploadToken = putPolicy.uploadToken(mac);
     try {
       await awaitWriteStream(stream.pipe(writeStream));
       const formUploader = new qiniu.form_up.FormUploader(config);
@@ -52,7 +52,7 @@ class UploadFileService extends Service {
             } else {
               ctx.status = respInfo.statusCode
               await service.systemLog.add(JSON.stringify(respInfo), url) // 打印日志
-              reject(new Error(`上传失败`));
+              reject(new Error(respInfo.error));
             }
 
             fs.unlinkSync(localFilePath); // 上传之后删除本地文件

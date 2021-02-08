@@ -31,6 +31,7 @@ class AlterLawService extends Service {
           id: userID,
         },
       });
+      // 律师事务所分得的比例
       const lawyer_office_scale = parseFloat(user.lawyer_office.lawyer_office_scale);
 
       // 计算出总的金额比例
