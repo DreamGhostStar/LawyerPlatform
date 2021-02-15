@@ -163,3 +163,10 @@
 2021-02-07 23:06:32 [http] {"method":"POST","url":"/api/public/upload","data":{},"response":{"code":0,"message":"上传成功"},"timeLength":352}
 2021-02-07 23:06:47 [http] {"method":"POST","url":"/api/public/upload","data":{},"response":{"code":0,"message":"上传成功"},"timeLength":325}
 2021-02-07 23:07:37 [http] {"method":"POST","url":"/api/public/upload","data":{},"response":{"code":0,"message":"上传成功"},"timeLength":328}
+2021-02-15 16:46:50 [http] {"method":"POST","url":"/api/admin/request","data":{"requestID":10,"isAgree":true,"message":"嘻嘻嘻"},"response":{"code":-1,"message":"law_assistant is not associated to law!"},"timeLength":443}
+2021-02-15 16:47:36 [http] {"method":"POST","url":"/api/admin/request","data":{"requestID":10,"isAgree":true,"message":"嘻嘻嘻"},"response":{"code":0,"message":"请求成功"},"timeLength":452}
+2021-02-15 16:48:11 [http] {"method":"POST","url":"/api/admin/request","data":{"requestID":21,"isAgree":true,"message":"嘻嘻嘻"},"response":{"code":0,"message":"请求成功"},"timeLength":659}
+2021-02-15 16:48:26 [http] {"method":"POST","url":"/api/admin/request","data":{"requestID":21,"isAgree":true,"message":"嘻嘻嘻"},"response":{},"timeLength":453}
+2021-02-15 16:48:42 [http] {"method":"POST","url":"/api/admin/request","data":{"requestID":29,"isAgree":true,"message":"嘻嘻嘻"},"response":{},"timeLength":621}
+2021-02-15 16:51:35 [http] {"method":"POST","url":"/api/admin/request","data":{"requestID":16,"isAgree":true,"message":"嘻嘻嘻"},"response":{},"timeLength":742}
+2021-02-15 17:08:35 [http] {"method":"POST","url":"/api/admin/request","data":{"requestID":16,"isAgree":true,"message":"嘻嘻嘻"},"response":{"code":0,"message":"请求成功"},"timeLength":1009}

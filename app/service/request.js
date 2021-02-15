@@ -85,10 +85,25 @@ class RequestService extends Service {
       const jwtData = await service.jwt.getJWtData();
       const userID = jwtData.userID
       const law = await ctx.model.Law.Law.findOne({
+        include: [
+        {
+          model: ctx.model.User.User
+        }],
         where: {
           result_request_id: requestID
         }
       })
+      for (let i = 0; i < law.users.length; i++) {
+        const assistItem = law.users[i];
+        await ctx.model.User.Message.create({
+          form_user_id: userID,
+          to_user_id: assistItem.law_assistant.assist_id,
+          law_id: law.id,
+          remark: message,
+          is_watched: false,
+          is_agree: isAgree
+        })
+      }
       if (!law) {
         throw new Error('未找到该案件')
       }

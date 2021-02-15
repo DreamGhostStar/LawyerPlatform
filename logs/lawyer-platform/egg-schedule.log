@@ -106,3 +106,33 @@
 2021-02-07 23:07:33,364 INFO 5568 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-multipart\app\schedule\clean_tmpdir.js
 2021-02-07 23:07:33,364 INFO 5568 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\clean_log.js
 2021-02-07 23:07:33,364 INFO 5568 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\rotate_by_file.js
+2021-02-15 16:45:46,736 INFO 8536 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-multipart\app\schedule\clean_tmpdir.js
+2021-02-15 16:45:46,736 INFO 8536 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\clean_log.js
+2021-02-15 16:45:46,736 INFO 8536 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\rotate_by_file.js
+2021-02-15 16:45:49,194 INFO 22264 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-multipart\app\schedule\clean_tmpdir.js
+2021-02-15 16:45:49,194 INFO 22264 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\clean_log.js
+2021-02-15 16:45:49,194 INFO 22264 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\rotate_by_file.js
+2021-02-15 16:45:57,058 INFO 12772 [Timer] E:\project\lawyer_platform\node_modules\egg-multipart\app\schedule\clean_tmpdir.js next time will execute after 42242946ms at 2021-02-16 04:30:00.004
+2021-02-15 16:45:57,059 INFO 12772 [Timer] E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\clean_log.js next time will execute after 26042942ms at 2021-02-16 00:00:00.001
+2021-02-15 16:45:57,059 INFO 12772 [Timer] E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\rotate_by_file.js next time will execute after 26043941ms at 2021-02-16 00:00:01.000
+2021-02-15 16:45:58,133 INFO 7332 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-multipart\app\schedule\clean_tmpdir.js
+2021-02-15 16:45:58,133 INFO 7332 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\clean_log.js
+2021-02-15 16:45:58,133 INFO 7332 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\rotate_by_file.js
+2021-02-15 16:47:34,496 INFO 18904 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-multipart\app\schedule\clean_tmpdir.js
+2021-02-15 16:47:34,496 INFO 18904 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\clean_log.js
+2021-02-15 16:47:34,496 INFO 18904 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\rotate_by_file.js
+2021-02-15 16:48:23,258 INFO 10536 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-multipart\app\schedule\clean_tmpdir.js
+2021-02-15 16:48:23,258 INFO 10536 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\clean_log.js
+2021-02-15 16:48:23,258 INFO 10536 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\rotate_by_file.js
+2021-02-15 17:02:05,602 INFO 3336 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-multipart\app\schedule\clean_tmpdir.js
+2021-02-15 17:02:05,602 INFO 3336 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\clean_log.js
+2021-02-15 17:02:05,602 INFO 3336 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\rotate_by_file.js
+2021-02-15 17:02:12,378 INFO 9200 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-multipart\app\schedule\clean_tmpdir.js
+2021-02-15 17:02:12,378 INFO 9200 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\clean_log.js
+2021-02-15 17:02:12,378 INFO 9200 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\rotate_by_file.js
+2021-02-15 17:03:38,263 INFO 19588 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-multipart\app\schedule\clean_tmpdir.js
+2021-02-15 17:03:38,263 INFO 19588 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\clean_log.js
+2021-02-15 17:03:38,263 INFO 19588 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\rotate_by_file.js
+2021-02-15 17:08:30,909 INFO 13640 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-multipart\app\schedule\clean_tmpdir.js
+2021-02-15 17:08:30,909 INFO 13640 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\clean_log.js
+2021-02-15 17:08:30,909 INFO 13640 [egg-schedule]: register schedule E:\project\lawyer_platform\node_modules\egg-logrotator\app\schedule\rotate_by_file.js

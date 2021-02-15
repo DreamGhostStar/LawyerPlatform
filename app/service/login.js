@@ -15,7 +15,7 @@ class LoginService extends Service {
       const token = await service.jwt.getToken({
         userID: userData.id,
       }, {
-        expiresIn: 60 * 60 * 24 * 7, // 时间以秒为基准，过期时间为1天
+        expiresIn: 60 * 60 * 24 * 7, // 时间以秒为基准，过期时间为7天
       });
 
       return ctx.retrunInfo(0, token, '登录成功');
