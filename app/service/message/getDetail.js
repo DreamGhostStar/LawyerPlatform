@@ -54,7 +54,9 @@ class GetDetailService extends Service {
     userList.forEach(user => {
       if (user.id === messageDetail.form_user_id) {
         checkerName = user.name;
-      } else if (user.id === messageDetail.law.host_user_id) {
+      }
+      
+      if (user.id === messageDetail.law.host_user_id) {
         hostName = user.name
       }
     })

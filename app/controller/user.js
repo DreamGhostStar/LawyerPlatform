@@ -90,7 +90,6 @@ class UserController extends Controller {
     ctx.body = res;
   }
 
-  // 
   /**
    * @api {GET} /api/user/getInformDetail 获取通知消息详情
    * @apiParam {number} informID 通知ID

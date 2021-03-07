@@ -170,3 +170,6 @@
 2021-02-15 16:48:42 [http] {"method":"POST","url":"/api/admin/request","data":{"requestID":29,"isAgree":true,"message":"嘻嘻嘻"},"response":{},"timeLength":621}
 2021-02-15 16:51:35 [http] {"method":"POST","url":"/api/admin/request","data":{"requestID":16,"isAgree":true,"message":"嘻嘻嘻"},"response":{},"timeLength":742}
 2021-02-15 17:08:35 [http] {"method":"POST","url":"/api/admin/request","data":{"requestID":16,"isAgree":true,"message":"嘻嘻嘻"},"response":{"code":0,"message":"请求成功"},"timeLength":1009}
+2021-03-07 16:14:25 [http] {"method":"GET","url":"/api/user/getInformDetail?informID=3","data":{},"response":{"code":0,"message":"获取成功"},"timeLength":365}
+2021-03-07 16:14:46 [http] {"method":"GET","url":"/api/user/getInformDetail?informID=3","data":{},"response":{"code":0,"message":"获取成功"},"timeLength":187}
+2021-03-07 16:16:11 [http] {"method":"GET","url":"/api/user/getInformDetail?informID=3","data":{},"response":{"code":0,"message":"获取成功"},"timeLength":192}
